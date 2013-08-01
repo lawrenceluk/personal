@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Personal</title>
+  <title>Lawrence Luk</title>
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
@@ -9,6 +9,17 @@
 <body>
 
 <%= yield %>
-
+<footer>
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-4">
+				<small>The colors change order every time!</small>
+			</div>
+			<div class="col-lg-4 col-offset-4">
+				<span class="pull-right"><small>Created by Lawrence Luk one night in July</small></span>	
+			</div>
+		</div>
+	</div>
+</footer>
 </body>
 </html>

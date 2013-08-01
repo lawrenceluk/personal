@@ -1,0 +1,51 @@
+<% colors = ('a'..'h').to_a.shuffle[0..8] %>
+
+<div class="container">
+	<div class="page-header">
+	  <h1>Lawrence Luk <small>ucsd '16</small></h1>
+	</div>
+	<div class="row">
+		<div class="col-lg-3 col-sm-6 panel" id="<%= colors[0] %>">
+			welcome to <hr>
+		</div>
+		<div class="col-lg-3 col-sm-6 panel" id="<%= colors[1] %>">
+			my site <hr>
+This is my website! As you can see, there isn't a whole lot of stuff right now. Don't worry, this page will always be under construction. As I learn more and come up with cool new things, this will be the first place on the internet that you can see them.
+		</div>
+		<div class="col-lg-3 col-sm-6 panel" id="<%= colors[2] %>">
+			about me <hr>
+My name is Lawrence Luk and I'm a second year student at the University of California, San Diego.
+My major is Computer Engineering, with a bias towards computer science. The programming languages I am familiar with include Java, C, C++, SPARC Assembly, Ruby, Python, and Objective-C.
+		</div>
+		<div class="col-lg-3 col-sm-6 panel" id="<%= colors[3] %>">
+			cont. <hr>
+When I'm not coding I spend my time seeing friends, playing League of Legends, longboarding, plucking at a guitar, producing EDM in Ableton Live, and attempting to learn Korean.
+Although I keep myself pretty busy, I hope to keep this site regularly updated in the future, especially once I start making some neat/useful/cool web apps. Stay tuned!
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-lg-3 col-sm-6 panel" id="<%= colors[4] %>">
+<%= link_to 'Demigods', 'http://dev.bukkit.org/bukkit-plugins/demigods/', target: "_blank" %><br> A Minecraft server plugin coded in Java. It allows players to alliance with deities from Greek mythology and use special powers in combat with each other. Adds gameplay elements such as a system of Favor and Devotion and Shrines to allow players to truly experience the power of ancient Gods and Titans. To date, the plugin has received over 200,000 views and been downloaded 20,000 times. Demigods was my personal project up until version 2.0, when I passed the plugin on to new owners who would continue its development.
+		</div>
+		<div class="col-lg-3 col-sm-6 panel" id="<%= colors[5] %>">
+<%= link_to 'Shipprr (beta)', "https://shipprr.herokuapp.com/", target: "_blank" %><br> A "social media" website that allows users to easily
+create and follow Ships. Based on the relatively recent phenomenon of relation'shipping', fandoms have come up with all kinds of pairings,
+canon or otherwise, for their favorite characters, celebrities, and even objects. Shipprr seeks to provide a central hub for sorts of fandoms
+to discuss all the Ships they love.
+		</div>
+		<div class="col-lg-3 col-sm-6 panel" id="<%= colors[6] %>">
+			links <hr>
+			<%= link_to 'my github', "https://github.com/lawrenceluk/", target: "_blank" %>
+			<br>
+			<%= link_to 'my blog', "http://blog.lluk.in/", target: "_blank" %>
+			<br>
+			<%= link_to 'youtube channel (minecraft)', "http://www.youtube.com/user/MCtoomuch", target: "_blank" %>
+			<br>
+			more coming soon...
+		</div>
+		<div class="col-lg-3 col-sm-6 panel" id="<%= colors[7] %>">
+			contact <hr>
+			<%= link_to 'email me', "mailto:lluk@ucsd.edu" %>
+		</div>
+	</div>
+</div>

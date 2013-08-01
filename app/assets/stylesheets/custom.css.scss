@@ -1,0 +1,48 @@
+body {
+	background-color: #fff;
+	color: white;
+}
+footer {
+	color: black;
+}
+h1 {
+	color: black;
+	font-family: "Book Antiqua";
+}
+a {
+	text-decoration: none !important;
+	color: #ddd !important;
+	&:hover {
+		color: #888 !important;
+	}
+}
+.panel {
+	
+}
+.block {
+	border: 3px solid white !important;
+}
+#a {
+	background-color: #66001d !important;
+}
+#b {
+	background-color: #660050 !important;
+}
+#c {
+	background-color: #070066 !important;
+}
+#d {
+	background-color: #003a66 !important;
+}
+#e {
+	background-color: #00665f !important;
+}
+#f {
+	background-color: #006625 !important;
+}
+#g {
+	background-color: #650 !important;
+}
+#h {
+	background-color: #662900 !important;
+}
