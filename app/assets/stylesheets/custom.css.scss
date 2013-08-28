@@ -1,48 +1,103 @@
 body {
 	background-color: #fff;
-	color: white;
 }
 footer {
 	color: black;
 }
 h1 {
 	color: black;
-	font-family: "Book Antiqua";
+	font-family: "Book Antiqua", serif;
+}
+h3 {
+	font-family: "Book Antiqua", serif;
 }
 a {
-	text-decoration: none !important;
-	color: #ddd !important;
+	color: #2E7FDB;
 	&:hover {
-		color: #888 !important;
+		transition: 0.2s;
+		text-decoration: none;
+		color: white;
+		background-color: #1E4D82;
 	}
 }
-.panel {
-	
+body {
+	font-family: "Georgia", serif;
+}
+.description {
+	font-size: 1.8em;
+	line-height: 1.15em;
+}
+.midsize {
+	font-size: 1.4em;
+	line-height: 1.28em;
+}
+.text-right {
+	text-align: right;
+}
+.gap {
+	padding-top: 20px;
+}
+.whitespace {
+	padding-top: 180px;
 }
 .block {
 	border: 3px solid white !important;
 }
-#a {
-	background-color: #66001d !important;
+.workingtitle {
+	text-align: center;
+	font-family: "Monaco", monospace, sans-serif;
+	font-size: 3em;
 }
-#b {
-	background-color: #660050 !important;
+.wrapper {
+  padding-top: 300px;
+  min-height: 460px;
+  overflow: hidden;
+  display: table;
+  height: 100%;
+  width: 100%;
+  left: 0;
+  top: 0;
 }
-#c {
-	background-color: #070066 !important;
+.underblock {
+	margin-top: -260px;
+	background-color: #C2DFF2;
+	height: 120px;
+	background-size: cover;
 }
-#d {
-	background-color: #003a66 !important;
+.overblock {
+	background-color: #FFC76E;
+	height: 250px;
+	background-size: cover;
 }
-#e {
-	background-color: #00665f !important;
+.colorbar-fin {
+	background-color: #8C2B2B;
+	height: 30px;
+	background-size: cover;
+	color: white;
+	text-align: center;
 }
-#f {
-	background-color: #006625 !important;
+.leading {
+	font-family: "Monaco", monospace, sans-serif;
+	padding-top: 10px;
+	color: white;
+	font-size: 6em;
+	text-align: center;
 }
-#g {
-	background-color: #650 !important;
+.tiny {
+	font-size: 12px;
 }
-#h {
-	background-color: #662900 !important;
+.end {
+	padding-bottom: 20px;
+}
+.thagem {
+	position: absolute;
+	left: -140px;
+}
+.somespace {
+	padding-top: 100px;
+}
+.center {
+	text-align: center;
+	margin-left: auto;
+	margin-right: auto;
 }

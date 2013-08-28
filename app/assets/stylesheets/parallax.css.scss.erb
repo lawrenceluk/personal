@@ -1,0 +1,136 @@
+.sun {
+  position: absolute;
+  display: block;
+  right: 50%;
+  bottom: 430px;
+}
+.cloud {
+  position: absolute;
+  display: block;
+  right: 20%;
+  bottom: 480px;
+}
+.boat {
+  position: absolute;
+  display: block;
+  left: 18%;
+  bottom: 220px;
+  animation-timing-function:linear;
+  -webkit-animation-timing-function:linear;
+  animation-delay:0.41s;
+  -webkit-animation-delay:0.41s;
+  animation:bobbing 2.5s infinite;
+  -webkit-animation:bobbing 2.5s infinite;
+}
+.boat.other {
+  left: 80%;
+  bottom: 250px;
+  animation-timing-function:linear;
+  -webkit-animation-timing-function:linear;
+  animation:otherbobbing 2.5s infinite;
+  -webkit-animation:otherbobbing 2.5s infinite;
+}
+.wave {
+  background: transparent repeat-x;
+  position: absolute;
+  display: block;
+  width: 300%;
+  height: 80px;
+  animation-timing-function:linear;
+  -webkit-animation-timing-function:linear;
+  animation:wave 2.5s infinite;
+  -webkit-animation:wave 2.5s infinite;
+}
+.wave.one {
+  background-image: url(<%= asset_path 'water1.png' %>); 
+  left: -101%;
+  bottom: 220px;
+  margin: 0px 0px;
+  animation-delay:0.2s;
+  -webkit-animation-delay:0.2s;
+}
+.wave.two {
+  background-image: url(<%= asset_path 'water2.png' %>); 
+  left: -95%;
+  bottom: 210px;
+  margin: 0px 0px;
+  animation-delay:0.35s;
+  -webkit-animation-delay:0.35s;
+}
+.wave.three {
+  background-image: url(<%= asset_path 'water3.png' %>); 
+  left: -103%;
+  bottom: 200px;
+  margin: 0px 0px;
+  animation-delay:0.41s;
+  -webkit-animation-delay:0.41s;
+}
+.wave.four {
+  background-image: url(<%= asset_path 'water4.png' %>); 
+  left: -90%;
+  bottom: 180px;
+  margin: 0px 0px;
+  animation-delay:0.53s;
+  -webkit-animation-delay:0.53s;
+}
+.wave.light {
+  background-image: url(<%= asset_path 'water-light.png' %>); 
+  bottom: 160px;
+  left: -95%;
+  margin: 0px 0px;
+  animation-delay:0.13s;
+  -webkit-animation-delay:0.13s;
+}
+.wave.orange {
+  background-image: url(<%= asset_path 'water-orange.png' %>); 
+  bottom: 140px;
+  margin: 0px 0px;
+}
+.scene {
+  min-height: 360px
+}
+@keyframes wave {
+  0% {
+    -webkit-transform: rotateZ(0deg) translate3d(0,10%,0) rotateZ(0deg);
+    -moz-transform: rotateZ(0deg) translate3d(0,10%,0) rotateZ(0deg);
+    transform: rotateZ(0deg) translate3d(0,10%,0) rotateZ(0deg); }
+
+  100% {
+    -webkit-transform: rotateZ(360deg) translate3d(0,10%,0) rotateZ(-360deg);
+    -moz-transform: rotateZ(360deg) translate3d(0,10%,0) rotateZ(-360deg);
+    transform: rotateZ(360deg) translate3d(0,10%,0) rotateZ(-360deg); 
+    } 
+}
+
+@-webkit-keyframes wave {
+  0% {
+    -webkit-transform: rotateZ(0deg) translate3d(0,10%,0) rotateZ(0deg);
+    -moz-transform: rotateZ(0deg) translate3d(0,10%,0) rotateZ(0deg);
+    transform: rotateZ(0deg) translate3d(0,10%,0) rotateZ(0deg); }
+
+  100% {
+    -webkit-transform: rotateZ(360deg) translate3d(0,10%,0) rotateZ(-360deg);
+    -moz-transform: rotateZ(360deg) translate3d(0,10%,0) rotateZ(-360deg);
+    transform: rotateZ(360deg) translate3d(0,10%,0) rotateZ(-360deg); 
+  }
+}
+@keyframes bobbing {
+  0%   {left:19%; bottom:216px;}
+  50%  {left:19%; bottom:226px;}
+  100% {left:19%; bottom:216px;}
+}
+@-webkit-keyframes bobbing {
+  0%   {left:19%; bottom:216px;}
+  50%  {left:19%; bottom:226px;}
+  100% {left:19%; bottom:216px;}
+}
+@keyframes otherbobbing {
+  0%   {right:20%; bottom:247px;}
+  50%  {right:20%; bottom:257px;}
+  100% {right:20%; bottom:247px;}
+}
+@-webkit-keyframes otherbobbing {
+  0%   {right:20%; bottom:247px;}
+  50%  {right:20%; bottom:257px;}
+  100% {right:20%; bottom:247px;}
+}

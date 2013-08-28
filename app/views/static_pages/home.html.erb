@@ -1,51 +1,96 @@
-<% colors = ('a'..'h').to_a.shuffle[0..8] %>
-
 <div class="container">
 	<div class="page-header">
 	  <h1>Lawrence Luk <small>ucsd '16</small></h1>
 	</div>
-	<div class="row">
-		<div class="col-lg-3 col-sm-6 panel" id="<%= colors[0] %>">
-			welcome to <hr>
+</div>
+<div class="wrapper">
+	<ul id="scene" class="scene">
+		<li class="layer" data-dpeth="0.00"></li>
+		<li class="layer" data-depth="0.10"><%= image_tag 'sun.png', width: 140, height: 140, class: "sun" %></li>
+		<li class="layer" data-depth="0.24"><%= image_tag 'cloud1.png', width: 220, height: 140, class: "cloud" %></li>
+		<li class="layer" data-depth="0.26"><%= image_tag 'boat1.png', width: 90, height: 110, class: "boat other" %></li>
+		<li class="layer" data-depth="0.30"><div class="wave one"></div></li>
+		<li class="layer" data-depth="0.40"><div class="wave two"></div></li>
+		<li class="layer" data-depth="0.57">
+			<%= link_to "http://www.welcome.shipprr.com" do %>
+				<%= image_tag 'boat2.png', width: 220, height: 260, class: "boat" %>
+			<% end %></li>
+		<li class="layer" data-depth="0.70"><div class="wave three"></div></li>
+		<li class="layer" data-depth="0.92"><div class="wave four"></div></li>
+		<li class="layer" data-depth="0.98"><div class="wave light"></div></li>
+	</ul>
+</div>
+<div class="underblock"></div>
+<div class="overblock"><p class="leading">hi<span class="tiny">scroll down</span></p></div>
+<div class="container">
+	<div class="gap"></div>
+	<div class="row description">
+		<div class="col-lg-8 gap">
+			I am currently a full time student at the <span title="tritons!!!">University of California San Diego</span>, studying
+			Computer Engineering.
+			<div class="gap">
+				<span title="along with English, Mandarin, Cantonese, and learning 한국어">
+					The languages I am familiar with include Java, C and C++, Ruby, Python, SPARC Assembly, and Objective C.</span>
+			</div>
+			<div class="gap">
+				Projects I have worked on in the past include game development, mobile apps, Flash for linux touchscreens, and webapps.
+			</div>
 		</div>
-		<div class="col-lg-3 col-sm-6 panel" id="<%= colors[1] %>">
-			my site <hr>
-This is my website! As you can see, there isn't a whole lot of stuff right now. Don't worry, this page will always be under construction. As I learn more and come up with cool new things, this will be the first place on the internet that you can see them.
-		</div>
-		<div class="col-lg-3 col-sm-6 panel" id="<%= colors[2] %>">
-			about me <hr>
-My name is Lawrence Luk and I'm a second year student at the University of California, San Diego.
-My major is Computer Engineering, with a bias towards computer science. The programming languages I am familiar with include Java, C, C++, SPARC Assembly, Ruby, Python, and Objective-C.
-		</div>
-		<div class="col-lg-3 col-sm-6 panel" id="<%= colors[3] %>">
-			cont. <hr>
-When I'm not coding I spend my time seeing friends, playing League of Legends, longboarding, plucking at a guitar, producing EDM in Ableton Live, and attempting to learn Korean.
-Although I keep myself pretty busy, I hope to keep this site regularly updated in the future, especially once I start making some neat/useful/cool web apps. Stay tuned!
+		<div class="col-lg-3 col-sm-12 center">
+			<%= image_tag 'selfie.png', height: 260, width: 200, class: "img-rounded", title: "Getting those selfies on instagram" %>
 		</div>
 	</div>
-	<div class="row">
-		<div class="col-lg-3 col-sm-6 panel" id="<%= colors[4] %>">
-<%= link_to 'Demigods', 'http://dev.bukkit.org/bukkit-plugins/demigods/', target: "_blank" %><br> A Minecraft server plugin coded in Java. It allows players to alliance with deities from Greek mythology and use special powers in combat with each other. Adds gameplay elements such as a system of Favor and Devotion and Shrines to allow players to truly experience the power of ancient Gods and Titans. To date, the plugin has received over 200,000 views and been downloaded 20,000 times. Demigods was my personal project up until version 2.0, when I passed the plugin on to new owners who would continue its development.
+
+	<div class="workingtitle gap">projects</div>
+	<div class="row midsize">
+		<div class="col-lg-12 gap">
+			<%= link_to "Demigods", "http://dev.bukkit.org/bukkit-plugins/demigods/" %> [2011-2012]: a Minecraft server plugin coded in Java. It allows players to alliance with deities from Greek mythology and use special powers in combat with each other. To date, the plugin has received
+			<%= link_to "over 200,000 views", "http://www.youtube.com/user/MCtoomuch", target: "_blank" %>
+			and been downloaded 20,000 times. Demigods was my personal project up until version 2.0, when I passed the plugin on to new owners.
+			<div class="gap"></div>
+			<%= link_to "Shipprr", "http://www.shipprr.com" %> [2013- ]: a "social media" website that allows users to easily
+			create and follow Ships. Based on the relatively recent phenomenon of relation'shipping', fandoms have come up with all kinds of pairings,
+			canon or otherwise, for their favorite characters, celebrities, and even objects. Shipprr seeks to provide a central hub for sorts of fandoms to discuss all the Ships they love. Built in Ruby on Rails with Bootstrap.
+			<div class="gap"></div>
+			<%= link_to "This Site", "#" %> [2013- ]: Built in Ruby on Rails and Bootstrap (as usual!) with 
+				<%= link_to "parallax.js", "http://stolksdorf.github.io/Parallaxjs/" %> handling the fancy ocean scene up top.
 		</div>
-		<div class="col-lg-3 col-sm-6 panel" id="<%= colors[5] %>">
-<%= link_to 'Shipprr (beta)', "https://shipprr.herokuapp.com/", target: "_blank" %><br> A "social media" website that allows users to easily
-create and follow Ships. Based on the relatively recent phenomenon of relation'shipping', fandoms have come up with all kinds of pairings,
-canon or otherwise, for their favorite characters, celebrities, and even objects. Shipprr seeks to provide a central hub for sorts of fandoms
-to discuss all the Ships they love.
+	</div>
+	<div class="workingtitle gap">work</div>
+	<div class="row midsize">
+		<div class="col-lg-12 gap">
+			<%= link_to "Quadbase", "http://www.quadbase.com/" %> [2011]: a local SaaS business that produces data visualization software. 
+			I had a summer internship working on the mobile end of the EspressDashboard platform. In the process I made an iPhone app and a responsive web page with the help of my team members.
+			<div class="gap"></div>
+			<%= link_to "TouchMedia (cn)", "http://www.touchmedia.cn/" %> [2012]: a company in Shanghai that produces touchscreens that go in
+			the passenger headrests of Taxis across China and Canada. As an intern, I ran different touchscreen models through a 
+			gamut of tests, everything from simulating monthly data updates and clicking through the proprietary Flash apps looking
+			for bugs. I also taught myself Flash/ActionScript while I was there to build a Pong game for the device.
+			<div class="gap"></div>
+			<%= link_to "Bintang Badminton", "http://www.bintangbadminton.org/" %> [2007-2012]: this isn't strictly related but badminton was
+			such a huge part of my life that I'll put it down anyways. Throughout my years of training I reached rank 6th in the United States for
+			mens' doubles in my age category, worked as a coach for Bintang Badminton, and volunteered as an umpire at large events.
+			<div class="gap"></div>
+			<strong>You!</strong> Are you an employer/looking for freelance work? I can do just about anything, and although my first priorities
+			are as a student, I'd be more than happy to pick up some side work or a summer internship. Please contact me if you like what you see!
 		</div>
-		<div class="col-lg-3 col-sm-6 panel" id="<%= colors[6] %>">
-			links <hr>
-			<%= link_to 'my github', "https://github.com/lawrenceluk/", target: "_blank" %>
-			<br>
-			<%= link_to 'my blog', "http://blog.lluk.in/", target: "_blank" %>
-			<br>
-			<%= link_to 'youtube channel (minecraft)', "http://www.youtube.com/user/MCtoomuch", target: "_blank" %>
-			<br>
-			more coming soon...
-		</div>
-		<div class="col-lg-3 col-sm-6 panel" id="<%= colors[7] %>">
-			contact <hr>
-			<%= link_to 'email me', "mailto:lluk@ucsd.edu" %>
-		</div>
+	</div>
+	<div class="workingtitle gap">links</div>
+	<div class="center description">
+		<%= link_to 'my github', "https://github.com/lawrenceluk/", target: "_blank" %><br>
+		<%= link_to 'my blog', "http://blog.lluk.in/", target: "_blank" %><br>
+		<%= link_to 'email me', "mailto:lluk@ucsd.edu" %>
+	</div>
+	<div class="somespace">
+		<%= image_tag 'ruby.png', height: 180, width: 280, title: "I drew this!!! It's a ruby gem get it??", class: "thagem" %>
+	</div>
+	<div class="tiny whitespace center end">
+		In his spare time, Lawrence enjoys browsing Reddit, playing various instruments, longboarding and not falling, 
+			playing League of Legends more than he'd admit,
+			working out, and <span title="actually, that's not true">referring to himself in the third person</span>.
+			<hr>
+			© Lawrence Luk. All art by me except the boats, 
+				which were drawn by <%= link_to "Deanna Lam", "http://behance.net/deannalam" %>.
 	</div>
 </div>
+<div class="colorbar-fin"></div>
