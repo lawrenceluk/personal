@@ -27,8 +27,8 @@
   bottom: 250px;
   animation-timing-function:linear;
   -webkit-animation-timing-function:linear;
-  animation:otherbobbing 2.5s infinite;
-  -webkit-animation:otherbobbing 2.5s infinite;
+  animation:otherbobbing 5s infinite;
+  -webkit-animation:otherbobbing 5s infinite;
 }
 .wave {
   background: transparent repeat-x;
@@ -36,8 +36,8 @@
   display: block;
   width: 300%;
   height: 80px;
-  animation:wave 2.5s infinite;
-  -webkit-animation:wave 2.5s infinite;
+  animation:wave 4s infinite;
+  -webkit-animation:wave 4s infinite;
 }
 .wave.one {
   background-image: url(<%= asset_path 'water1.png' %>); 
@@ -86,31 +86,6 @@
 }
 .scene {
   min-height: 360px
-}
-@keyframes wave {
-  0% {
-    -webkit-transform: rotateZ(0deg) translate3d(0,10%,0) rotateZ(0deg);
-    -moz-transform: rotateZ(0deg) translate3d(0,10%,0) rotateZ(0deg);
-    transform: rotateZ(0deg) translate3d(0,10%,0) rotateZ(0deg); }
-
-  100% {
-    -webkit-transform: rotateZ(360deg) translate3d(0,10%,0) rotateZ(-360deg);
-    -moz-transform: rotateZ(360deg) translate3d(0,10%,0) rotateZ(-360deg);
-    transform: rotateZ(360deg) translate3d(0,10%,0) rotateZ(-360deg); 
-    } 
-}
-
-@-webkit-keyframes wave {
-  0% {
-    -webkit-transform: rotateZ(0deg) translate3d(0,10%,0) rotateZ(0deg);
-    -moz-transform: rotateZ(0deg) translate3d(0,10%,0) rotateZ(0deg);
-    transform: rotateZ(0deg) translate3d(0,10%,0) rotateZ(0deg); }
-
-  100% {
-    -webkit-transform: rotateZ(360deg) translate3d(0,10%,0) rotateZ(-360deg);
-    -moz-transform: rotateZ(360deg) translate3d(0,10%,0) rotateZ(-360deg);
-    transform: rotateZ(360deg) translate3d(0,10%,0) rotateZ(-360deg); 
-  }
 }
 @keyframes bobbing {
   0%   {left:19%; bottom:216px;}
