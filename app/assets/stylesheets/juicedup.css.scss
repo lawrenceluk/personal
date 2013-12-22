@@ -1,0 +1,333 @@
+@import url("http://fonts.googleapis.com/css?family=Merriweather:400,300");
+/* general */
+.juicedup {
+	position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+	// background code shamelessly plundered from http://lea.verou.me/
+	background-color: #FAEDE6;
+	background-image: -webkit-gradient(linear, 0 0, 0 100%, color-stop(.5, rgba(255, 255, 255, .4)), color-stop(.5, transparent), to(transparent));
+	background-image: -moz-linear-gradient(rgba(255, 255, 255, .4) 50%, transparent 50%, transparent);
+	background-image: -o-linear-gradient(rgba(255, 255, 255, .4) 50%, transparent 50%, transparent);
+	background-image: linear-gradient(rgba(255, 255, 255, .4) 50%, transparent 50%, transparent);
+	-webkit-background-size: 50px 50px;
+	-moz-background-size: 50px 50px;
+	background-size: 50px 50px;
+
+	font-family: "Merriweather";
+	font-size: 18px;
+	line-height: 26px;
+}
+
+.widthfix {
+	margin: 0px;
+}
+
+.hidden {
+	display: none;
+	visibility: hidden;
+}
+
+.solider {
+	background: rgba(255, 255, 255, 0.8);
+}
+
+/* orangey */
+.nohover {
+	&:hover {
+		text-decoration: none;
+	}
+}
+.title {
+	font-size: 1em;
+	margin-bottom: 2px;
+}
+.description {
+	line-height: 1.3em;
+	font-size: 0.68em;
+}
+.big {
+	margin-top: 10px;
+	font-size: 1.8em;
+}
+.info {
+	font-size: 0.65em;
+	color: #2A7539;
+}
+.counter {
+	color: #459642;
+	font-size: 0.9em;
+	margin-bottom: 10px;
+}
+.bigorange {
+	position: relative;
+	transition: 0.2s;
+	&:hover {
+		margin-bottom: -10px;
+		cursor: pointer;
+		top: -5px;
+		left: -5px;
+		height: 170px;
+	}
+	&:active {
+		margin-bottom: 0px;
+		top: 0px;
+		left: 0px;
+		height: 160px;
+	}
+}
+.makeoj_image {
+	padding: 10px 30px 10px 10px;
+}
+#makeoj_button {
+	-webkit-user-select: none; /* Chrome/Safari */        
+	-moz-user-select: none; /* Firefox */
+	-ms-user-select: none; /* IE10+ */
+
+	/* Rules below not implemented in browsers yet */
+	-o-user-select: none;
+	user-select: none;
+
+	transition: 0.15s;
+	border-radius: 2px;
+	border: 2px solid #FA935F;
+	font-size: 3em;
+	background: #F5EDE9;
+	padding: 8px;
+	margin-bottom: 10px;
+	&:hover {
+		background: #FA935F;
+		color: white;
+		cursor: pointer;
+	}
+	&:active {
+		background: #F28B57;
+	}
+}
+.shop_item {
+	margin: 8px;
+	padding: 12px;
+	background: #f3f3f3;
+}
+.shop_item_upgrade {
+	margin: 8px;
+	padding: 12px;
+	background: #EDF6FA;
+}
+.buy_button {
+	-webkit-user-select: none; /* Chrome/Safari */        
+	-moz-user-select: none; /* Firefox */
+	-ms-user-select: none; /* IE10+ */
+
+	/* Rules below not implemented in browsers yet */
+	-o-user-select: none;
+	user-select: none;
+
+	border-radius: 2px;
+	border-bottom: 1px solid #D6BDB0;
+	padding: 4px 14px;
+	background: #F7DFD2;
+	cursor: pointer;
+	text-align: center;
+	&:hover {
+		color: white;
+		background: #F77D40;
+		border-bottom: 1px solid #BA6B43;
+	}
+	&:active {
+		color: white;
+		background: #D96C36;
+	}
+}
+.unaffordable {
+	cursor: default;
+	background: #ddd;
+	border-bottom: 1px solid #aaa;
+	&:hover {
+		color: black;
+		background: #ddd;
+		border-bottom: 1px solid #aaa;
+	}
+	&:active {
+		color: black;
+		background: #ddd;
+	}
+}
+#shelf_container {
+  height: 380px;
+}
+.outer_container {
+	height: 380px;
+}
+.translucent {
+	background: rgba(255, 255, 255, .6);
+}
+.shelf {
+	border-top: solid 3px #67ABE6;
+
+	/* Scrollbar edits based on Tim Holman's work */
+	&::-webkit-scrollbar-track
+	{
+		background-color: #fafafa;
+	}
+	&::-webkit-scrollbar
+	{
+		width: 6px;
+		background-color: #fbfbfb;
+	}
+	&::-webkit-scrollbar-thumb
+	{
+		background-color: #4798DE;
+		background-image: -webkit-gradient(linear, 0 0, 0 100%,
+		                   color-stop(.5, rgba(255, 255, 255, .2)),
+						   color-stop(.5, transparent), to(transparent));
+	}
+
+	padding: -2px;
+  overflow:auto;
+	height: 100%;
+}
+.short.shelf {
+	height: 220px;
+	background: #fafafa;
+	border-top: 3px solid #E8B59B;
+	border-radius: 5px;
+}
+.omaker_item {
+	position: relative;
+	margin: 5px;
+	cursor: pointer;
+
+	&:hover {
+	}
+}
+.spacing {
+	margin-top: 40px;
+}
+.hiding {
+	visibility: hidden;
+}
+.placeholder {
+	position: relative;
+	color: #aaa;
+	margin-top: 60px;
+	text-align: center;
+}
+.clicked_orange {
+	-webkit-user-select: none; /* Chrome/Safari */        
+	-moz-user-select: none; /* Firefox */
+	-ms-user-select: none; /* IE10+ */
+
+	/* Rules below not implemented in browsers yet */
+	-o-user-select: none;
+	user-select: none;
+
+	font-size: 1.3em;
+	cursor: pointer;
+}
+#orange_zone {
+	position: absolute;
+}
+#big_orange_area {
+	-webkit-user-select: none; /* Chrome/Safari */        
+	-moz-user-select: none; /* Firefox */
+	-ms-user-select: none; /* IE10+ */
+
+	/* Rules below not implemented in browsers yet */
+	-o-user-select: none;
+	user-select: none;
+
+	position: relative;
+}
+.production_upgrades_zone {
+}
+.production_upgrade_item {
+	-webkit-user-select: none; /* Chrome/Safari */        
+	-moz-user-select: none; /* Firefox */
+	-ms-user-select: none; /* IE10+ */
+
+	/* Rules below not implemented in browsers yet */
+	-o-user-select: none;
+	user-select: none;
+
+	text-align: center;
+	color: #fff;
+	background: #64A362;
+	padding: 4px;
+	margin-top: 4px;
+	&:hover {
+		background: #80A87E;
+	}
+}
+.unselectable {
+	-webkit-user-select: none; /* Chrome/Safari */        
+	-moz-user-select: none; /* Firefox */
+	-ms-user-select: none; /* IE10+ */
+
+	/* Rules below not implemented in browsers yet */
+	-o-user-select: none;
+	user-select: none;
+}
+.footer {
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	padding: 5px;
+	background: #6889A6;
+	border-top: 2px solid #4A657D;
+	color: #fff;
+}
+.footer a {
+	color: #F7B492;
+	&:visited {
+		color: #A8D6ED;
+	}
+}
+.item {
+	-webkit-user-select: none; /* Chrome/Safari */        
+	-moz-user-select: none; /* Firefox */
+	-ms-user-select: none; /* IE10+ */
+
+	/* Rules below not implemented in browsers yet */
+	-o-user-select: none;
+	user-select: none;
+
+	cursor: pointer;
+	width: 120%;
+	height: 100%;
+	background: #7190AB;
+	text-align: center;
+	padding: 20px;
+	transition: 0.5s;
+	&:hover {
+		background: #7F9CB5;
+	}
+}
+.hoverable .ninja {									
+	display:none;
+	width:0;
+	height:0;
+	position:absolute;
+	border-radius: 3px;
+	border: 3px solid #ccc;
+}
+.hoverable:hover .ninja {							
+	display:block;
+	height:160px;
+	width:150px;
+	background:#ffffff;
+	box-shadow: 0 0 4px #888888;
+	position: absolute;
+	padding: 8px;
+	top: 35px;
+	left: -140px;
+	z-index:1000;
+}
+#stats_zone {
+	color: #555;
+	font-size: 0.84em;
+	line-height: 1.28em;
+	padding: 15px;
+}

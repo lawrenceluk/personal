@@ -7,12 +7,15 @@
 </head>
 <body>
 
-<%= yield %>
-
+	<%= yield %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
-<script>
-	$('.scene').parallax()
-</script>
+  <%= yield :javascript_includes %>
+  
+	<script type="text/javascript">
+		if ($('scene').length == 0) {
+			$('.scene').parallax()
+		}
+	</script>
 
 </body>
 </html>

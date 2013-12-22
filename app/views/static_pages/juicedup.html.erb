@@ -1,0 +1,113 @@
+<div class="juicedup">
+<div class="row widthfix">
+	<div class="col-lg-10 col-lg-offset-1 col-md-10 col-md-offset-1
+	col-sm-10 col-sm-offset-1 col-xs-10 col-xs-offset-1">
+		<div class="row">
+			<div class="col-lg-4" id="big_orange_area">
+				<div class="big"><span id="o_count">0</span> Oranges</div>
+				<div class="counter"><span id="ops_count">0</span> Oranges per Second</div>
+				<div id="orange_zone">
+					<%= image_tag "big-orange.png", class: "bigorange", height: 160, id: "geto_button" %>
+				</div>
+			</div>
+			<div class="col-lg-6">
+				<div class="big"><span id="oj_count">0</span> Glasses of OJ</div>
+				<div class="counter">Juice up to <span id="ojpc_count">3 Glasses every 15</span> Seconds</div>
+				<div id="makeoj_button">
+					<%= image_tag "oj-glass.png", class: "makeoj_image", height: 100 %> Juice Faster!
+				</div>
+				<div class="progress" style="width: 100%;">
+				  <div class="progress-bar progress-bar-success" id="oj_cycle_bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="50" style="width: 0%; transition: 0.05s;">
+				  </div>
+				</div>
+			</div>
+			<div class="col-lg-2">
+				<div class="production_upgrades_zone">
+					<div class="title center">Bonuses</div>
+					<div class="shelf short unselectable" id="production_upgrades">
+						<div class="placeholder" id="nobonuses">Nothing yet!</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row gap">
+			<div class="col-lg-4">
+				<div class="outer_container">
+					<div class="shelf">
+						<div id="orange_income_shop"></div>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-4">
+				<div id="shelf_container">
+					<div id="omaker_shelf_purchases" class="center shelf unselectable translucent">
+						<div id="emptyshelf" class="placeholder">Loading... <br><br>(JavaScript must be enabled)</div>
+					</div>
+					<div id="stats_zone" class="hidden shelf solider">
+						You're playing Juiced Up! v<span id="s_version"></span><br>
+						<br>
+						Current glasses of OJ: <span id="s_oj"></span><br>
+						Lifetime OJ: <span id="s_totaloj"></span><br>
+						Juice Faster clicks: <span id="s_ojclicks"></span><br>
+						OJ cycle time: <span id="s_ojcycle"></span> seconds (<span id="s_ojcycletime"></span> - <span id="s_bonusojcycletime"></span>)<br>
+						OJ per cycle: <span id="s_ojpctotal"></span> (<span id="s_ojpc"></span> + <span id="s_bonusojpc"></span>)<br>
+						<br>
+						Current oranges: <span id="s_o"></span><br>
+						Lifetime oranges: <span id="s_totalo"></span><br>
+						Orange clicks: <span id="s_oclicks"></span><br>
+						Oranges per click: <span id="s_clickreward"></span><br>
+						Oranges per second: <span id="s_opstotal"></span> (<span id="s_ops"></span> + <span id="s_bonusops"></span>)<br>
+						<br>
+						Bonus multiplier: <span id="s_bonus"></span>%<br>
+						FPS: <span id="s_fps"></span><br>
+						Time played: <span id="s_time"></span>
+
+
+<!--
+		str += "Juice Faster clicks: "+Beautify(ojclicks)+"<br/>"
+		str += "Oranges per "+(ojcycletime+bonus_ojcycletime)+" ("+ojcycletime+" - "+bonus_ojcycletime+") seconds: "
+		str += (ojpc+bonus_ojpc)+" ("+ojpc+" + "+bonus_ojpc+") <br/><br/>"
+		str += "Current oranges: "+Beautify(o)+"<br/>"
+		str += "Lifetime oranges: "+Beautify(totalo)+"<br/>"
+		str += "Orange clicks: "+Beautify(oclicks)+"<br/>"
+		str += "Oranges per click: "+Beautify(clickchangeamt)+"<br/>"
+		str += "Oranges per second (base): "+Beautify(ops)+"<br/>"
+		str += "Oranges per second (bonus): "+Beautify(bonus_ops)+"<br/>"
+		str += "Bonus multiplier: "+bonuschance+"<br/>"
+		str += "FPS: "+fps+"<br/>"
+		str += "Time played: "+(((new Date().getTime())-time)/1000) -->
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-4">
+				<div class="outer_container">
+					<div class="shelf">
+						<div id="ojpc_shop"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="footer widthfix row">
+		<div class="col-lg-7 col-lg-offset-1">
+			<span id="newsflash">Loading...</span>
+		</div>
+		<div class="col-lg-1 col-md-1 col-sm-1 col-1">
+			<div id="stats" class="item">Stats</div>
+		</div>
+		<div class="col-lg-1 col-md-1 col-sm-1 col-1">
+			<div id="save" class="item">Save</div>
+		</div>
+		<div class="col-lg-2 col-md-2 col-sm-2 col-2">
+			<div class="tiny center">
+				<div id="whatversion"></div>
+				Created by <%= link_to "Lawrence Luk", "http://lwluk.com", target: "_blank" %> 2013
+			</div>
+		</div>
+</div>
+</div>
+
+<% content_for :javascript_includes do %>
+  <%= javascript_include_tag "game.js" %>
+<% end %>

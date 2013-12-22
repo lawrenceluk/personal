@@ -32,9 +32,24 @@ body {
 	font-size: 1.8em;
 	line-height: 1.15em;
 }
+.bigger {
+	font-size: 2em;
+}
 .midsize {
 	font-size: 1.4em;
 	line-height: 1.28em;
+}
+.small {
+	font-size: 0.7em;
+	line-height: 1.25em;
+}
+.smaller {
+	padding-top: 10px;
+	font-size: 0.8em;
+	line-height: 1.2em;
+}
+.tiny {
+	font-size: 0.55em;
 }
 .text-right {
 	text-align: right;
