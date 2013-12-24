@@ -22,8 +22,8 @@ var ops = 0
 var bonus_ops = 0
 var bonus_ojpc = 0
 var bonus_ojcycletime = 0
-var bonuschance = 1
-var basebonustime = 60
+var bonuschance = 0.1 // 10% chance for bonus
+var basebonustime = 60 // lasts at least 60 seconds (up to 120)
 
 var maxslots = 7
 var upgradesuccess = 0.5 // 50% chance of success
@@ -896,7 +896,7 @@ function purchaseOMaker(tier) {
 		// update cost
 		allItems[tier-1].prototype.cost = Math.round(Math.pow(cost+orangeMakerAmts[tier-1], 1.01))
 		// draw the new item
-		var str = "<img src='/assets/o"+tier+".gif' id="+"oc_"+tier+"_"+omakers.length+" class='omaker_item' height=40px>"
+		var str = "<img src='/assets/o"+tier+".gif' id="+"oc_"+tier+"_"+omakers.length+" class='omaker_item' height=60px>"
 		$("#omaker_shelf_purchases").append(str)
 
 		var newops = 0
