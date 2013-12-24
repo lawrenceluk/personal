@@ -6,15 +6,6 @@
   right: 0;
   bottom: 0;
   left: 0;
-	// background code shamelessly plundered from http://lea.verou.me/
-	background-color: #FAEDE6;
-	background-image: -webkit-gradient(linear, 0 0, 0 100%, color-stop(.5, rgba(255, 255, 255, .4)), color-stop(.5, transparent), to(transparent));
-	background-image: -moz-linear-gradient(rgba(255, 255, 255, .4) 50%, transparent 50%, transparent);
-	background-image: -o-linear-gradient(rgba(255, 255, 255, .4) 50%, transparent 50%, transparent);
-	background-image: linear-gradient(rgba(255, 255, 255, .4) 50%, transparent 50%, transparent);
-	-webkit-background-size: 50px 50px;
-	-moz-background-size: 50px 50px;
-	background-size: 50px 50px;
 
 	font-family: "Merriweather";
 	font-size: 18px;
@@ -110,11 +101,13 @@
 	margin: 8px;
 	padding: 12px;
 	background: #f3f3f3;
+	box-shadow: 0px 2px 8px #aaa;
 }
 .shop_item_upgrade {
 	margin: 8px;
 	padding: 12px;
 	background: #EDF6FA;
+	box-shadow: 0px 2px 5px #aaa;
 }
 .buy_button {
 	-webkit-user-select: none; /* Chrome/Safari */        
@@ -156,10 +149,10 @@
 	}
 }
 #shelf_container {
-  height: 380px;
+  height: 425px;
 }
 .outer_container {
-	height: 380px;
+	height: 425px;
 }
 .translucent {
 	background: rgba(255, 255, 255, .6);
@@ -189,8 +182,14 @@
   overflow:auto;
 	height: 100%;
 }
+.shorter.shelf {
+	height: 90px;
+	background: #fafafa;
+	margin-bottom: 10px;
+	padding: 6px;
+}
 .short.shelf {
-	height: 220px;
+	height: 200px;
 	background: #fafafa;
 	border-top: 3px solid #E8B59B;
 	border-radius: 5px;
@@ -201,6 +200,7 @@
 	cursor: pointer;
 
 	&:hover {
+		border: 2px solid #ddd;
 	}
 }
 .spacing {
@@ -271,8 +271,7 @@
 	user-select: none;
 }
 .footer {
-	position: absolute;
-	bottom: 0;
+	margin-top: 15px;
 	width: 100%;
 	padding: 5px;
 	background: #6889A6;
@@ -330,4 +329,41 @@
 	font-size: 0.84em;
 	line-height: 1.28em;
 	padding: 15px;
+}
+.o_option {
+	-webkit-user-select: none; /* Chrome/Safari */        
+	-moz-user-select: none; /* Firefox */
+	-ms-user-select: none; /* IE10+ */
+
+	/* Rules below not implemented in browsers yet */
+	-o-user-select: none;
+	user-select: none;
+
+	cursor: pointer;
+	text-align: center;
+	color: #fff;
+	font-size: 0.7em;
+	padding: 3px 5px;
+	background: #477BA8;
+	border-radius: 3px;
+	margin-top: 5px;
+	&:hover {
+		background: #295E8C;
+	}
+	&:active {
+		background: #3E5A73;
+	}
+}
+.o_option.inactive {
+	cursor: default;
+	background: #727D87;
+}
+.sell.o_option {
+	background: #666;
+	&:hover {
+		background: #444;
+	}
+	&:active {
+		background: #2f2f2f;
+	}
 }
