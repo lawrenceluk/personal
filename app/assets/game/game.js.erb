@@ -267,8 +267,6 @@ function resetGame() {
 	omakers = []
 	cleanOJPCUpgrades()
 	for (var i = 0; i < allItems.length; i++) orangeMakerAmts[i] = 0; // start with 0 of all
-	o_bonuses = []
-	oj_bonuses = []
 
 	clickreward = omakers.length + 1
 	oclicks = 0
@@ -280,9 +278,18 @@ function resetGame() {
 	clickchangeamt = 1
 	msgcount = 0
 
-	// reset all bonuses
 	cleanOBonuses()
 	cleanOJBonuses()
+	// reset all bonuses
+	for (var i=0;i<o_bonuses.length;i++) {
+		o_bonuses[i].owned = false
+		o_bonuses[i].owneduntil = new Date().getTime()
+	}
+	for (var i=0;i<oj_bonuses.length;i++) {
+		oj_bonuses[i].owned = false
+		oj_bonuses[i].owneduntil = new Date().getTime()
+	}
+	$("#production_upgrades").html("")
 	// redraw everything
 	$('#oj_cycle_bar').width("0%")
 	disp_o = 0
@@ -1144,7 +1151,7 @@ $("#geto_button").mousedown(function(e) {
 var lastclicked_oj = new Date().getTime()
 // CLICKED JUICE FASTER
 $("#makeoj_button").click(function () {
-	if ((new Date().getTime()) > lastclicked_oj+100) {
+	if ((new Date().getTime()) > lastclicked_oj+350) {
 		getOJBonus()
 		ojclicks++
 		if (o > 0) {
@@ -1203,7 +1210,8 @@ function purchaseOMaker(tier) {
 }
 
 // CLICK AN ITEM TO SEE ITS DETAILS
-$("#omaker_shelf_purchases").on('click', function() {
+
+$("#omaker_shelf_purchases").on('click', function(event) {
 	var index = parseInt(event.target.id.split("_").slice(-1)[0])-1
 	var item = omakers[index]
 	if (item) {
@@ -1226,7 +1234,7 @@ $("#omaker_shelf_purchases").on('click', function() {
 	}
 })
 
-$("#omaker_detail").on('click', function() {
+$("#omaker_detail").on('click', function(event) {
 	var index = parseInt(event.target.id.split("_").slice(-1)[0])
 	if (!isNaN(index)) {
 		var item = omakers[index]
@@ -1335,12 +1343,12 @@ $("#resetbutton").click(function() {
 		resetGame()
 	}
 })
-$("#orange_income_shop").on('click', function() {
+$("#orange_income_shop").on('click', function(event) {
 	purchaseOMaker(parseInt(event.target.id.slice(-1)))
 })
 
 // BOUGHT AN OJPC UPGRADE
-$("#ojpc_shop").on('click', function() {
+$("#ojpc_shop").on('click', function(event) {
 	// super ghetto way to get the last digits representing tier
 	var tier = parseInt(event.target.id.split("_").slice(-1)[0])
 	var cost = ojpc_upgrades[tier-1].cost
@@ -1595,6 +1603,7 @@ function firstrunGame() {
 	setInterval(logic, 500)
 	setInterval(disp, 1000/fps)
 	loadOMessages()
+	updateAffordable()
 }
 
 function tryLoadSave() {
