@@ -367,3 +367,55 @@
 		background: #2f2f2f;
 	}
 }
+#save_zone {
+	color: #333;
+	font-size: 0.88em;
+	line-height: 1.28em;
+	padding: 15px;
+}
+.special {
+	padding: 5px 10px;
+	background: #F5EDE9;
+	border: dashed 1px #FA935F;
+}
+.identifier {
+	font-family: Monospace;
+	color: #000;
+}
+.o_option.s {
+	width: 60%;
+	font-size: 0.95em;
+	margin-left: auto;
+	margin-right: auto;
+}
+#savebutton {
+	background: #44A840;
+	&:hover {
+		background: #31942E;
+	}
+	&:active {
+		background: #2E752B;
+	}
+}
+#resetbutton {
+	background: #A8503E;
+	&:hover {
+		background: #8C3A2A;
+	}
+	&:active {
+		background: #662D22;
+	}
+}
+.awesome {
+	margin-top: 5px;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+}
+.thaform {
+	text-align: center;
+	width:60%;
+	padding: 3px;
+	border-radius: 3px;
+	border: 1px solid #ccc;
+}

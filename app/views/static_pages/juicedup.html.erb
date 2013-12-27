@@ -3,25 +3,25 @@
 	<div class="col-lg-10 col-lg-offset-1 col-md-10 col-md-offset-1
 	col-sm-10 col-sm-offset-1 col-xs-10 col-xs-offset-1">
 		<div class="row">
-			<div class="col-lg-4" id="big_orange_area">
+			<div class="col-lg-4 col-md-4" id="big_orange_area">
 				<div class="big"><span id="o_count">0</span> Oranges</div>
 				<div class="counter"><span id="ops_count">0</span> Oranges per Second</div>
 				<div id="orange_zone">
 					<%= image_tag "big-orange.png", class: "bigorange", height: 160, id: "geto_button" %>
 				</div>
 			</div>
-			<div class="col-lg-6">
+			<div class="col-lg-6 col-md-6">
 				<div class="big"><span id="oj_count">0</span> Glasses of OJ</div>
 				<div class="counter">Juice up to <span id="ojpc_count">3 Glasses every 15</span> Seconds</div>
-				<div id="makeoj_button">
-					<%= image_tag "oj-glass.png", class: "makeoj_image", height: 100 %> Juice Faster!
-				</div>
 				<div class="progress" style="width: 100%;">
 				  <div class="progress-bar progress-bar-success" id="oj_cycle_bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="50" style="width: 0%; transition: 0.05s;">
 				  </div>
 				</div>
+				<div id="makeoj_button">
+					<%= image_tag "oj-glass.png", class: "makeoj_image", height: 100 %> Juice Faster!
+				</div>
 			</div>
-			<div class="col-lg-2">
+			<div class="col-lg-2 col-md-2">
 				<div class="production_upgrades_zone">
 					<div class="title center">Bonuses</div>
 					<div class="shelf short unselectable" id="production_upgrades">
@@ -31,14 +31,14 @@
 			</div>
 		</div>
 		<div class="row gap">
-			<div class="col-lg-4">
+			<div class="col-lg-4 col-md-4">
 				<div class="outer_container">
 					<div class="shelf">
 						<div id="orange_income_shop"></div>
 					</div>
 				</div>
 			</div>
-			<div class="col-lg-4">
+			<div class="col-lg-4 col-md-4">
 				<div id="omaker_detail"></div>
 				<div id="shelf_container">
 					<div id="omaker_shelf_purchases" class="center shelf unselectable translucent">
@@ -63,9 +63,31 @@
 						FPS: <span id="s_fps"></span><br>
 						Time played: <span id="s_time"></span>
 					</div>
+					<div id="save_zone" class="hidden shelf solider">
+						<div class='special'>Your unique identifier: 
+							<span title="Save it! Don't forget it!" id='yourid' class='identifier'><%= @id %></span></div>
+						<div class='medium gap'>
+							All saved games are backed up to a server. To load your game from anywhere you'll need to know your unique ID.
+						</div>
+						<div class="medium gap">
+							The game is saved every 30 seconds.<br>
+						</div>
+						<div class="small center">
+							Next save in <span id="game_saved"></span> seconds
+						</div>
+						<div id='savebutton' class='o_option s'>Save Now</div>
+						<hr>
+						<div class="awesome">
+							<input type="text" id="getloadid" name="newidentifier" class="thaform" placeholder="abcdefgh0...">
+						</div>
+						<div id='loadbutton' class='o_option s'>Load Save</div>
+						<hr>
+						<div class='small center'>Reset your game to default values.</div>
+						<div id='resetbutton' class='o_option s'>Reset</div>
+					</div>
 				</div>
 			</div>
-			<div class="col-lg-4">
+			<div class="col-lg-4 col-md-4">
 				<div class="outer_container">
 					<div class="shelf">
 						<div id="ojpc_shop"></div>
@@ -76,7 +98,7 @@
 	</div>
 </div>
 <div class="footer widthfix row">
-		<div class="col-lg-7 col-lg-offset-1">
+		<div class="col-lg-7 col-lg-offset-1 col-md-7 col-md-offset-1">
 			<span id="newsflash">Loading...</span>
 		</div>
 		<div class="col-lg-1 col-md-1 col-sm-1 col-1">
@@ -93,6 +115,9 @@
 		</div>
 </div>
 </div>
+
+<%= content_tag :div, class: "hidden", data: {temp: @temp} do %>
+<% end %>
 
 <% content_for :javascript_includes do %>
   <%= javascript_include_tag "game.js" %>
