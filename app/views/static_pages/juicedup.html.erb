@@ -1,3 +1,6 @@
+<link rel="shortcut icon" href="/assets/favicon.ico" type="image/x-icon">
+<link rel="icon" href="/assets/favicon.ico" type="image/x-icon">
+
 <div class="juicedup">
 <div class="row widthfix">
 	<div class="col-lg-10 col-lg-offset-1 col-md-10 col-md-offset-1
@@ -52,16 +55,28 @@
 						Juice Faster clicks: <span id="s_ojclicks"></span><br>
 						OJ cycle time: <span id="s_ojcycle"></span> seconds (<span id="s_ojcycletime"></span> - <span id="s_bonusojcycletime"></span>)<br>
 						OJ per cycle: <span id="s_ojpctotal"></span> (<span id="s_ojpc"></span> + <span id="s_bonusojpc"></span>)<br>
+						OJ cycle upgrades purchased: <span id="s_ojpcbought"></span><br>
 						<br>
 						Current oranges: <span id="s_o"></span><br>
 						Lifetime oranges: <span id="s_totalo"></span><br>
 						Orange clicks: <span id="s_oclicks"></span><br>
 						Oranges per click: <span id="s_clickreward"></span><br>
 						Oranges per second: <span id="s_opstotal"></span> (<span id="s_ops"></span> + <span id="s_bonusops"></span>)<br>
+						Active orange makers: <span id="s_activeomakers"></span><br>
+						Orange makers purchased: <span id="s_omakersbought"></span><br>
 						<br>
 						Bonus multiplier: <span id="s_bonus"></span>%<br>
 						FPS: <span id="s_fps"></span><br>
 						Time played: <span id="s_time"></span>
+						<hr>
+						<div class="gap">
+							<div class="medium">Changelog:</div>
+							v0.1
+							<ul>
+								<li> Release </li>
+								<li> All artwork highly subject to change </li>
+							</ul>
+						</div>
 					</div>
 					<div id="save_zone" class="hidden shelf solider">
 						<div class='special'>Your unique identifier: 
@@ -98,21 +113,22 @@
 	</div>
 </div>
 <div class="footer widthfix row">
-		<div class="col-lg-7 col-lg-offset-1 col-md-7 col-md-offset-1">
-			<span id="newsflash">Loading...</span>
+	<div class="col-lg-7 col-lg-offset-1 col-md-7 col-md-offset-1">
+		<span id="newsflash">Loading...</span>
+	</div>
+	<div class="col-lg-1 col-md-1 col-sm-1 col-1">
+		<div id="stats" class="item">Stats</div>
+	</div>
+	<div class="col-lg-1 col-md-1 col-sm-1 col-1">
+		<div id="save" class="item">Save</div>
+	</div>
+	<div class="col-lg-2 col-md-2 col-sm-2 col-2">
+		<div class="tiny center">
+			<div id="whatversion"></div>
+			Created by <%= link_to "Lawrence Luk", "http://lwluk.com", target: "_blank" %> 2013
+			<div class="description">Optimized for Google Chrome</div>
 		</div>
-		<div class="col-lg-1 col-md-1 col-sm-1 col-1">
-			<div id="stats" class="item">Stats</div>
-		</div>
-		<div class="col-lg-1 col-md-1 col-sm-1 col-1">
-			<div id="save" class="item">Save</div>
-		</div>
-		<div class="col-lg-2 col-md-2 col-sm-2 col-2">
-			<div class="tiny center">
-				<div id="whatversion"></div>
-				Created by <%= link_to "Lawrence Luk", "http://lwluk.com", target: "_blank" %> 2013
-			</div>
-		</div>
+	</div>
 </div>
 </div>
 

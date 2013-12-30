@@ -22,7 +22,7 @@ var ops = 0
 var bonus_ops = 0
 var bonus_ojpc = 0
 var bonus_ojcycletime = 0
-var bonuschance = 0.1 // 10% chance for bonus
+var bonuschance = 0.2 // 20% chance for bonus
 var basebonustime = 60 // lasts at least 60 seconds (up to 120)
 
 var maxslots = 7
@@ -48,6 +48,7 @@ var clickchangeamt = 1
 var msgcount = 0 // time in seconds till next newsflash
 
 // things that are used but don't need to be saved
+var activeomakers = 0
 var o_messages
 var loading
 var savetime = 30 // save every 30 seconds
@@ -172,14 +173,6 @@ function loadGame(identifier, quiet) {
 		    		showNews("Loaded successfully! ("+identifier+")")
 		    	}
 		    	disp()
-
-					/*
-					what's missing:
-					shelf has to be redrawn
-					oj amounts
-					bonuses? test
-					upgrades? test
-					*/
 					// draw updated
 					if (!$("#emptyshelf").hasClass("hiding")) {
 						$("#emptyshelf").remove()
@@ -188,10 +181,16 @@ function loadGame(identifier, quiet) {
 					for (var i=0;i<omakers.length;i++) {
 						if (omakers[i].alive) {
 							var tier = omakers[i].tier
-							str += "<img src='/assets/o"+tier+".gif' id="+"oc_"+tier+"_"+(i+1)+" class='omaker_item' height=60px>"
+							str += "<img src='/assets/o"+tier+".png' id="+"oc_"+tier+"_"+(i+1)+" class='omaker_item' height=60px>"
 						}
 					}
 					$("#omaker_shelf_purchases").html(str)
+
+					for (var i=0;i<omakers.length;i++) {
+						if (omakers[i].alive == true) {
+							activeomakers++
+						}
+					}
 	    	}
 			},
 			failure: function(response) {
@@ -253,7 +252,7 @@ function resetGame() {
 	bonus_ops = 0
 	bonus_ojpc = 0
 	bonus_ojcycletime = 0
-	bonuschance = 0.1 // 10% chance for bonus
+	bonuschance = 0.2 // 20% chance for bonus
 	basebonustime = 60 // lasts at least 60 seconds (up to 120)
 
 	maxslots = 7
@@ -297,6 +296,7 @@ function resetGame() {
 	drawOShop()
 	drawOJShop()
 	updateAffordable()
+	activeomakers = 0
 }
 
 /*
@@ -320,6 +320,7 @@ function loadOMessages() {
 	new OMessage("Clicking the orange gives you a chance at bonuses!", 1000),
 	new OMessage("Not from concentrate!", 9999),
 	new OMessage("Which was named first? Orange the fruit, or the color?", 12000),
+	new OMessage("The more orange juice upgrades you buy, the more you will unlock! Collect them all!", 24000),
 	new OMessage("Orange you glad you played this game?", 50000),
 	new OMessage("I drink your orange juice! I drink it up!", 100000),
 	new OMessage("Orange you tired of clicking? Upgrade your producers!", 150000),
@@ -610,20 +611,20 @@ function cleanOJPCUpgrades() {
 ojpc_upgrades = [
 	new ojpc_upgrade("Little Bullet", "Limited capacity, serves 1", 0, 3, 10, 1),
 	new ojpc_upgrade("Blender", "Perfect for small serving sizes", 0, 12, 70),
-	new ojpc_upgrade("Blender XL", "Juice for the whole family", 0, 30, 475),
-	new ojpc_upgrade("Blender ZZ", "Juice for the family and then some", 1, 50, 600),
-	new ojpc_upgrade("Power Juicer", "For small juicing operations", 5, 100, 2000),
-	new ojpc_upgrade("Power Juicer XL", "Getting serious about citrus", 10, 150, 3300),
-	new ojpc_upgrade("Whirler v1", "Business grade juicing solution", 20, 250, 9000),
-	new ojpc_upgrade("Whirler v2", "Upgraded with premium parts for premium pulp", 30, 350, 20000),
-	new ojpc_upgrade("Whirler v3", "Top of the line option for small business", 40, 500, 48000),
-	new ojpc_upgrade("OJ GIANT", "Stepping into the big leagues", 50, 1000, 100000),
-	new ojpc_upgrade("OJ GIANT INDUSTRY GRADE", "The juice flows within you", 75, 30000, 800000),
-	new ojpc_upgrade("Titanic Twister", "No one man should have all that power", 100, 100000, 1600000),
-	new ojpc_upgrade("The Goliath", "Orange is live", 150, 250000, 9000000),
-	new ojpc_upgrade("The Behemoth", "Orange is love", 200, 800000, 25000000),
-	new ojpc_upgrade("The Leviathan", "Orange is planet", 300, 2500000, 123456789),
-	new ojpc_upgrade("Florida", "", 500, 134000000, 1234567898765),
+	new ojpc_upgrade("Blender XL", "Juice for the whole family", 0, 30, 175),
+	new ojpc_upgrade("Blender ZZ", "Juice for the family and then some", 1, 70, 500),
+	new ojpc_upgrade("Power Juicer", "For small juicing operations", 5, 150, 1000),
+	new ojpc_upgrade("Power Juicer XL", "Getting serious about citrus", 10, 300, 2000),
+	new ojpc_upgrade("Whirler v1", "Business grade juicing solution", 15, 500, 8000),
+	new ojpc_upgrade("Whirler v2", "Upgraded with premium parts for premium pulp", 20, 1500, 9000),
+	new ojpc_upgrade("Whirler v3", "Top of the line option for small business", 30, 2500, 20000),
+	new ojpc_upgrade("OJ GIANT", "Stepping into the big leagues", 40, 10000, 100000),
+	new ojpc_upgrade("OJ GIANT INDUSTRY GRADE", "The juice flows within you", 50, 30000, 800000),
+	new ojpc_upgrade("Titanic Twister", "No one man should have all that power", 70, 100000, 1600000),
+	new ojpc_upgrade("The Goliath", "Orange is live", 100, 500000, 9000000),
+	new ojpc_upgrade("The Behemoth", "Orange is love", 150, 1250000, 25000000),
+	new ojpc_upgrade("The Leviathan", "Orange is planet", 200, 10000000, 123456789),
+	new ojpc_upgrade("Florida", "", 300, 134000000, 1234567898765),
 	]
 }
 
@@ -669,12 +670,10 @@ function drawOShop() {
 	for (var i=0;i<allItems.length;i++) {
 		var insert = "info_O_tier_"+(i+1)
 		var name = "purchase_O_tier_"+(i+1)
-
-		shop_contents += "<div class='shop_item'>"
-		shop_contents += "<div class='title'>"+allItems[i].name+"</div>"
-		shop_contents += "<div class='description'>"+allItems[i].description+"</div>"
-		shop_contents += "<span id="+insert+" class='info'>Costs "+allItems[i].cost+" glasses of OJ. Owned: "+orangeMakerAmts[i]+"</span>"
-		shop_contents += "<div class='omaker_button buy_button' id="+name+">Buy</div><div class='gap'></div>"
+		shop_contents += "<div class='shop_item' id="+name+">"
+			shop_contents += "<div class='title'>"+allItems[i].name+"</div>"
+			shop_contents += "<div class='description'>"+allItems[i].description+"</div>"
+			shop_contents += "<span id="+insert+" class='info'>Costs "+allItems[i].cost+" glasses of OJ. Owned: "+orangeMakerAmts[i]+"</span>"
 		shop_contents += "</div>"
 	}
 	$("#orange_income_shop").html(shop_contents)
@@ -687,11 +686,10 @@ function drawOJShop() {
 			ojpc_upgrades[i].visible = true
 			var insert = "info_OJ_"+(i+1)
 			var name = "purchase_OJ_"+(i+1)
-			shop_contents += "<div class='shop_item_upgrade'>"
-			shop_contents += "<div class='title'>"+ojpc_upgrades[i].name+"</div>"
-			shop_contents += "<div class='description'><em>"+ojpc_upgrades[i].description+"</em></div>"
-			shop_contents += "<div id="+insert+" class='info'>Costs "+ojpc_upgrades[i].cost+" glasses of OJ. Owned: "+ojpc_upgrades[i].owned+"</div>"
-			shop_contents += "<div class='ojmaker_button buy_button' id="+name+">Buy</div><div class='gap'></div>"
+			shop_contents += "<div class='shop_item upgrade' id="+name+">"
+				shop_contents += "<div class='title'>"+ojpc_upgrades[i].name+"</div>"
+				shop_contents += "<div class='description itz'>"+ojpc_upgrades[i].description+"</div>"
+				shop_contents += "<div id="+insert+" class='info'>Costs "+ojpc_upgrades[i].cost+" glasses of OJ. Owned: "+ojpc_upgrades[i].owned+"</div>"
 			shop_contents += "</div>"
 		} 
 	}
@@ -706,11 +704,10 @@ function updateOJMakerShop() {
 			ojpc_upgrades[i].visible = true
 			var insert = "info_OJ_"+(i+1)
 			var name = "purchase_OJ_"+(i+1)
-			shop_contents += "<div class='shop_item_upgrade'>"
-			shop_contents += "<div class='title'>"+ojpc_upgrades[i].name+"</div>"
-			shop_contents += "<div class='description'><em>"+ojpc_upgrades[i].description+"</em></div>"
-			shop_contents += "<div id="+insert+" class='info'>Costs "+ojpc_upgrades[i].cost+" glasses of OJ. Owned: "+ojpc_upgrades[i].owned+"</div>"
-			shop_contents += "<div class='ojmaker_button buy_button' id="+name+">Buy</div><div class='gap'></div>"
+			shop_contents += "<div class='shop_item upgrade' id="+name+">"
+				shop_contents += "<div class='title'>"+ojpc_upgrades[i].name+"</div>"
+				shop_contents += "<div class='description itz'>"+ojpc_upgrades[i].description+"</div>"
+				shop_contents += "<div id="+insert+" class='info'>Costs "+ojpc_upgrades[i].cost+" glasses of OJ. Owned: "+ojpc_upgrades[i].owned+"</div>"
 			shop_contents += "</div>"
 		} 
 	}
@@ -1176,13 +1173,23 @@ function purchaseOMaker(tier) {
 		// remove existing bonuses
 		doBonuses(false)
 		// give the item
-		omakers.push(allItems[tier-1])
+		omakers.push({
+			tier: tier,
+			name: allItems[tier-1].name,
+			description: allItems[tier-1].description,
+			ops: allItems[tier-1].ops,
+			cost: allItems[tier-1].cost,
+			alive: true,
+			slots: 0
+		})
+
 		// update amount owned
 		orangeMakerAmts[tier-1]++
+		activeomakers++
 		// update cost
 		allItems[tier-1].cost = Math.round(Math.pow(cost+orangeMakerAmts[tier-1], 1.01))
 		// draw the new item
-		var str = "<img src='/assets/o"+tier+".gif' id="+"oc_"+tier+"_"+omakers.length+" class='omaker_item' height=60px>"
+		var str = "<img src='/assets/o"+tier+".png' id="+"oc_"+tier+"_"+omakers.length+" class='omaker_item' height=60px>"
 		$("#omaker_shelf_purchases").append(str)
 
 		var newops = 0
@@ -1210,11 +1217,16 @@ function purchaseOMaker(tier) {
 }
 
 // CLICK AN ITEM TO SEE ITS DETAILS
-
+var active
 $("#omaker_shelf_purchases").on('click', function(event) {
 	var index = parseInt(event.target.id.split("_").slice(-1)[0])-1
 	var item = omakers[index]
 	if (item) {
+		if (active) {
+			active.removeClass("active")
+		}
+		active = $("#"+event.target.id)
+		active.addClass("active")
 		var disabled = ""
 		if (item.slots >= maxslots) {
 			disabled = "inactive"
@@ -1229,6 +1241,9 @@ $("#omaker_shelf_purchases").on('click', function(event) {
 		$("#omaker_detail").html("<div class='shorter shelf'>"+str+"</div>")
 		$("#shelf_container").height("325px")
 	} else {
+		if (active) {
+			active.removeClass("active")
+		}		
 		$("#omaker_detail").html("")
 		$("#shelf_container").height("425px")
 	}
@@ -1242,7 +1257,7 @@ $("#omaker_detail").on('click', function(event) {
 			if (confirm("Are you sure you want to sell this "+item.name+"? You'll miss out on "+item.ops+" oranges per second.")) {
 				showNews("Sold "+item.name+" ("+item.ops+" OpS) for "+Math.round(item.cost/2)+" OJ.")
 				oj += Math.round(item.cost/2)
-				allItems[removeOMaker(item)].cost = Math.floor(Math.pow(item.cost, 0.995))
+				allItems[removeOMaker(item)-1].cost = Math.ceil(Math.pow(item.cost, 0.999999))
 				updateAffordable()
 			}
 		} else {
@@ -1265,12 +1280,13 @@ $("#omaker_detail").on('click', function(event) {
 					if (item.slots == maxslots) {
 						$("#"+event.target.id).addClass("inactive")
 					}
+					//$("#oc_"+item.tier+"_"+(index+1)).addClass("scrolled")
 					showNews("Upgraded "+item.name+" to "+item.ops+" OpS! Used "+item.slots+" out of "+maxslots+" possible upgrades.")
 				} else {
 					// if explodes!
 					if (Math.random() < failuredestroy) {
 						showNews("Oh no! The "+item.name+" ("+item.ops+" OpS) was destroyed while trying to upgrade!")
-						allItems[removeOMaker(item)].cost = Math.floor(Math.pow(item.cost, 0.996))
+						allItems[removeOMaker(item)-1].cost = Math.ceil(Math.pow(item.cost, 0.999999999))
 						updateAffordable()
 					} else {
 						item.slots++
@@ -1286,22 +1302,17 @@ $("#omaker_detail").on('click', function(event) {
 })
 
 function removeOMaker(item) {
-	var tier = -1
-	for (var i=0;i<allItems.length;i++) {
-		if (allItems[i].name == item.name) {
-			tier = i
-			break
-		}
-	}
+	var tier = item.tier
 	if (tier != -1) {
 		// remove existing bonuses
 		doBonuses(false)
 		// remove amt
-		orangeMakerAmts[tier]--
+		orangeMakerAmts[tier-1]--
 		// remove the item from shelf
-		$("#oc_"+(tier+1)+"_"+(omakers.indexOf(item)+1)).remove()
+		$("#oc_"+(tier)+"_"+(omakers.indexOf(item)+1)).remove()
 		// make it inactive
 		item.alive = false
+		activeomakers--
 		// so it won't get bonuses
 		item.name = ""
 		// reduce orange per click
@@ -1331,6 +1342,7 @@ $("#savebutton").click(function() {
 	if (new Date().getTime() > savelastclicked + 5000) {
 		saveGame()
 		savelastclicked = new Date().getTime()
+		lastsave = new Date().getTime()
 	}
 })
 
@@ -1344,13 +1356,23 @@ $("#resetbutton").click(function() {
 	}
 })
 $("#orange_income_shop").on('click', function(event) {
-	purchaseOMaker(parseInt(event.target.id.slice(-1)))
+	if ($(event.target).attr('class') === "shop_item") {
+		purchaseOMaker(parseInt(event.target.id.slice(-1)))
+	} else {
+		purchaseOMaker(parseInt($(event.target).parent().attr('id').slice(-1)))
+	}
 })
 
 // BOUGHT AN OJPC UPGRADE
 $("#ojpc_shop").on('click', function(event) {
-	// super ghetto way to get the last digits representing tier
-	var tier = parseInt(event.target.id.split("_").slice(-1)[0])
+	var tier
+	if ($(event.target).attr('class').indexOf("shop_item") != -1) {
+		var temp = event.target.id.split("_")
+		tier = parseInt(temp[temp.length-1])
+	} else {
+		var temp = $(event.target).parent().attr('id').split("_")
+		tier = parseInt(temp[temp.length-1])
+	}
 	var cost = ojpc_upgrades[tier-1].cost
 	//if they have enough oj
 	if (oj >= cost) {
@@ -1580,10 +1602,13 @@ function logic() {
 		$("#s_ojpctotal").html(Beautify(ojpc+bonus_ojpc))
 		$("#s_ojpc").html(Beautify(ojpc))
 		$("#s_bonusojpc").html(Beautify(bonus_ojpc))
+		$("#s_ojpcbought").html(Beautify(owned_ojpc_upgrades))
 		$("#s_clickreward").html(clickreward)
 		$("#s_opstotal").html(Math.round((ops+bonus_ops) * 10) / 10)
 		$("#s_ops").html(Math.round(ops * 10) / 10)
 		$("#s_bonusops").html(Math.round(bonus_ops * 10) / 10)
+		$("#s_omakersbought").html(Beautify(omakers.length))
+		$("#s_activeomakers").html(Beautify(activeomakers))
 		$("#s_bonus").html(Beautify(bonuschance*100))
 		$("#s_fps").html(fps)
 		$("#s_time").html(millisecondsToStr(new Date().getTime() - started))

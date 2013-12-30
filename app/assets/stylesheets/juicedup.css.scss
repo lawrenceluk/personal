@@ -98,18 +98,6 @@
 	}
 }
 .shop_item {
-	margin: 8px;
-	padding: 12px;
-	background: #f3f3f3;
-	box-shadow: 0px 2px 8px #aaa;
-}
-.shop_item_upgrade {
-	margin: 8px;
-	padding: 12px;
-	background: #EDF6FA;
-	box-shadow: 0px 2px 5px #aaa;
-}
-.buy_button {
 	-webkit-user-select: none; /* Chrome/Safari */        
 	-moz-user-select: none; /* Firefox */
 	-ms-user-select: none; /* IE10+ */
@@ -118,16 +106,27 @@
 	-o-user-select: none;
 	user-select: none;
 
-	border-radius: 2px;
-	border-bottom: 1px solid #D6BDB0;
-	padding: 4px 14px;
-	background: #F7DFD2;
+	margin: 8px;
+	padding: 12px;
+	background: #f3f3f3;
+	box-shadow: 0px 2px 8px #aaa;
+
 	cursor: pointer;
-	text-align: center;
+	transition: 0.1s;
 	&:hover {
 		color: white;
 		background: #F77D40;
-		border-bottom: 1px solid #BA6B43;
+	}
+	&:active {
+		color: white;
+		background: #D96C36;
+	}
+}
+.shop_item.upgrade {
+	background: #EDF6FA;
+	&:hover {
+		color: white;
+		background: #F77D40;
 	}
 	&:active {
 		color: white;
@@ -136,16 +135,15 @@
 }
 .unaffordable {
 	cursor: default;
-	background: #ddd;
-	border-bottom: 1px solid #aaa;
+	/* forgive me father for i have sinned */
+	background: #ddd !important; 
 	&:hover {
-		color: black;
-		background: #ddd;
-		border-bottom: 1px solid #aaa;
+		color: black !important;
+		background: #ddd !important;
 	}
 	&:active {
-		color: black;
-		background: #ddd;
+		color: black !important;
+		background: #ddd !important;
 	}
 }
 #shelf_container {
@@ -196,12 +194,19 @@
 }
 .omaker_item {
 	position: relative;
-	margin: 5px;
+	margin: 4px;
+	padding: 5px;
 	cursor: pointer;
-
+	border-radius: 2px;
 	&:hover {
-		border: 2px solid #ddd;
+		background: rgba(0, 0, 0, 0.1);
 	}
+}
+.scrolled {
+	background: rgba(50, 0, 0, 0.2);
+}
+.active {
+	background: rgba(0, 0, 0, 0.15);
 }
 .spacing {
 	margin-top: 40px;
@@ -418,4 +423,7 @@
 	padding: 3px;
 	border-radius: 3px;
 	border: 1px solid #ccc;
+}
+.itz {
+	font-style: italic;
 }
