@@ -1136,6 +1136,21 @@ function doBonus(bonus, apply) {
 	} 
 }
 
+function clearBonuses() {
+	for (var i=0; i < oj_bonuses.length; i++) {
+		if (oj_bonuses[i].owned)
+			return
+	}
+	for (var i=0; i < o_bonuses.length; i++) {
+		if (o_bonuses[i].owned)
+			return
+	}
+	bonus_ojcycletime = 0
+	bonus_ojpc = 0
+	bonus_ops = 0
+	bonuschance = 0.1
+}
+
 function haveBonus(name) {
 	for (var i=0; i < oj_bonuses.length; i++) {
 		if (oj_bonuses[i].name === name && oj_bonuses[i].owned)
@@ -1649,6 +1664,7 @@ function logic() {
 		 	showNews(message)
 		}
 		if ((lastsave+savetime*1000) < new Date().getTime()) {
+			clearBonuses()
 			saveGame(true) // save quietly
 			lastsave = new Date().getTime()
 		}
