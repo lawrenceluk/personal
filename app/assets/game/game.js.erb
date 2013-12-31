@@ -22,7 +22,7 @@ var ops = 0
 var bonus_ops = 0
 var bonus_ojpc = 0
 var bonus_ojcycletime = 0
-var bonuschance = 0.1 // 20% chance for bonus
+var bonuschance = 0.1 // 10% chance for bonus
 var basebonustime = 60 // lasts at least 60 seconds (up to 120)
 
 var maxslots = 7
@@ -257,7 +257,7 @@ function resetGame() {
 	bonus_ops = 0
 	bonus_ojpc = 0
 	bonus_ojcycletime = 0
-	bonuschance = 0.1 // 20% chance for bonus
+	bonuschance = 0.1 // 10% chance for bonus
 	basebonustime = 60 // lasts at least 60 seconds (up to 120)
 
 	maxslots = 7
@@ -831,7 +831,13 @@ function getOJBonus() {
 /*
 	Given the name of bonus, apply (true) or remove (false)
 */
+var lastapplied
 function doBonus(bonus, apply) {
+	if (apply === lastapplied) {
+		// can't remove or add twice
+		return
+	}
+	lastapplied = apply
 	if (bonus.name === "Fruit Frenzy") {
 		for (var i=0;i<omakers.length;i++) {
 			if (apply) {
@@ -1119,6 +1125,15 @@ function doBonus(bonus, apply) {
 			bonus_ojpc -= Math.round(ojpc*0.08)
 		}
 	}
+	if (bonus_ojpc < 0) {
+		bonus_ojpc = 0
+	}
+	if (bonus_ops < 0) {
+		bonus_ops = 0
+	}
+	if (bonus_ojcycletime < 0) {
+		bonus_ojcycletime = 0
+	} 
 }
 
 function haveBonus(name) {
