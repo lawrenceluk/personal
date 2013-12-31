@@ -13,7 +13,7 @@
 					<%= image_tag "big-orange.png", class: "bigorange", height: 160, id: "geto_button" %>
 				</div>
 			</div>
-			<div class="col-lg-6 col-md-6">
+			<div class="col-lg-6 col-md-6" id="makejuice_area">
 				<div class="big"><span id="oj_count">0</span> Glasses of OJ</div>
 				<div class="counter">Juice up to <span id="ojpc_count">3 Glasses every 15</span> Seconds</div>
 				<div class="progress" style="width: 100%;">
@@ -69,8 +69,19 @@
 						FPS: <span id="s_fps"></span><br>
 						Time played: <span id="s_time"></span>
 						<hr>
+						<div class="medium center">Support Me!</div>
+						<%= image_tag "bitcoin.png", height: 40, title: "Bitcoin" %> <span class="small identifier">1F74cSWVs2m1QzaujqtaK1jNhB8wwga96u</span><br>
+						<%= image_tag "doge.png", height: 40, title: "Dogecoin" %> <span class="small identifier">DP5hPiEEG8D4zA4R1GxsoJtAFQTXdeusFQ</span>
+						<hr>
 						<div class="gap">
-							<div class="medium">Changelog:</div>
+							<div class="medium center">Changelog:</div>
+							v0.11
+							<ul>
+								<li> Items now show number of successful upgrades </li>
+								<li> Reduced "destroy on failure" chance to 12.5% from 25% </li>
+								<li> Added Dogecoin and Bitcoin tips :] </li>
+								<li> Thanks for playing over 350 times already! </li>
+							</ul><br>
 							v0.1
 							<ul>
 								<li> Release </li>

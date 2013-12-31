@@ -5,7 +5,7 @@ Save
 Responsive
 */
 $("#newsflash").html("Initializing variables...")
-var version = "0.1"
+var version = "0.11"
 
 // declare variables
 var oj = 0
@@ -27,7 +27,7 @@ var basebonustime = 60 // lasts at least 60 seconds (up to 120)
 
 var maxslots = 7
 var upgradesuccess = 0.5 // 50% chance of success
-var failuredestroy = 0.5 // 50% chance that failure destroys it
+var failuredestroy = 0.25 // 50% chance that failure destroys it
 
 var omakers = []
 var orangeMakerAmts = []
@@ -57,6 +57,11 @@ var lastsave = new Date().getTime()
 $("#whatversion").html("Version "+version)
 $("#s_version").html(version)
 $("#emptyshelf").html("You haven't purchased any orange producers yet.")
+
+// overwrites saved data
+function applyUpdates() {
+
+}
 
 function loadGame(identifier, quiet) {
 	if (quiet === undefined) {
@@ -106,7 +111,7 @@ function loadGame(identifier, quiet) {
 
 					maxslots = chunks[14]
 					upgradesuccess = chunks[15] // 50% chance of success
-					failuredestroy = chunks[16] // 50% chance that failure destroys it
+					//failuredestroy = chunks[16] // 50% chance that failure destroys it
 
 					omakers = JSON.parse(chunks[17])
 					orangeMakerAmts = JSON.parse(chunks[18])
@@ -257,7 +262,7 @@ function resetGame() {
 
 	maxslots = 7
 	upgradesuccess = 0.5 // 50% chance of success
-	failuredestroy = 0.5 // 50% chance that failure destroys it
+	failuredestroy = 0.25 // 50% chance that failure destroys it
 
 	cleanAllItems()
 	for (var i=0;i<omakers.length;i++) {
@@ -745,6 +750,30 @@ function animateOClick(div, x, countdown) {
 	}
 }
 
+function drawClicked(str, x, y) {
+	var name = "j"+Math.round(Math.random()*1000000).toString()
+	$("#makejuice_area").append("<span class='clicked_orange' id="+name+">"+str+"</span>")
+	$("#"+name).css({
+	  position:'absolute',
+	  top: (y+75),
+	  left: x-25+(Math.random()*25),
+	  zIndex: 100
+	})
+	animateClick($("#"+name), y, 14)
+}
+
+function animateClick(div, y, countdown) {
+	div.css({
+		top: y,
+		opacity:countdown/10
+	})
+	if (countdown > 0) {
+		setTimeout(function() {animateClick(div, y-2, countdown-1)}, 30)
+	} else {
+		div.remove()
+	}
+}
+
 /*
 
 ============================================================================
@@ -1147,8 +1176,8 @@ $("#geto_button").mousedown(function(e) {
 
 var lastclicked_oj = new Date().getTime()
 // CLICKED JUICE FASTER
-$("#makeoj_button").click(function () {
-	if ((new Date().getTime()) > lastclicked_oj+350) {
+$("#makeoj_button").mousedown(function (e) {
+	if ((new Date().getTime()) > lastclicked_oj+300) {
 		getOJBonus()
 		ojclicks++
 		if (o > 0) {
@@ -1157,6 +1186,10 @@ $("#makeoj_button").click(function () {
 		}
 		calculateJuiceSqueezed()
 		lastclicked_oj = new Date().getTime()
+
+		// graphics
+		var offset = $(this).offset()
+   	drawClicked("-1 s", e.clientX - offset.left, e.clientY - offset.top)
 	}
 })
 
@@ -1231,13 +1264,26 @@ $("#omaker_shelf_purchases").on('click', function(event) {
 		if (item.slots >= maxslots) {
 			disabled = "inactive"
 		}
+		// calculate # of successful upgrades
+		var baseops = allItems[item.tier-1].ops
+		var t = item.ops
+		var upgrades = 0
+		while (t > baseops) {
+			upgrades++
+			t /= 2
+		}
+		var upgraded = ""
+		if (upgrades > 0) {
+			upgraded = " (+"+upgrades+")"
+		}
+		// display
 		var str = item.name+"<div class='pull-right'><div class='o_option "+disabled+"' id="+"upgrade_o_"+index
 		str += " title='Doubles OpS with "+(upgradesuccess*100)+"% success rate. If upgrade fails, this producer has a "
 		str += (failuredestroy*100)+"% chance to be destroyed.'>Upgrade</div>"
 		str += "<div class='sell o_option' id="+"sell_o_"+index+" title='Sells for "
 		str += Math.round(item.cost/2)+" OJ.'>Sell</div></div>"
 		str += " <div class='small'>OpS: <span id='ops_update'>"+item.ops+"</span>"
-		str += "<br>Upgrades: <span id='slots'>"+item.slots+"</span>/"+maxslots+"</div>"
+		str += "<br>Upgrades: <span id='slots'>"+item.slots+"</span>/"+maxslots+"<span id='upgraded'>"+upgraded+"</span></div>"
 		$("#omaker_detail").html("<div class='shorter shelf'>"+str+"</div>")
 		$("#shelf_container").height("325px")
 	} else {
@@ -1269,6 +1315,15 @@ $("#omaker_detail").on('click', function(event) {
 					$("#ops_update").html(item.ops)
 					item.slots++
 					$("#slots").html(item.slots)
+					// calculate # of successful upgrades
+					var baseops = allItems[item.tier-1].ops
+					var t = item.ops
+					var upgrades = 0
+					while (t > baseops) {
+						upgrades++
+						t /= 2
+					}
+					$("#upgraded").html(" (+"+upgrades+")")
 					// Recalculate oranges per second
 					var newops = 0
 					for (var i = 0; i < omakers.length; i++) {
@@ -1642,3 +1697,4 @@ $(window).unload(function() {
 
 firstrunGame()
 tryLoadSave()
+applyUpdates()
