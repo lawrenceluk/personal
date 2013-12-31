@@ -1183,13 +1183,12 @@ $("#makeoj_button").mousedown(function (e) {
 		if (o > 0) {
 			ojcycle -= clickchangeamt
 			disp_ojcycle -= clickchangeamt
+			// graphics
+			var offset = $(this).offset()
+	   	drawClicked("-1 s", e.clientX - offset.left, e.clientY - offset.top)
 		}
 		calculateJuiceSqueezed()
 		lastclicked_oj = new Date().getTime()
-
-		// graphics
-		var offset = $(this).offset()
-   	drawClicked("-1 s", e.clientX - offset.left, e.clientY - offset.top)
 	}
 })
 
@@ -1610,6 +1609,9 @@ function logic() {
 		}
 	}
 
+	// allows for passive bonuses, with roughly 2x chance for looking at the screen
+	getOBonus()
+	getOJBonus()
 	if (unfocused || (new Date().getTime() - time) > 1000) {
 		time = new Date().getTime()
 
