@@ -1065,21 +1065,21 @@ function doBonus(bonus, apply) {
 		}
 	} else if (bonus.name === "Hump Day") {
 		if (apply) {
-			bonus_ojcycletime -= Math.round(ojcycletime*0.05)
+			bonus_ojcycletime -= Math.floor(ojcycletime*0.05)
 		} else {
-			bonus_ojcycletime += Math.round(ojcycletime*0.05)
+			bonus_ojcycletime += Math.floor(ojcycletime*0.05)
 		}
 	} else if (bonus.name === "Pulp Fiction") {
 		if (apply) {
-			bonus_ojcycletime -= Math.round(ojcycletime*0.1)
+			bonus_ojcycletime -= Math.floor(ojcycletime*0.1)
 		} else {
-			bonus_ojcycletime += Math.round(ojcycletime*0.1)
+			bonus_ojcycletime += Math.floor(ojcycletime*0.1)
 		}		
 	} else if (bonus.name === "Pulp Nonfiction") {
 		if (apply) {
-			bonus_ojcycletime -= Math.round(ojcycletime*0.15)
+			bonus_ojcycletime -= Math.floor(ojcycletime*0.15)
 		} else {
-			bonus_ojcycletime += Math.round(ojcycletime*0.15)
+			bonus_ojcycletime += Math.floor(ojcycletime*0.15)
 		}		
 	} else if (bonus.name === "Packing Pulp") {
 		if (apply) {
@@ -1616,6 +1616,7 @@ function logic() {
 				bonus.owned = false
 				$("#contains"+bonusname).remove()
 				showNews(bonus.name+" has expired.")
+				clearBonuses()
 			} else {
 				var seconds = Math.floor((bonus.owneduntil - now)/1000)
 				$("#"+bonusname).html(seconds)
@@ -1632,6 +1633,7 @@ function logic() {
 				bonus.owned = false
 				$("#contains"+bonusname).remove()
 				showNews(bonus.name+" has expired.")
+				clearBonuses()
 			} else {
 				var seconds = Math.floor((bonus.owneduntil - now)/1000)
 				$("#"+bonusname).html(seconds)
@@ -1664,7 +1666,6 @@ function logic() {
 		 	showNews(message)
 		}
 		if ((lastsave+savetime*1000) < new Date().getTime()) {
-			clearBonuses()
 			saveGame(true) // save quietly
 			lastsave = new Date().getTime()
 		}
