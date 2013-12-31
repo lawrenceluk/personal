@@ -22,7 +22,7 @@ var ops = 0
 var bonus_ops = 0
 var bonus_ojpc = 0
 var bonus_ojcycletime = 0
-var bonuschance = 0.2 // 20% chance for bonus
+var bonuschance = 0.1 // 20% chance for bonus
 var basebonustime = 60 // lasts at least 60 seconds (up to 120)
 
 var maxslots = 7
@@ -106,7 +106,7 @@ function loadGame(identifier, quiet) {
 					bonus_ops = chunks[9]
 					bonus_ojpc = chunks[10]
 					bonus_ojcycletime = chunks[11]
-					bonuschance = chunks[12] // 10% chance for bonus
+					// bonuschance = chunks[12] // 10% chance for bonus
 					basebonustime = chunks[13] // lasts at least 60 seconds (up to 120)
 
 					maxslots = chunks[14]
@@ -257,7 +257,7 @@ function resetGame() {
 	bonus_ops = 0
 	bonus_ojpc = 0
 	bonus_ojcycletime = 0
-	bonuschance = 0.2 // 20% chance for bonus
+	bonuschance = 0.1 // 20% chance for bonus
 	basebonustime = 60 // lasts at least 60 seconds (up to 120)
 
 	maxslots = 7
@@ -625,11 +625,11 @@ ojpc_upgrades = [
 	new ojpc_upgrade("Whirler v3", "Top of the line option for small business", 30, 2500, 20000),
 	new ojpc_upgrade("OJ GIANT", "Stepping into the big leagues", 40, 10000, 100000),
 	new ojpc_upgrade("OJ GIANT INDUSTRY GRADE", "The juice flows within you", 50, 30000, 800000),
-	new ojpc_upgrade("Titanic Twister", "No one man should have all that power", 70, 100000, 1600000),
-	new ojpc_upgrade("The Goliath", "Orange is live", 100, 500000, 9000000),
-	new ojpc_upgrade("The Behemoth", "Orange is love", 150, 1250000, 25000000),
-	new ojpc_upgrade("The Leviathan", "Orange is planet", 200, 10000000, 123456789),
-	new ojpc_upgrade("Florida", "", 300, 134000000, 1234567898765),
+	new ojpc_upgrade("Titanic Twister", "No one man should have all that power", 60, 100000, 1600000),
+	new ojpc_upgrade("The Goliath", "Orange is live", 70, 500000, 9000000),
+	new ojpc_upgrade("The Behemoth", "Orange is love", 80, 1250000, 25000000),
+	new ojpc_upgrade("The Leviathan", "Orange is planet", 90, 10000000, 123456789),
+	new ojpc_upgrade("Florida", "The Sunshine State", 100, 134000000, 1234567898765),
 	]
 }
 
