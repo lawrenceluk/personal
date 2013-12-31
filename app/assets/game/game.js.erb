@@ -828,6 +828,7 @@ function getOJBonus() {
 	}
 }
 
+// TODO FIX BONUSES SOMETHING IS WRONG WHY???
 /*
 	Given the name of bonus, apply (true) or remove (false)
 */
@@ -1108,21 +1109,21 @@ function doBonus(bonus, apply) {
 	} else if (bonus.name === "Juicebox" || bonus.name === "Juice Fever" || bonus.name === "Juiceaholic"
 		 || bonus.name === "Juiced Up") {
 		if (apply) {
-			bonus_ojpc += Math.round(ojpc*0.02)
+			bonus_ojpc += Math.floor(ojpc*0.02)
 		} else {
-			bonus_ojpc -= Math.round(ojpc*0.02)
+			bonus_ojpc -= Math.floor(ojpc*0.02)
 		}
 	} else if (bonus.name === "Juice Jesus") {
 		if (apply) {
-			bonus_ojpc += Math.round(ojpc*0.04)
+			bonus_ojpc += Math.floor(ojpc*0.04)
 		} else {
-			bonus_ojpc -= Math.round(ojpc*0.04)
+			bonus_ojpc -= Math.floor(ojpc*0.04)
 		}
 	} else if (bonus.name === "Juice God") {
 		if (apply) {
-			bonus_ojpc += Math.round(ojpc*0.08)
+			bonus_ojpc += Math.floor(ojpc*0.08)
 		} else {
-			bonus_ojpc -= Math.round(ojpc*0.08)
+			bonus_ojpc -= Math.floor(ojpc*0.08)
 		}
 	}
 	if (bonus_ojpc < 0) {
