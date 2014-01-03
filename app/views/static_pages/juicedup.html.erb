@@ -3,17 +3,16 @@
 
 <div class="juicedup">
 <div class="row widthfix">
-	<div class="col-lg-10 col-lg-offset-1 col-md-10 col-md-offset-1
-	col-sm-10 col-sm-offset-1 col-xs-10 col-xs-offset-1">
+	<div class="col-xs-10 col-xs-offset-1 col-md-10 col-md-offset-1 col-lg-10 col-lg-offset-1">
 		<div class="row">
-			<div class="col-lg-4 col-md-4" id="big_orange_area">
+			<div class="col-sm-4 col-lg-4" id="big_orange_area">
 				<div class="big"><%= image_tag "big-orange.png", height: 30, title: "Oranges owned" %> <span id="o_count">0</span></div>
 				<div class="counter"><span id="ops_count">0</span> Oranges per Second</div>
 				<div id="orange_zone">
 					<%= image_tag "big-orange.png", class: "bigorange", height: 160, id: "geto_button" %>
 				</div>
 			</div>
-			<div class="col-lg-6 col-md-6" id="makejuice_area">
+			<div class="col-sm-4 col-lg-6" id="makejuice_area">
 				<div class="big"><%= image_tag "oj-glass.png", height: 30, title: "Glasses of OJ" %> <span id="oj_count">0</span></div>
 				<div class="counter">Juice up to <span id="ojpc_count">3 Oranges every 15</span> Seconds <span class="small">(Produces 
 					<span id="ojpcc"></span> glasses of OJ)</span></div>
@@ -75,6 +74,12 @@
 						<hr>
 						<div class="gap">
 							<div class="medium center">Changelog:</div>
+							v0.2.01
+							<ul>
+								<li> Fixed a bug where bonuses would disappear too quickly </li>
+								<li> Fixed a bug where failing an upgrade could still show (+1) </li>
+								<li> Other minor bugfixes, cleanup </li>
+							</ul>
 							v0.2
 							<ul>
 								<li> Added 3 new Orange makers: Orange Mystery, Pandora's Box, and One True Orange </li>

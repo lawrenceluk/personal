@@ -5,7 +5,7 @@ Save
 Responsive
 */
 $("#newsflash").html("Initializing variables...")
-var version = "0.2"
+var version = "0.2.01"
 
 // declare variables
 var oj = 0
@@ -127,7 +127,7 @@ function loadGame(identifier, quiet) {
 						bonus_ojcycletime = 0
 					}
 					// bonuschance = chunks[12] // 10% chance for bonus
-					basebonustime = chunks[13] // lasts at least 60 seconds (up to 120)
+					// basebonustime = chunks[13] // lasts at least 60 seconds (up to 120)
 
 					maxslots = chunks[14]
 					upgradesuccess = chunks[15] // 50% chance of success
@@ -844,8 +844,8 @@ function drawOJShop() {
 		var name = "purchase_OJ_"+(i+1)
 		shop_contents += "<div class='shop_item upgrade' id="+name+">"
 			shop_contents += "<div class='title'>"+ojpc_upgrades[i].name+"</div>"
-			shop_contents += "<div class='description itz'>"+ojpc_upgrades[i].description+"</div>"
-			shop_contents += "<div class='smaller'>Juices "+Beautify(ojpc_upgrades[i].ojpc)+" Oranges per cycle.</div>"
+			shop_contents += "<div class='description'><span class='itz'>"+ojpc_upgrades[i].description+"</span>"
+			shop_contents += "<br>Juices "+Beautify(ojpc_upgrades[i].ojpc)+" Oranges per cycle.</div>"
 			shop_contents += "<div id="+insert+" class='info'>Costs "+Beautify(getOJPCCost(ojpc_upgrades[i]))+" glasses of OJ. Owned: "+ojpc_upgradeAmts[i]+"</div>"
 		shop_contents += "</div>"
 		i++
@@ -863,8 +863,8 @@ function updateOJMakerShop() {
 			var name = "purchase_OJ_"+(i+1)
 			shop_contents += "<div class='shop_item upgrade' id="+name+">"
 				shop_contents += "<div class='title'>"+ojpc_upgrades[i].name+"</div>"
-				shop_contents += "<div class='description itz'>"+ojpc_upgrades[i].description+"</div>"
-				shop_contents += "<div class='smaller'>Juices "+Beautify(ojpc_upgrades[i].ojpc)+" Oranges per cycle.</div>"
+				shop_contents += "<div class='description'><span class='itz'>"+ojpc_upgrades[i].description+"</span>"
+				shop_contents += "<br>Juices "+Beautify(ojpc_upgrades[i].ojpc)+" Oranges per cycle.</div>"
 				shop_contents += "<div id="+insert+" class='info'>Costs "+Beautify(getOJPCCost(ojpc_upgrades[i]))+" glasses of OJ. Owned: "+ojpc_upgradeAmts[i]+"</div>"
 			shop_contents += "</div>"
 		}
@@ -881,7 +881,7 @@ GRAPHICS
 
 function drawOrangeClicked(amt, x, y) {
 	var name = Math.round(Math.random()*1000000).toString()
-	$("#big_orange_area").append("<span class='clicked_orange' id="+name+">+"+amt+"</span>")
+	$("#big_orange_area").append("<span class='clicked_orange' id="+name+">+"+Beautify(amt)+"</span>")
 	$("#"+name).css({
 	  position:'absolute',
 	  top: (y+55+(Math.random()*20)),
@@ -1569,6 +1569,9 @@ $("#omaker_detail").on('click', function(event) {
 						}
 						if (upgrades > 0) {
 	 						$("#upgraded").html(" (+"+upgrades+")")
+	 					}
+	 					else if (upgrades == 0) {
+	 						$("#upgraded").html("")
 	 					}
 						// Recalculate oranges per second
 						var newops = 0
