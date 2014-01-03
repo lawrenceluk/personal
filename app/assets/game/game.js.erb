@@ -149,7 +149,7 @@ function loadGame(identifier, quiet) {
 					}
 					orangeMakerAmts = JSON.parse(chunks[18])
 
-					// updating to 1.2
+					// updating to 0.2
 					if (chunks[19] != -1) {
 						var old_ojpc_upgrades = JSON.parse(chunks[19])
 						var pout = ""
@@ -1431,7 +1431,7 @@ function purchaseOMaker(tier) {
 		str += "<div class='sell o_option' id="+"sell_o_"+index+" title='Sells for "
 		str += Math.round(allItems[item.tier-1].cost/2)+" OJ.'>Sell</div></div>"
 		str += " <div class='small'>OpS: <span id='ops_update'>"+item.ops+"</span>"
-		str += "<br>Upgrades: <span id='slots'>"+item.slots+"</span>/"+maxslots+"</div>"
+		str += "<br>Upgrades: <span id='slots'>"+item.slots+"</span>/"+maxslots+"<span id='upgraded'></span></div>"
 		$("#omaker_detail").html("<div class='shorter shelf'>"+str+"</div>")
 		if ($("#stats").html() == "Stats") {
 			$("#shelf_container").height("325px")
