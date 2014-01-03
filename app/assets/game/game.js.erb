@@ -1659,7 +1659,9 @@ $("#ojpc_shop").on('click', function(event) {
 		updateAffordable()
 		// apply bonuses again
 		doBonuses(true)
-		// update costs
+		// update values on screen
+		$("#oj_count, #s_oj").html(Beautify(oj))
+		$("#ojpc_count").html(Beautify(ojpc+bonus_ojpc)+" Oranges every "+Beautify(ojcycletime+bonus_ojcycletime))
 		$("#info_OJ_"+(tier)).html("Costs "+Beautify(getOJPCCost(ojpc_upgrades[tier-1]))+" glasses of OJ. Owned: "+ojpc_upgradeAmts[tier-1])
 	}
 })
