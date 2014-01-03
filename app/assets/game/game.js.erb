@@ -838,7 +838,7 @@ function drawOShop() {
 function drawOJShop() {
 	var shop_contents = ""
 	var i = 0
-	while (ojpc_upgrades[i].req <= owned_ojpc_upgrades) {
+	while (i < ojpc_upgrades.length && ojpc_upgrades[i].req <= owned_ojpc_upgrades) {
 		ojpc_upgrades[i].visible = true
 		var insert = "info_OJ_"+(i+1)
 		var name = "purchase_OJ_"+(i+1)
