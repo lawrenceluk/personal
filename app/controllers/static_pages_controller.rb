@@ -15,7 +15,7 @@ class StaticPagesController < ApplicationController
 	def save
 	  respond_to do |format|
 	  	format.js do
-	  		save = Save.find(cookies.permanent[:identifier])
+	  		save = Save.find_by_identifier(cookies.permanent[:identifier])
 	  		if save
 	    		save.update_attributes(save_params)
 	    	else
