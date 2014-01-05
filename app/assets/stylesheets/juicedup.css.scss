@@ -427,7 +427,54 @@
 .itz {
 	font-style: italic;
 }
+.godly {
+	background: rgba(189, 189, 57, 0.02)
+}
 #upgraded {
 	font-size: 1.05em;
 	color: #40A34D;
+}
+.rebirth_note {
+	color: #fff;
+	-webkit-user-select: none; /* Chrome/Safari */        
+	-moz-user-select: none; /* Firefox */
+	-ms-user-select: none; /* IE10+ */
+
+	/* Rules below not implemented in browsers yet */
+	-o-user-select: none;
+	user-select: none;
+
+	cursor: pointer;
+	text-align: center;
+	font-size: 1.1em;
+	padding: 16px 5px;
+	background: #667C91;
+	border-radius: 1px;
+	margin-top: 5px;
+	border: 1px solid #3D4C59;
+	border-bottom: 4px solid #3D4C59;
+	&:hover {
+		background: #5C6873;
+		border: 1px solid #31485C;
+		border-bottom: 4px solid #31485C;		
+	}
+	&:active {
+		background: #3E5A73;
+	}
+}
+.o_option.rebirth {
+	width: 60%;
+	font-size: 1.3em;
+	padding: 10px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 20px;
+
+	background: #BF5F45;
+	&:hover {
+		background: #E85127;
+	}
+	&:active {
+		background: #993E25;
+	}
 }

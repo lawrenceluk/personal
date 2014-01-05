@@ -14,8 +14,8 @@
 			</div>
 			<div class="col-sm-4 col-lg-6" id="makejuice_area">
 				<div class="big"><%= image_tag "oj-glass.png", height: 30, title: "Glasses of OJ" %> <span id="oj_count">0</span></div>
-				<div class="counter">Juice up to <span id="ojpc_count">3 Oranges every 15</span> Seconds <span class="small">(Produces 
-					<span id="ojpcc"></span> glasses of OJ)</span></div>
+				<div class="counter">Juice up to <span id="ojpc_count">3</span> <%= image_tag "big-orange.png", height: 20, title: "Oranges" %>
+				 every <span id="ojcycle_count">15</span> Seconds <span class="small">→ <span id="ojpcc"></span> glasses of OJ</span></div>
 				<div class="progress" style="width: 100%;">
 				  <div class="progress-bar progress-bar-success" id="oj_cycle_bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="50" style="width: 0%; transition: 0.05s;">
 				  </div>
@@ -65,6 +65,7 @@
 						Orange makers: <span id="s_activeomakers"></span><br>
 						<br>
 						Bonus multiplier: <span id="s_bonus"></span>%<br>
+						Base bonus time: <span id="s_bonustime"></span>s<br>
 						FPS: <span id="s_fps"></span><br>
 						Time played: <span id="s_time"></span>
 						<hr>
@@ -74,6 +75,18 @@
 						<hr>
 						<div class="gap">
 							<div class="medium center">Changelog:</div>
+							v0.3
+							<ul>
+								<li>Added three new orange makers: Sun God, Black Hole, Endgame Fantasy</li>
+								<li>Added a new orange juice upgrade: Earth</li>
+								<li>Bonuses hopefully fixed? Maybe?</li>
+								<li>Shelf is now automatically sorted</li>
+								<li>Clicking Save changes button to Back to return to Shelf/Stats easily</li>
+								<li>Progress bar should animate smoother when Juice Faster! is clicked</li>
+								<li>Minor visual changes</li>
+								<li>Added prestige system! Called Rebirth, it is automatically triggered when you reach 3 trillion total oranges and 3 trillion total orange juice. Rebirthing clears out most of your stats but gives useful bonuses for the next round.
+								</li>
+							</ul>
 							v0.2.01
 							<ul>
 								<li> Fixed a bug where bonuses would disappear too quickly </li>
@@ -136,6 +149,30 @@
 						<div class='small center'>Reset your game to default values.</div>
 						<div id='resetbutton' class='o_option s'>Reset</div>
 					</div>
+					<div id="rebirth_zone" class="hidden shelf solider center">
+						<br>
+						Congratulations! 
+						<div class="description gap">
+							You have earned enough total oranges and orange juice to draw the attention of important intergalactic dignitaries.
+						</div> 
+						<div class="description gap">
+							They wish to take your oranges and orange producing technology for their own civilizations. You will lose all of your
+							oranges, orange juice, orange producers, and orange juice upgrades. You will effectively start over with nothing.
+						</div>
+						<div class="description gap">
+							However, the aliens recognize good work when they see it, and will reward you for your effort. In addition, they will
+							leave intact all of your <i>perfectly</i> upgraded (+7) orange producers. This will give you a substantial
+							bonus in rebuilding your orange empire.
+						</div>
+						<div class="medium gap">
+							Your rewards for accepting the offer of rebirth are as follows:
+							<hr>
+							<ul>
+								<div id="rebirth_rewards" class="text-left counter"></div>
+							</ul>
+							<div id="do_rebirth"></div>
+						</div>
+					</div>
 				</div>
 			</div>
 			<div class="col-lg-4 col-md-4">
@@ -147,6 +184,7 @@
 			</div>
 		</div>
 	</div>
+	<div class="gap col-xs-1 col-md-1 col-lg-1 center" id="rebirth"></div>
 </div>
 <div class="footer widthfix row">
 	<div class="col-lg-7 col-lg-offset-1 col-md-7 col-md-offset-1">

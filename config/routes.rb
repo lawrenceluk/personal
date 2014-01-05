@@ -3,6 +3,7 @@ Personal::Application.routes.draw do
   match 'juicedup', to: 'static_pages#juicedup', via: [:get]
   match 'save', to: 'static_pages#save', via: [:post]
   match 'load', to: 'static_pages#load', via: [:get]
+  match 'rb', to: 'static_pages#rebirth', via: [:post]
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
