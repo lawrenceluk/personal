@@ -5,7 +5,7 @@ Save
 Responsive
 */
 $("#newsflash").html("Initializing variables...")
-var version = "0.3"
+var version = "0.3.01"
 
 // declare variables
 var oj = 0
@@ -406,6 +406,7 @@ function rebirth() {
 			cleanOBonuses()
 			cleanOJBonuses()
 
+			// reset basic counters
 			oj = 0
 			o = 0
 
@@ -421,6 +422,7 @@ function rebirth() {
 			bonus_ojpc = 0
 			bonus_ojcycletime = 0
 
+			// only save perfect upgrades
 			for (var i=0;i<omakers.length;i++) {
 				var item = omakers[i]
 				var baseops = allItems[item.tier-1].ops
@@ -441,6 +443,15 @@ function rebirth() {
 				}
 			}
 			ops = newops
+
+			// reset amounts
+			for (var i=0;i<orangeMakerAmts.length;i++) {
+				orangeMakerAmts[i] = 0
+			}
+			for (var i=0;i<ojpc_upgradeAmts.length;i++) {
+				ojpc_upgradeAmts[i] = 0
+			}
+			ojpc_upgradeAmts[0] = 1
 
 			newstime = 19 // seconds
 
@@ -1704,13 +1715,24 @@ $("#omaker_shelf_purchases").on('click', function(event) {
 		var baseops = allItems[item.tier-1].ops
 		var t = item.ops
 		var upgrades = 0
-		while (t > baseops) {
-			upgrades++
-			t /= 2
+		if (t > baseops) {
+			while (t > baseops) {
+				upgrades++
+				t /= 2
+			}
+		} else if (t < baseops) {
+			while (t < baseops) {
+				upgrades--
+				t *= 2
+			}
 		}
 		var upgraded = ""
+		var status = "upgraded"
 		if (upgrades > 0) {
 			upgraded = " (+"+upgrades+")"
+		} else if (upgrades < 0) {
+			upgraded = " ("+upgrades+")"
+			status = "failed"
 		}
 		// display
 		var str = item.name+"<div class='pull-right'><div class='o_option "+disabled+"' id="+"upgrade_o_"+index
@@ -1723,7 +1745,7 @@ $("#omaker_shelf_purchases").on('click', function(event) {
 			show_ops = Beautify(item.ops)
 		}
 		str += " <div class='small'>OpS: <span id='ops_update'>"+show_ops+"</span>"
-		str += "<br>Upgrades: <span id='slots'>"+item.slots+"</span>/"+maxslots+"<span id='upgraded'>"+upgraded+"</span></div>"
+		str += "<br>Upgrades: <span id='slots'>"+item.slots+"</span>/"+maxslots+"<span id='upgraded' class="+status+">"+upgraded+"</span></div>"
 		$("#omaker_detail").html("<div class='shorter shelf'>"+str+"</div>")
 		$("#shelf_container").height("325px")
 	} else {
@@ -1740,7 +1762,7 @@ $("#omaker_detail").on('click', function(event) {
 	if (!isNaN(index)) {
 		var item = omakers[index]
 		if (event.target.id.split("_")[0] === "sell") {
-			if (confirm("Are you sure you want to sell this "+item.name+"? You'll miss out on "+item.ops+" oranges per second.")) {
+			//if (confirm("Are you sure you want to sell this "+item.name+"? You'll miss out on "+item.ops+" oranges per second.")) {
 				var prevprice = 0 // highest price paid for it so far
 				var prevhigh
 				for (var i=0;i<omakers.length;i++) {
@@ -1758,7 +1780,7 @@ $("#omaker_detail").on('click', function(event) {
 					allItems[removeOMaker(item)-1].cost = prevprice
 				}
 				updateAffordable()
-			}
+			// }
 		} else {
 			// if slots are left
 			if (item.slots < maxslots) {
@@ -1782,13 +1804,35 @@ $("#omaker_detail").on('click', function(event) {
 					var baseops = allItems[item.tier-1].ops
 					var t = item.ops
 					var upgrades = 0
-					while (t > baseops) {
-						upgrades++
-						t /= 2
+					if (t > baseops) {
+						while (t > baseops) {
+							upgrades++
+							t /= 2
+						}
+					} else if (t < baseops) {
+						while (t < baseops) {
+							upgrades--
+							t *= 2
+						}
 					}
+					var upgraded = ""
+					var status = "upgraded"
+					var u = $("#upgraded")
 					if (upgrades > 0) {
- 						$("#upgraded").html(" (+"+upgrades+")")
- 					}
+						upgraded = " (+"+upgrades+")"
+						if (u.hasClass("failed")) {
+							u.removeClass("failed")
+						}
+						u.html(" (+"+upgrades+")")
+					} else if (upgrades < 0) {
+						upgraded = " ("+upgrades+")"
+						if (!u.hasClass("failed")) {
+							u.addClass("failed")
+						}
+						u.html(" ("+upgrades+")")
+					} else {
+						u.html("")
+					}
 					if (item.slots == maxslots) {
 						$("#"+event.target.id).addClass("inactive")
 					}
@@ -1805,16 +1849,35 @@ $("#omaker_detail").on('click', function(event) {
 						var baseops = allItems[item.tier-1].ops
 						var t = item.ops
 						var upgrades = 0
-						while (t > baseops) {
-							upgrades++
-							t /= 2
+						if (t > baseops) {
+							while (t > baseops) {
+								upgrades++
+								t /= 2
+							}
+						} else if (t < baseops) {
+							while (t < baseops) {
+								upgrades--
+								t *= 2
+							}
 						}
+						var upgraded = ""
+						var status = "upgraded"
+						var u = $("#upgraded")
 						if (upgrades > 0) {
-	 						$("#upgraded").html(" (+"+upgrades+")")
-	 					}
-	 					else if (upgrades == 0) {
-	 						$("#upgraded").html("")
-	 					}
+							upgraded = " (+"+upgrades+")"
+							if (u.hasClass("failed")) {
+								u.removeClass("failed")
+							}
+							u.html(" (+"+upgrades+")")
+						} else if (upgrades < 0) {
+							upgraded = " ("+upgrades+")"
+							if (!u.hasClass("failed")) {
+								u.addClass("failed")
+							}
+							u.html(" ("+upgrades+")")
+						} else {
+							u.html("")
+						}
 						// Recalculate oranges per second
 						var newops = 0
 						for (var i = 0; i < omakers.length; i++) {
