@@ -454,6 +454,12 @@ function rebirth() {
 			}
 			ojpc_upgradeAmts[0] = 1
 
+			for (var i=0;i<orangeMakerAmts.length;i++) {
+				if (orangeMakerAmts[i] < 0) {
+					orangeMakerAmts[i] = 0
+				}
+			}
+
 			newstime = 19 // seconds
 
 			clickchangeamt = 1
@@ -482,6 +488,7 @@ function rebirth() {
 			$("#omaker_shelf_purchases").html("")
 			disp_o = 0
 			disp_ojcycle = ojcycletime
+			cleanOJPCUpgrades()
 			drawOShop()
 			drawOJShop()
 			drawShelf()
