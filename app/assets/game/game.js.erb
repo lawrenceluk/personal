@@ -172,6 +172,11 @@ function loadGame(identifier, quiet) {
 							orangeMakerAmts[omakers[i].tier-1]++
 						}
 					}
+					for (var i=0;i<orangeMakerAmts.length;i++) {
+						if (orangeMakerAmts[i] < 0) {
+							orangeMakerAmts[i] = 0
+						}
+					}
 
 					// updating to 0.2
 					if (chunks[19] != -1) {
@@ -449,10 +454,7 @@ function rebirth() {
 			ops = newops
 
 			// reset amounts
-			for (var i=0;i<ojpc_upgradeAmts.length;i++) {
-				ojpc_upgradeAmts[i] = 0
-			}
-			ojpc_upgradeAmts[0] = 1
+			cleanOJPCUpgrades()
 
 			for (var i=0;i<orangeMakerAmts.length;i++) {
 				if (orangeMakerAmts[i] < 0) {
@@ -488,7 +490,6 @@ function rebirth() {
 			$("#omaker_shelf_purchases").html("")
 			disp_o = 0
 			disp_ojcycle = ojcycletime
-			cleanOJPCUpgrades()
 			drawOShop()
 			drawOJShop()
 			drawShelf()
