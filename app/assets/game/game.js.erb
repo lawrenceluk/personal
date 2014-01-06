@@ -5,7 +5,7 @@ Save
 Responsive
 */
 $("#newsflash").html("Initializing variables...")
-var version = "0.3.01"
+var version = "0.3.03"
 
 // declare variables
 var oj = 0
@@ -77,7 +77,6 @@ function applyUpdates() {
 			ojpc_upgradeAmts.push(0)
 		}
 	}
-
 	drawOShop()
 	drawOJShop()
 	updateAffordable()
@@ -156,12 +155,23 @@ function loadGame(identifier, quiet) {
 							name: allItems[tomakers[i].tier-1].name, 
 							description: allItems[tomakers[i].tier-1].description, 
 							ops: tomakers[i].ops,
-							cost: tomakers[i].cost,
 							alive: tomakers[i].alive,
 							slots: tomakers[i].slots
 						})
 					}
 					orangeMakerAmts = JSON.parse(chunks[18])
+					// the following code should fix saves that had broken omaker amts from rebirthing
+					var flag = true
+					for (var i=0;i<orangeMakerAmts.length;i++) {
+						if (orangeMakerAmts[i] > 0) {
+							flag = false
+						}
+					}
+					if (flag) {
+						for (var i=0;i<omakers.length;i++) {
+							orangeMakerAmts[omakers[i].tier-1]++
+						}
+					}
 
 					// updating to 0.2
 					if (chunks[19] != -1) {
@@ -175,12 +185,6 @@ function loadGame(identifier, quiet) {
 
 					o_bonuses = JSON.parse(chunks[20])
 					oj_bonuses = JSON.parse(chunks[21])
-					var allcosts = JSON.parse(chunks[22])
-					for (var i=0;i<allItems.length;i++) {
-						if (allcosts[i]) { // not accepting 'falsy' values including 0
-							allItems[i].cost = allcosts[i]
-						}
-					}
 
 					clickreward = chunks[23]
 					oclicks = chunks[24]
@@ -445,9 +449,6 @@ function rebirth() {
 			ops = newops
 
 			// reset amounts
-			for (var i=0;i<orangeMakerAmts.length;i++) {
-				orangeMakerAmts[i] = 0
-			}
 			for (var i=0;i<ojpc_upgradeAmts.length;i++) {
 				ojpc_upgradeAmts[i] = 0
 			}
@@ -650,7 +651,6 @@ UTIL
 */
 var notified = false
 function manageRebirth() {
-	/*
 	if (!notified && totalo > 3000000000000 && totaloj > 3000000000000) {
 		showNews("Your orange juice has attracted the attention of extraterrestial beings.")
 		if ($("#rebirth").html() === "") {
@@ -670,7 +670,6 @@ function manageRebirth() {
 		$("#rebirth_rewards").html(str)
 		$("#do_rebirth").html("<div id='completerebirth' class='o_option rebirth'>Rebirth</div>")
 	}
-	*/
 }
 
 function drawShelf() {
@@ -747,6 +746,10 @@ function getOJPCCost(item) {
 		return Math.round(ojpc_upgrades[i].cost*Math.pow(1.15, ojpc_upgradeAmts[tier]))
 	}
 	return -1
+}
+
+function getOMakerCost(tier) {
+	return Math.round(allItems[tier-1].cost*Math.pow(1.15, orangeMakerAmts[tier-1]))
 }
 
 function showNews(news) {
@@ -932,7 +935,7 @@ allItems = [
 	},
 	{
 		tier: 11,
-		name: "Black Hole",
+		name: "Orange Hole",
 		description: "Gathers oranges from infinite universes.",
 		ops: 10000000,
 		cost: 15678901234,
@@ -1620,7 +1623,7 @@ $("#makeoj_button").mousedown(function (e) {
 })
 
 function purchaseOMaker(tier) {
-	var cost = allItems[tier-1].cost
+	var cost = getOMakerCost(tier)
 	//if they have enough oj
 	if (oj >= cost) {
 		// empty the shelf
@@ -1645,8 +1648,6 @@ function purchaseOMaker(tier) {
 		// update amount owned
 		orangeMakerAmts[tier-1]++
 		activeomakers++
-		// update cost
-		allItems[tier-1].cost = Math.round(allItems[tier-1].cost*Math.pow(1.04, orangeMakerAmts[tier-1]))
 		// draw the new item
 		drawShelf()
 
@@ -1766,22 +1767,10 @@ $("#omaker_detail").on('click', function(event) {
 		var item = omakers[index]
 		if (event.target.id.split("_")[0] === "sell") {
 			//if (confirm("Are you sure you want to sell this "+item.name+"? You'll miss out on "+item.ops+" oranges per second.")) {
-				var prevprice = 0 // highest price paid for it so far
-				var prevhigh
-				for (var i=0;i<omakers.length;i++) {
-					if (omakers[i].name === item.name) {
-						if (omakers[i].cost > prevprice && omakers[i].alive) {
-							prevprice = omakers[i].cost
-							prevhigh = omakers[i]
-						}
-					}
-				}
-				if (prevprice > 0) {
-					showNews("Sold "+item.name+" ("+item.ops+" OpS) for "+Math.round(prevprice/2)+" OJ.")
-					oj += Math.round(prevprice/2)
-					prevhigh.cost = item.cost
-					allItems[removeOMaker(item)-1].cost = prevprice
-				}
+				var prevprice = getOMakerCost(item.tier)
+				showNews("Sold "+item.name+" ("+item.ops+" OpS) for "+Math.round(prevprice/2)+" OJ.")
+				oj += Math.round(prevprice/2)
+				removeOMaker(item)
 				updateAffordable()
 			// }
 		} else {
@@ -2061,7 +2050,7 @@ $("#rebirth").click(function() {
 
 function updateAffordable() {
 	for (var i=0;i<allItems.length;i++) {
-		$("#info_O_tier_"+(i+1)).html("Costs "+Beautify(allItems[i].cost)+" glasses of OJ. Owned: "+orangeMakerAmts[i])
+		$("#info_O_tier_"+(i+1)).html("Costs "+Beautify(getOMakerCost(i+1))+" glasses of OJ. Owned: "+orangeMakerAmts[i])
 		if (oj < allItems[i].cost) {
 			$("#purchase_O_tier_"+(i+1)).addClass("unaffordable")
 		} else {
@@ -2228,7 +2217,7 @@ function logic() {
 		$("#s_ojpc").html(Beautify(ojpc))
 		$("#s_bonusojpc").html(Beautify(bonus_ojpc))
 		$("#s_ojpcbought").html(Beautify(owned_ojpc_upgrades))
-		$("#s_clickreward").html(clickreward)
+		$("#s_clickreward").html(Beautify(clickreward + Math.round(ops*clickbonus))+" ("+Beautify(clickbonus*100)+"% OpS)")
 		$("#s_opstotal").html(Math.round((ops+bonus_ops) * 10) / 10)
 		$("#s_ops").html(Math.round(ops * 10) / 10)
 		$("#s_bonusops").html(Math.round(bonus_ops * 10) / 10)
