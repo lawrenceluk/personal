@@ -650,6 +650,7 @@ UTIL
 */
 var notified = false
 function manageRebirth() {
+	/*
 	if (!notified && totalo > 3000000000000 && totaloj > 3000000000000) {
 		showNews("Your orange juice has attracted the attention of extraterrestial beings.")
 		if ($("#rebirth").html() === "") {
@@ -669,6 +670,7 @@ function manageRebirth() {
 		$("#rebirth_rewards").html(str)
 		$("#do_rebirth").html("<div id='completerebirth' class='o_option rebirth'>Rebirth</div>")
 	}
+	*/
 }
 
 function drawShelf() {
@@ -728,6 +730,7 @@ function removeOMaker(item) {
 		// back to main shelf view
 		$("#omaker_detail").html("")
 		$("#shelf_container").height("425px")
+		drawShelf()
 		return tier
 	}
 }
