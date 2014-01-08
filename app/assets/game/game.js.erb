@@ -187,6 +187,7 @@ function loadGame(identifier, quiet) {
 						oldLoad(response)
 					}
 
+					$("#production_upgrades").html("")
 					// redisplay bonuses
 					var now = new Date().getTime()
 					for (var i=0;i<o_bonuses.length;i++) {
