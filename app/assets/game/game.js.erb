@@ -5,7 +5,7 @@ Save
 Responsive
 */
 $("#newsflash").html("Initializing variables...")
-var version = "0.31"
+var version = "0.33"
 
 // declare variables
 var oj = 0
@@ -119,9 +119,9 @@ function loadGame(identifier, quiet) {
 						ojpc = game.d_ojpc
 						owned_ojpc_upgrades = game.d_owned_ojpc_upgrades
 						ops = game.d_ops
-						bonus_ops = game.d_bonus_ops
-						bonus_ojpc = game.d_bonus_ojpc
-						bonus_ojcycletime = game.d_bonus_ojcycletime
+						bonus_ops = 0
+						bonus_ojpc = 0
+						bonus_ojcycletime = 0
 						bonuschance = game.d_bonuschance
 						basebonustime = game.d_basebonustime
 						maxslots = game.d_maxslots
@@ -172,6 +172,7 @@ function loadGame(identifier, quiet) {
 							}
 						}
 
+
 						// load bonuses
 						var dob = game.d_o_bonuses
 						for (var i=0;i<dob.length;i++) {
@@ -186,6 +187,19 @@ function loadGame(identifier, quiet) {
 					} else {
 						oldLoad(response)
 					}
+
+					var adata = "identifier="+identifier
+					var arequest = $.ajax({
+				    url: "grab", //sumbits it to the given url of the form
+				    type: "GET",
+				    data: adata,
+				    dataType: "HTML",
+				    success : function (nresponse) {
+				    	var split = nresponse.split("_")
+				    	$("#s_rebirths").html(split[0])
+				    	$("#s_credits").html(Beautify(parseInt(split[1])))
+				    }
+				  })
 
 					$("#production_upgrades").html("")
 					// redisplay bonuses
@@ -473,7 +487,7 @@ function rebirth() {
 					name: allItems[perfect[i].tier-1].name, 
 					description: allItems[perfect[i].tier-1].description, 
 					ops: perfect[i].ops,
-					slots: perfect[i].slots,
+					slots: maxslots,
 					alive: true
 				})
 				orangeMakerAmts[perfect[i].tier-1]++
@@ -510,8 +524,8 @@ function rebirth() {
 			clickbonus += 0.02
 			maxslots = 7
 
-			if (upgradesuccess > 0.9) {
-				upgradesuccess = 0.9
+			if (upgradesuccess > 0.85) {
+				upgradesuccess = 0.85
 			}
 			if (failuredestroy < 0.05) {
 				failuredestroy = 0.05
@@ -537,7 +551,7 @@ function rebirth() {
 			$("#stats_zone").addClass("hidden")
 			$("#save_zone").addClass("hidden")
 			$("#rebirth_zone").addClass("hidden")
-
+			notified = false
 			saveGame(true)
 			var counts = response.split("_")
 			if (counts.length === 2) {
@@ -708,7 +722,7 @@ function loadOMessages() {
 	new OMessage("<i>Juicing intensifies</i>", 1250000000),
 	new OMessage("Refresh this page once in a while to receive the latest updates!", 1500000000),
 	new OMessage("You are now unsubscribed from Orange Facts.", 999999999999),
-	new OMessage("Your orange juice has attracted the attention of extraterrestial beings.", 3000000000000)
+	new OMessage("Your oranges have attracted the attention of extraterrestial beings. With 3 trillion OJ you will be eligible for rebirth.", 3000000000000)
 ]
 }
 
@@ -771,17 +785,18 @@ function OJBonus(name, description, chance, owneduntil, owned) {
 }
 function cleanOJBonuses() {
 oj_bonuses = [
-	new OJBonus("Squeezetaculous", "Reduces OJ cycle time by 1 second", 0.1),
-	new OJBonus("Squeezalicious", "Reduces OJ cycle time by 1 second", 0.1),
-	new OJBonus("Squeezetacular", "Reduces OJ cycle time by 1 second", 0.1),
-	new OJBonus("Tight Squeeze", "Reduces OJ cycle time by 1 second", 0.1),
+
+	new OJBonus("Squeezetaculous", "Reduces OJ cycle time by 0.5 seconds", 0.1),
+	new OJBonus("Squeezalicious", "Reduces OJ cycle time by 0.5 seconds", 0.1),
+	new OJBonus("Squeezetacular", "Reduces OJ cycle time by 0.5 seconds", 0.1),
+	new OJBonus("Tight Squeeze", "Reduces OJ cycle time by 0.5 seconds", 0.1),
 	new OJBonus("Critical Squeeze", "Reduces OJ cycle time by 1 second", 0.1),
 	new OJBonus("Squeezus", "Reduces OJ cycle time by 2 seconds", 0.05),
 	new OJBonus("Squeeze God", "Reduces OJ Cycle time by 3 seconds", 0.02),
 
-	new OJBonus("Hump Day", "Reduces OJ cycle time by 5 percent", 0.15),
-	new OJBonus("Pulp Fiction", "Reduces OJ cycle time by 10 percent", 0.1),
-	new OJBonus("Pulp Nonfiction", "Reduces OJ cycle time by 15 percent", 0.05),
+	new OJBonus("Hump Day", "Reduces OJ cycle time by 0.5 seconds", 0.1),
+	new OJBonus("Pulp Fiction", "Reduces OJ cycle time by 1.5 seconds", 0.08),
+	new OJBonus("Pulp Nonfiction", "Reduces OJ cycle time by 2 seconds", 0.02),
 
 	new OJBonus("Packing Pulp", "Gives an additional 5 glasses of OJ per cycle", 0.3),
 	new OJBonus("Lesser Efficiency", "Gives an additional 20 glasses of OJ per cycle", 0.2),
@@ -1597,7 +1612,13 @@ function doBonus(bonus, apply) {
 			basebonustime -= 60
 		}
 	} else if (bonus.name === "Squeezetaculous" || bonus.name === "Squeezalicious" 
-		|| bonus.name === "Squeezetacular" || bonus.name === "Tight Squeeze" || bonus.name === "Critical Squeeze") {
+		|| bonus.name === "Squeezetacular" || bonus.name === "Tight Squeeze") {
+		if (apply) {
+			bonus_ojcycletime -= 0.5
+		} else {
+			bonus_ojcycletime += 0.5
+		}
+	} else if (bonus.name === "Critical Squeeze") {
 		if (apply) {
 			bonus_ojcycletime -= 1
 		} else {
@@ -1617,21 +1638,21 @@ function doBonus(bonus, apply) {
 		}
 	} else if (bonus.name === "Hump Day") {
 		if (apply) {
-			bonus_ojcycletime -= Math.floor(ojcycletime*0.05)
+			bonus_ojcycletime -= 0.5
 		} else {
-			bonus_ojcycletime += Math.floor(ojcycletime*0.05)
+			bonus_ojcycletime += 0.5
 		}
 	} else if (bonus.name === "Pulp Fiction") {
 		if (apply) {
-			bonus_ojcycletime -= Math.floor(ojcycletime*0.1)
+			bonus_ojcycletime -= 1.5
 		} else {
-			bonus_ojcycletime += Math.floor(ojcycletime*0.1)
+			bonus_ojcycletime += 1.5
 		}		
 	} else if (bonus.name === "Pulp Nonfiction") {
 		if (apply) {
-			bonus_ojcycletime -= Math.floor(ojcycletime*0.15)
+			bonus_ojcycletime -= 2
 		} else {
-			bonus_ojcycletime += Math.floor(ojcycletime*0.15)
+			bonus_ojcycletime += 2
 		}		
 	} else if (bonus.name === "Packing Pulp") {
 		if (apply) {
@@ -1859,8 +1880,8 @@ function purchaseOMaker(tier) {
 		var index = omakers.length - 1
 		var item = omakers[omakers.length - 1]
 		var str = item.name+"<div class='pull-right'><div class='o_option' id="+"upgrade_o_"+index
-		str += " title='Doubles OpS with "+(upgradesuccess*100)+"% success rate. If upgrade fails, this producer has a "
-		str += (failuredestroy*100)+"% chance of having its OpS halved.'>Upgrade</div>"
+		str += " title='Doubles OpS with "+Beautify(upgradesuccess*100)+"% success rate. If upgrade fails, this producer has a "
+		str += Beautify(failuredestroy*100)+"% chance of having its OpS halved.'>Upgrade</div>"
 		str += "<div class='sell o_option' id="+"sell_o_"+index+" title='Sells for "
 		str += Math.round(getOMakerCost(item.tier)/2)+" OJ.'>Sell</div></div>"
 		var show_ops = item.ops
@@ -1924,8 +1945,8 @@ $("#omaker_shelf_purchases").on('click', function(event) {
 		}
 		// display
 		var str = item.name+"<div class='pull-right'><div class='o_option "+disabled+"' id="+"upgrade_o_"+index
-		str += " title='Doubles OpS with "+(upgradesuccess*100)+"% success rate. If upgrade fails, this producer has a "
-		str += (failuredestroy*100)+"% chance of having its OpS halved.'>Upgrade</div>"
+		str += " title='Doubles OpS with "+Beautify(upgradesuccess*100)+"% success rate. If upgrade fails, this producer has a "
+		str += Beautify(failuredestroy*100)+"% chance of having its OpS halved.'>Upgrade</div>"
 		str += "<div class='sell o_option' id="+"sell_o_"+index+" title='Sells for "
 		str += Math.round(getOMakerCost(item.tier)/2)+" OJ.'>Sell</div></div>"
 		var show_ops = item.ops
@@ -2321,14 +2342,16 @@ function disp() {
 }
 
 function calculateJuiceSqueezed() {
+		var cycletime = ojcycletime+bonus_ojcycletime
 		// Counting for OJ production cycle
 		if (ojcycle <= 0) {
-			$('#oj_cycle_bar').css("width", "0%")
-			var cycletime = ojcycletime+bonus_ojcycletime
-			if (cycletime < 3) {
+			if (cycletime > 3) {
+				ojcycle = cycletime
+			} else {
+				ojcycle = 3
 				cycletime = 3
 			}
-			ojcycle = cycletime
+			$('#oj_cycle_bar').css("width", "0%")
 			disp_ojcycle = cycletime
 			var dojpc = ojpc + bonus_ojpc
 			if (o >= dojpc) {
@@ -2351,7 +2374,10 @@ function calculateJuiceSqueezed() {
 			updateAffordable()
 			disp_o = o
 		} else {
-			$('#oj_cycle_bar').width(Math.round((1-disp_ojcycle/(ojcycletime+bonus_ojcycletime))*maxcyclewidth).toString()+"%")
+			if (cycletime < 3) {
+				cycletime = 3
+			}
+			$('#oj_cycle_bar').width(Math.round((1-disp_ojcycle/(cycletime))*maxcyclewidth).toString()+"%")
 		}
 }
 

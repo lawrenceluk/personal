@@ -4,6 +4,7 @@ Personal::Application.routes.draw do
   match 'save', to: 'static_pages#save', via: [:post]
   match 'load', to: 'static_pages#load', via: [:get]
   match 'rb', to: 'static_pages#rebirth', via: [:post]
+  match 'grab', to: 'static_pages#getRbCredits', via: [:get]
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

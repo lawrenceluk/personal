@@ -3,7 +3,15 @@
 
 <div class="juicedup">
 <div class="row widthfix">
-	<div class="col-xs-10 col-xs-offset-1 col-md-10 col-md-offset-1 col-lg-10 col-lg-offset-1">
+	<div class="col-xs-1 col-md-1 col-lg-1">
+		<div class="shamelessplug">
+		<a href="https://twitter.com/share" class="twitter-share-button" data-text="Juiced Up! The one and only orange juice clicker!">Tweet</a>
+		<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+		<div class="fb-share-button" data-href="http://www.lwluk.com/juicedup" data-type="button"></div>
+		<!-- <div class="g-plusone gap" data-annotation="none" data-width="300"></div> -->
+		</div>
+	</div>
+	<div class="col-xs-10 col-md-10 col-lg-10 ">
 		<div class="row">
 			<div class="col-sm-4 col-lg-4" id="big_orange_area">
 				<div class="big"><%= image_tag "big-orange.png", height: 30, title: "Oranges owned" %> <span id="o_count">0</span></div>
@@ -68,6 +76,10 @@
 						Base bonus time: <span id="s_bonustime"></span>s<br>
 						FPS: <span id="s_fps"></span><br>
 						Time played: <span id="s_time"></span><br>
+						<br>
+						Rebirths: <span id="s_rebirths">0</span><br>
+						Galactic Credits: <span id="s_credits">0</span><br>
+						<br>
 						<span class='small'>Game loaded: <span id="s_fromsave"></span></span>
 						<hr>
 						<div class="medium center">Support Me!</div>
@@ -89,6 +101,13 @@
 						<hr>
 						<div class="gap">
 							<div class="medium center">Changelog:</div>
+							v0.33
+							<ul>
+								<li>Orange cycle time can no longer go under 3 seconds</li>
+								<li>Fixed bug where you could only rebirth once</li>
+								<li>Rebirths and Galactic Credits now show in stats page</li>
+								<li>Shameless plug buttons on the side</li>
+							</ul>
 							v0.31
 							<ul>
 								<li>Re-added rebirths</li>
@@ -243,3 +262,22 @@
 <% content_for :javascript_includes do %>
   <%= javascript_include_tag "game.js" %>
 <% end %>
+
+<!-- facebook button -->
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_GB/all.js#xfbml=1&appId=134620826724794";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+<!-- gplus button
+<script type="text/javascript">
+  (function() {
+    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+    po.src = 'https://apis.google.com/js/platform.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+  })();
+</script>
+-->

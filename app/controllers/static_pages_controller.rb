@@ -57,6 +57,18 @@ class StaticPagesController < ApplicationController
 		end
 	end
 
+	def getRbCredits
+		respond_to do |format|
+			format.js do
+				id = params[:identifier]
+				save = Save.find_by_identifier(id)
+				if save
+					@info = (save.rebirths).to_s+"_"+save.credits.to_s
+				end		
+			end
+		end
+	end
+
 	private
 	  def save_params
       params.permit(:identifier, :data, :hiddenname, :username, :credits)
