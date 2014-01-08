@@ -51,14 +51,14 @@
 						You're playing Juiced Up! v<span id="s_version"></span><br>
 						<br>
 						Current glasses of OJ: <span id="s_oj"></span><br>
-						Lifetime OJ: <span id="s_totaloj"></span><br>
+						OJ this game: <span id="s_totaloj"></span><br>
 						Juice Faster clicks: <span id="s_ojclicks"></span><br>
 						OJ cycle time: <span id="s_ojcycle"></span> seconds (<span id="s_ojcycletime"></span> - <span id="s_bonusojcycletime"></span>)<br>
 						OJ per cycle: <span id="s_ojpctotal"></span> (<span id="s_ojpc"></span> + <span id="s_bonusojpc"></span>)<br>
 						OJ cycle upgrades purchased: <span id="s_ojpcbought"></span><br>
 						<br>
 						Current oranges: <span id="s_o"></span><br>
-						Lifetime oranges: <span id="s_totalo"></span><br>
+						Oranges this game: <span id="s_totalo"></span><br>
 						Orange clicks: <span id="s_oclicks"></span><br>
 						Oranges per click: <span id="s_clickreward"></span><br>
 						Oranges per second: <span id="s_opstotal"></span> (<span id="s_ops"></span> + <span id="s_bonusops"></span>)<br>
@@ -67,17 +67,36 @@
 						Bonus multiplier: <span id="s_bonus"></span>%<br>
 						Base bonus time: <span id="s_bonustime"></span>s<br>
 						FPS: <span id="s_fps"></span><br>
-						Time played: <span id="s_time"></span>
+						Time played: <span id="s_time"></span><br>
+						<span class='small'>Game loaded: <span id="s_fromsave"></span></span>
 						<hr>
 						<div class="medium center">Support Me!</div>
+						<div class='center gap'>
+							<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+							<input type="hidden" name="cmd" value="_donations">
+							<input type="hidden" name="business" value="lluk@ucsd.edu">
+							<input type="hidden" name="lc" value="US">
+							<input type="hidden" name="item_name" value="Juiced Up!">
+							<input type="hidden" name="no_note" value="0">
+							<input type="hidden" name="currency_code" value="USD">
+							<input type="hidden" name="bn" value="PP-DonationsBF:btn_donateCC_LG.gif:NonHostedGuest">
+							<input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+							<img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+							</form>
+						</div>
 						<%= image_tag "bitcoin.png", height: 40, title: "Bitcoin" %> <span class="small identifier">1F74cSWVs2m1QzaujqtaK1jNhB8wwga96u</span><br>
 						<%= image_tag "doge.png", height: 40, title: "Dogecoin" %> <span class="small identifier">DP5hPiEEG8D4zA4R1GxsoJtAFQTXdeusFQ</span>
 						<hr>
 						<div class="gap">
 							<div class="medium center">Changelog:</div>
+							v0.31
+							<ul>
+								<li>Re-added rebirths</li>
+								<li>Changed save system to be even more efficient!</li>
+								<li>Highly requested: shelf upgrade indicators</li>
+							</ul>
 							v0.3.03
 							<ul>
-								<li> Edit: REBIRTHS DISABLED AGAIN </li>
 								<li>Re-implemented orange producer cost system and changed formula</li>
 								<li>Fixed bug where orange producer costs were broken after rebirths</li>
 								<li>Re-added rebirths</li>
@@ -162,8 +181,6 @@
 						<div id='resetbutton' class='o_option s'>Reset</div>
 					</div>
 					<div id="rebirth_zone" class="hidden shelf solider center">
-						<div class='failed'>Warning: Rebirth still have some bugs that may break your save. Proceed at your own risk, or
-							put it off until a fix has been released.</div>
 						<br>
 						Congratulations! 
 						<div class="description gap">

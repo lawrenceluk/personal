@@ -206,7 +206,7 @@
 	background: rgba(50, 0, 0, 0.2);
 }
 .active {
-	background: rgba(0, 0, 0, 0.15);
+	background-color: rgba(0, 0, 0, 0.15) !important;
 }
 .spacing {
 	margin-top: 40px;
@@ -427,9 +427,6 @@
 .itz {
 	font-style: italic;
 }
-.godly {
-	background: rgba(189, 189, 57, 0.02)
-}
 #upgraded {
 	font-size: 1.05em;
 	color: #40A34D;
@@ -481,4 +478,48 @@
 	&:active {
 		background: #993E25;
 	}
+}
+
+.is_2, .is_3 {
+	border-radius: 3px;
+	border: 3px dotted rgba(242, 236, 63, 0.4);
+}
+.is_4 {
+	border-radius: 3px;
+	background-color: rgba(240, 240, 209, 0.2);
+	border: 3px dashed rgba(254, 216, 63, 0.4);
+}
+.is_5 {
+	border-radius: 3px;
+	background-color: rgba(240, 240, 209, 0.4);
+	border: 3px solid rgba(254, 216, 63, 0.4);	
+}
+.is_6 {
+	border-radius: 3px;
+	background-color: rgba(240, 240, 209, 0.5);
+	border: 3px inset rgba(242, 206, 63, 0.65);
+}
+.is_7 {
+	border-radius: 3px;
+	background: rgba(185, 171, 186, 0.5);
+	border: 4px inset rgba(114, 38, 123, 0.6);
+}
+.ns_2, .ns_3 {
+	border-radius: 3px;
+	border: 3px dotted rgba(184, 86, 79, 0.4);
+}
+.ns_4 {
+	border-radius: 3px;
+	background-color: rgba(179, 149, 146, 0.2);
+	border: 3px dashed rgba(184, 86, 79, 0.4);	
+}
+.ns_5 {
+	border-radius: 3px;
+	background-color: rgba(179, 149, 146, 0.2);
+	border: 3px solid rgba(184, 86, 79, 0.4);	
+}
+.ns_6, .ns_7 {
+	border-radius: 3px;
+	background-color: rgba(179, 149, 146, 0.4);
+	border: 3px inset rgba(184, 86, 79, 0.6);	
 }
