@@ -1,0 +1,85 @@
+@import url(http://fonts.googleapis.com/css?family=Exo+2:400,400italic,700);
+
+#galactic {
+	position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+
+	background-color: black;
+	background-image:
+	radial-gradient(#FAF7ED, rgba(255,255,255,.18) 2px, transparent 30px),
+	radial-gradient(#EDF3FA, rgba(255,255,255,.15) 1px, transparent 20px),
+	radial-gradient(#FAF5F7, rgba(255,255,255,.1) 2px, transparent 20px),
+	radial-gradient(rgba(255,255,255,.4), rgba(255,255,255,.1) 2px, transparent 30px);
+	background-size: 550px 550px, 350px 350px, 250px 250px, 150px 150px; 
+	background-position: 0 0, 40px 60px, 130px 270px, 70px 100px;
+
+	font-family: "Exo 2", sans-serif;
+	font-size: 30px;
+	line-height: 1.31em;
+}
+
+.white {
+	color: white;
+}
+
+.gcounter {
+	line-height: 1em;
+	font-size: 0.5em;
+}
+
+.ccount {
+	color: #F7F1DF;
+}
+
+.offwhite {
+	font-size: 0.7em;
+	color: #CCCAC4;
+}
+
+.itemscontainer {
+	margin-top: 15px;
+	margin-bottom: 30px;
+}
+
+.credititem {
+	background: rgba(10, 10, 10, 0.8);
+	min-height: 200px;
+	padding: 10px;
+	margin: 5px;
+	border: 4px ridge #333;
+	border-radius: 2px;
+	box-shadow: 0px 2px 8px #222;
+
+	&:hover {
+		background: rgba(20, 20, 20, 0.8);
+	}
+	&:hover {
+		background: rgba(30, 30, 30, 0.8);
+	}
+}
+
+.shopback {
+	color: #cacaca;
+	background-color: rgba(138, 46, 209, 0.7);
+	border-left: 6px solid #333;
+	overflow: auto;
+	height: 100%;
+
+	&::-webkit-scrollbar-track
+	{
+		background-color: #333;
+	}
+	&::-webkit-scrollbar
+	{
+		width: 6px;
+		background-color: #333;
+	}
+	&::-webkit-scrollbar-thumb
+	{
+		border-radius: 1px;
+		background-color: #bbb;
+	}
+}

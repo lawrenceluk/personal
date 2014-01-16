@@ -56,7 +56,7 @@ var maxcyclewidth = 102 // 102%
 var activeomakers = 0
 var o_messages
 var loading
-var savetime = 30 // save every 30 seconds
+var savetime = 60 // save every 60 seconds
 var lastsave = new Date().getTime()
 var fromsave = -1
 var loadingmessage = "Happy New Years!"
@@ -344,18 +344,18 @@ function saveGame(quiet) {
     dataType: "HTML",
     success: function(response) {
     	if (!quiet) {
-    		showNews("Game saved. ("+getCookie("identifier")+")")
+    		showNews(response+" ("+getCookie("identifier")+")")
+    	}
+    	if (response.length == 0) {
+    		showNews("Error: write confirmation not received. Game could not be saved.")
     	}
     },
     failure: function(response) {
-    	if (!quiet) {
-    		showNews("Error saving! Please try again.")
-    	}
+    	showNews("Error saving! Please try again.")
     }
 	})
 	return false
 }
-
 function resetGame() {
 	oj = 0
 	totaloj = 0
@@ -547,10 +547,12 @@ function rebirth() {
 			$("#stats").html("Stats")
 			/* Change back to shelf */
 			$("#omaker_shelf_purchases").removeClass("hidden")
-			$("#omaker_detail").removeClass("hidden")
 			$("#stats_zone").addClass("hidden")
 			$("#save_zone").addClass("hidden")
 			$("#rebirth_zone").addClass("hidden")
+			$("#omaker_detail").html("")
+			$("#omaker_detail").addClass("hidden")
+			$("#shelf_container").height("425px")
 			notified = false
 			saveGame(true)
 			var counts = response.split("_")
@@ -2195,10 +2197,10 @@ $("#ojpc_shop").on('click', function(event) {
 	if (oj >= cost) {
 		//pay up
 		oj -= cost
-		//increase ojpc
-		ojpc += ojpc_upgrades[tier-1].ojpc
 		// remove bonuses
 		doBonuses(false)
+		//increase ojpc
+		ojpc += ojpc_upgrades[tier-1].ojpc
 		// update amount owned
 		owned_ojpc_upgrades++
 		ojpc_upgradeAmts[tier-1]++

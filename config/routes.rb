@@ -1,10 +1,12 @@
 Personal::Application.routes.draw do
   root  'static_pages#home'
   match 'juicedup', to: 'static_pages#juicedup', via: [:get]
-  match 'save', to: 'static_pages#save', via: [:post]
-  match 'load', to: 'static_pages#load', via: [:get]
-  match 'rb', to: 'static_pages#rebirth', via: [:post]
-  match 'grab', to: 'static_pages#getRbCredits', via: [:get]
+  match 'galactic', to: 'static_pages#galactic', via: [:get]
+  # game related
+  match 'save', to: 'game#save', via: [:post]
+  match 'load', to: 'game#load', via: [:get]
+  match 'rb', to: 'game#rebirth', via: [:post]
+  match 'grab', to: 'game#getRbCredits', via: [:get]
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
