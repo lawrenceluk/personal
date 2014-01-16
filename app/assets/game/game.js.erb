@@ -5,7 +5,7 @@ Save
 Responsive
 */
 $("#newsflash").html("Initializing variables...")
-var version = "0.33"
+var version = "0.33.1"
 
 // declare variables
 var oj = 0
@@ -239,9 +239,6 @@ function loadGame(identifier, quiet) {
 					disp_ojcycle = ojcycletime
 		    	$("#yourid").html(identifier)
 		    	$('#oj_cycle_bar').width(Math.round((1-ojcycle/ojcycletime)*maxcyclewidth).toString()+"%")
-		    	if (!quiet) {
-		    		showNews("Loaded successfully! ("+identifier+")")
-		    	}
 		    	disp()
 					// draw updated
 					if (!$("#emptyshelf").hasClass("hiding")) {
@@ -257,6 +254,7 @@ function loadGame(identifier, quiet) {
 	    	$("#omaker_detail").html("")
 				$("#shelf_container").height("425px")
 	    	applyUpdates()
+		    showNews("Loaded most recent save. ("+millisecondsToStr(new Date().getTime() - fromsave)+" ago)")
 			},
 			failure: function(response) {
 				if (!quiet) {
@@ -343,9 +341,7 @@ function saveGame(quiet) {
     data: data,
     dataType: "HTML",
     success: function(response) {
-    	if (!quiet) {
-    		showNews(response+" ("+getCookie("identifier")+")")
-    	}
+    	showNews(response+" ("+getCookie("identifier")+")")
     	if (response.length == 0) {
     		showNews("Error: write confirmation not received. Game could not be saved.")
     	}
@@ -1798,7 +1794,7 @@ $("#geto_button").mousedown(function(e) {
 	if ((new Date().getTime()) > lastclicked_o+100) {
 		getOBonus()
 		oclicks++
-		var o_given = clickreward + Math.round(ops*clickbonus)
+		var o_given = clickreward + Math.round((ops+bonus_ops)*clickbonus)
 		o += o_given
 		totalo += o_given
 		disp_o += o_given
@@ -1977,6 +1973,7 @@ $("#omaker_detail").on('click', function(event) {
 				var prevprice = getOMakerCost(item.tier)
 				showNews("Sold "+item.name+" ("+item.ops+" OpS) for "+Math.round(prevprice/2)+" OJ.")
 				oj += Math.round(prevprice/2)
+				$("#oj_count").html(oj)
 				removeOMaker(item)
 				updateAffordable()
 			// }
@@ -2291,7 +2288,7 @@ $("#rebirth").click(function() {
 function updateAffordable() {
 	for (var i=0;i<allItems.length;i++) {
 		$("#info_O_tier_"+(i+1)).html("Costs "+Beautify(getOMakerCost(i+1))+" glasses of OJ. Owned: "+orangeMakerAmts[i])
-		if (oj < allItems[i].cost) {
+		if (oj < getOMakerCost(i+1)) {
 			$("#purchase_O_tier_"+(i+1)).addClass("unaffordable")
 		} else {
 			$("#purchase_O_tier_"+(i+1)).removeClass("unaffordable")
