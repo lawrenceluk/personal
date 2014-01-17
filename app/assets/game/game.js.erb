@@ -254,7 +254,8 @@ function loadGame(identifier, quiet) {
 	    	$("#omaker_detail").html("")
 				$("#shelf_container").height("425px")
 	    	applyUpdates()
-		    showNews("Loaded most recent save. ("+millisecondsToStr(new Date().getTime() - fromsave)+" ago)")
+	    	if (fromsave != -1)
+		    	showNews("Loaded most recent save. ("+millisecondsToStr(new Date().getTime() - fromsave)+" ago)")
 			},
 			failure: function(response) {
 				if (!quiet) {

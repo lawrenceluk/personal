@@ -5,8 +5,12 @@ class GameController < ApplicationController
 	  	format.js do
 	  		save = Save.find_by_identifier(cookies.permanent[:identifier])
 	  		if save
+	  			puts "[#{cookies.permanent[:identifier]}] Attempting to save."
 	    		if save.update_attributes(save_params)
 	    			@saved = "Game saved."
+	    			puts "[#{cookies.permanent[:identifier]}] Save success."
+	    		else
+	    			puts "[#{cookies.permanent[:identifier]}] FATAL ERROR SAVING? RECEIVED: #{save_params}" 
 	    		end
 	    	else
     			save = Save.new(save_params)
