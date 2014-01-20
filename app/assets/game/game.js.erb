@@ -52,7 +52,7 @@ var clickbonus = 0.05
 
 
 // things that aren't saved
-var maxcyclewidth = 102 // 102%
+var maxcyclewidth = 105 // 102%
 var activeomakers = 0
 var o_messages
 var loading
@@ -1811,7 +1811,7 @@ $("#geto_button").mousedown(function(e) {
 var lastclicked_oj = new Date().getTime()
 // CLICKED JUICE FASTER
 $("#makeoj_button").mousedown(function (e) {
-	if ((new Date().getTime()) > lastclicked_oj+220) {
+	if ((new Date().getTime()) > lastclicked_oj+150) {
 		getOJBonus()
 		ojclicks++
 		if (o > 0) {
