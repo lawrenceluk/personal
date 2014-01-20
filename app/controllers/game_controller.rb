@@ -10,7 +10,12 @@ class GameController < ApplicationController
 	    			@saved = "Game saved."
 	    			puts "[#{cookies.permanent[:identifier]}] Save success."
 	    		else
-	    			puts "[#{cookies.permanent[:identifier]}] FATAL ERROR SAVING? RECEIVED: #{save_params}" 
+	    			if save.update_column(:data, save_params[:data])
+		    			@saved = "Save updated."
+		    			puts "[#{cookies.permanent[:identifier]}] Save FORCE success."
+	    			else
+	    				puts "[#{cookies.permanent[:identifier]}] FATAL ERROR SAVING? RECEIVED: #{save_params}" 
+	    			end
 	    		end
 	    	else
     			save = Save.new(save_params)
