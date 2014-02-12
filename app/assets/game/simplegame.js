@@ -2,7 +2,7 @@ var canvas = document.getElementById('canvas');
 
 var stage = new createjs.Stage(canvas);
 var hero = new createjs.Shape();
-var counter = new createjs.Text("Vertical Speed: 0 m/s\n\nHeight: 0m\n\nAcceleration: 0 m/s^2\n\nGas: 100%", "12px monospace", "#ff7700");
+var counter = new createjs.Text("Vertical Speed: 0 m/s\n\nHeight: 0m\n\nAcceleration: 0 m/s^2\n\nGas: 100%", "16px monospace", "#ff7700");
 
 //physics
 var ax = 0;
@@ -27,7 +27,7 @@ var streak = 0;
 var maxstreak = 0;
 
 function start() {
-	hero.graphics.beginFill('#336FB0').drawRect(0, 0, 30, 30, 10);
+	hero.graphics.beginFill('rgba(51, 111, 176, 1)').drawRect(0, 0, 30, 30, 10);
 	hero.x = 100;
 	hero.y = bottom;
 	hero.width = 30;
@@ -35,7 +35,7 @@ function start() {
 
 	stage.addChild(hero);
 
-	counter.x = canvas.width*0.8;
+	counter.x = canvas.width*0.7;
 	stage.addChild(counter);
 }
 start();
@@ -60,6 +60,7 @@ function addSpec() {
 	bad.graphics.beginFill('#50165E').drawCircle(0, 0, 30);
 	bad.x = canvas.width;
 	bad.y = 10+(Math.random()*80);
+	bad.r = 15;
 	stage.addChild(bad);
 	baddies.push({
 		type: "s",
@@ -86,6 +87,7 @@ function mouseIsDown() {
 		ay = 1.5;
 		gas--;
 		gasused++;
+		hero.graphics.clear().beginFill('rgba(51, 111, 176, '+(gas/maxgas+0.1)+')').drawRect(0, 0, 30, 30, 10).endFill();
 	}
 	else return;
 }
@@ -109,6 +111,7 @@ function gameLoop() {
 			streak = 0;
 			maxgas ++;
 			gas = maxgas;
+			hero.graphics.clear().beginFill('rgba(51, 111, 176, 1)').drawRect(0, 0, 30, 30, 10).endFill();
 		}
 		hero.y = bottom;
 		vy = -(vy/2);
@@ -132,8 +135,13 @@ function gameLoop() {
 	for (var i=baddies.length-1;i>=0;i--) {
 		if (baddies[i].type === "n")
 			baddies[i].entity.x -= vx;
-		else if (baddies[i].type === "s")
+		else if (baddies[i].type === "s") {
 			baddies[i].entity.x -= vx*3;
+			if (intersects(baddies[i].entity, hero)) {
+				handleEndgame();
+				return;
+			}
+		}
 		if (i == 0) {
 			if (baddies[i].entity.x < hero.x && !baddies[i].entity.passed && baddies[i].type === "n") {
 				if (++streak > maxstreak)
@@ -149,9 +157,11 @@ function gameLoop() {
 	}
 	x += vx;
 	stage.update();
-	if (baddies.length > 0 && didCollide(baddies[0].entity, hero)) {
-		handleEndgame();
-		return;
+	if (baddies.length > 0) {
+		if (didCollide(baddies[0].entity, hero)) {
+			handleEndgame();
+			return;
+		}
 	}
 }
 
@@ -161,9 +171,27 @@ function didCollide(rect1, rect2) {
 	return !( rect1.x >= rect2.x + rect2.width || rect1.x + rect1.width <= rect2.x || rect1.y >= rect2.y + rect2.height || rect1.y + rect1.height <= rect2.y );
 }
 
+function intersects(circle, rect)
+{
+	var circleDistance = {};
+  circleDistance.x = Math.abs(circle.x - rect.x);
+  circleDistance.y = Math.abs(circle.y - rect.y);
+
+  if (circleDistance.x > (rect.width/2 + circle.r)) { return false; }
+  if (circleDistance.y > (rect.height/2 + circle.r)) { return false; }
+
+  if (circleDistance.x <= (rect.width/2)) { return true; } 
+  if (circleDistance.y <= (rect.height/2)) { return true; }
+
+  var cornerDistance_sq = (circleDistance.x - rect.width/2)^2 +
+                       (circleDistance.y - rect.height/2)^2;
+
+  return (cornerDistance_sq <= (circle.r^2));
+}
+
 function handleEndgame() {
 	var text = new createjs.Text("", "20px Helvetica", "#333333");
-	text.text = "Game over!\nScore: "+score+"\nBest Streak: "+maxstreak+"\nGas Used: "+gasused
+	text.text = "Game over!\nScore: "+score+"\nHighest Streak: "+maxstreak+"\nGas Used: "+gasused
 	text.text += "\nDistance Traveled: "+(x/10).toFixed(2)+" m";
 	text.text += "\nClick anywhere to play again.";
 	var b = text.getBounds();
