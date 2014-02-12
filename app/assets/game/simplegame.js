@@ -2,7 +2,7 @@ var canvas = document.getElementById('canvas');
 
 var stage = new createjs.Stage(canvas);
 var hero = new createjs.Shape();
-var counter = new createjs.Text("Vertical Speed: 0 m/s\n\nHeight: 0m\n\nAcceleration: 0 m/s^2\n\nGas: 100%", "16px monospace", "#ff7700");
+var counter = new createjs.Text("", "16px monospace", "#ff7700");
 
 //physics
 var ax = 0;
@@ -35,7 +35,7 @@ function start() {
 
 	stage.addChild(hero);
 
-	counter.x = canvas.width*0.7;
+	counter.x = canvas.width*0.78;
 	stage.addChild(counter);
 }
 start();
@@ -122,8 +122,7 @@ function gameLoop() {
 	}
 	else 
 		hero.y -= vy;
-	counter.text = "Vertical Speed: "+Math.floor(vy)+" m/s\n\n"+"Height: "+Math.floor(bottom-hero.y)+" m\n\nAcceleration: ";
-	counter.text += ((ay+gravity)*30).toFixed(1)+" m/s^2\n\nGas: "+(gas/maxgas*100).toFixed(2)+"% ("+gas+")";
+	counter.text = "Gas: "+(gas/maxgas*100).toFixed(2)+"% ("+gas+")";
 	counter.text += "\n\nStreak: "+streak+" ("+maxstreak+")\n\nScore: "+score
 	if (badcount == 0) {
 		addBaddie(20+Math.round(Math.random()*50), 30+Math.round(Math.random()*canvas.height/2));
