@@ -1,5 +1,6 @@
 Personal::Application.routes.draw do
   root  'static_pages#home'
+  match 'test', to: 'static_pages#test', via: [:get]
   match 'juicedup', to: 'static_pages#juicedup', via: [:get]
   match 'galactic', to: 'static_pages#galactic', via: [:get]
   # game related

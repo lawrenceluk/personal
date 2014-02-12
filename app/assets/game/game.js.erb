@@ -1882,7 +1882,7 @@ function purchaseOMaker(tier) {
 		str += " title='Doubles OpS with "+Beautify(upgradesuccess*100)+"% success rate. If upgrade fails, this producer has a "
 		str += Beautify(failuredestroy*100)+"% chance of having its OpS halved.'>Upgrade</div>"
 		str += "<div class='sell o_option' id="+"sell_o_"+index+" title='Sells for "
-		str += Math.round(getOMakerCost(item.tier)/2)+" OJ.'>Sell</div></div>"
+		str += Beautify(getOMakerCost(item.tier)/2)+" OJ.'>Sell</div></div>"
 		var show_ops = item.ops
 		if (item.ops >= 1000) {
 			show_ops = Beautify(item.ops)
@@ -1947,7 +1947,7 @@ $("#omaker_shelf_purchases").on('click', function(event) {
 		str += " title='Doubles OpS with "+Beautify(upgradesuccess*100)+"% success rate. If upgrade fails, this producer has a "
 		str += Beautify(failuredestroy*100)+"% chance of having its OpS halved.'>Upgrade</div>"
 		str += "<div class='sell o_option' id="+"sell_o_"+index+" title='Sells for "
-		str += Math.round(getOMakerCost(item.tier)/2)+" OJ.'>Sell</div></div>"
+		str += Beautify(getOMakerCost(item.tier)/2)+" OJ.'>Sell</div></div>"
 		var show_ops = item.ops
 		if (item.ops >= 1000) {
 			show_ops = Beautify(item.ops)
@@ -1985,7 +1985,7 @@ $("#omaker_detail").on('click', function(event) {
 				if (Math.random() <= upgradesuccess) {
 					doBonuses(false)
 					item.ops += item.ops
-					$("#ops_update").html(item.ops)
+					$("#ops_update").html(Beautify(item.ops))
 					// Recalculate oranges per second
 					var newops = 0
 					for (var i = 0; i < omakers.length; i++) {
@@ -2058,7 +2058,7 @@ $("#omaker_detail").on('click', function(event) {
 						item.slots++
 						doBonuses(false)
 						item.ops /= 2
-						$("#ops_update").html(item.ops)
+						$("#ops_update").html(Beautify(item.ops))
 						// calculate # of successful upgrades
 						var baseops = allItems[item.tier-1].ops
 						var t = item.ops
