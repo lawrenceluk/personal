@@ -1,0 +1,37 @@
+<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+
+<% content_for :title, "Lawrence Luk" %>
+<div id="backgroundpic">
+<div class="center" id="trapezoid">
+	Lawrence Luk
+</div>
+<div class="center" id="triangle-down">
+	<%= image_tag 'logo.png', height: 90, id: "supes" %>
+</div>
+<div class="menuzone">
+	<ul class="flatmenu">
+		<li><%= link_to 'Projects', '#' %></li>
+		<li><%= link_to 'About', '#' %></li>
+</div>
+<div class="colorblock">
+	<div class="toptext container">
+		<p>I am currently a full time student at the University of California San Diego, studying Computer Science.</p>
+		<p>The languages I am familiar with include Java, C and C++, Ruby, Python, SPARC Assembly, and Objective C.</p>
+		<p>Projects I have worked on in the past include game development, mobile apps, Flash for linux touchscreens, and webapps.</p>
+	</div>
+</div>
+<div class="links">
+	<ul class="linkmenu">
+		<li><a href="https://github.com/lawrenceluk/" target="_blank"><i class="fa fa-github-square fa-4x"></i></a></li>
+		<li><a href="http://www.linkedin.com/pub/lawrence-luk/89/69a/240" target="_blank"><i class="fa fa-linkedin-square fa-4x"></i></a></li>
+		<li><a href="mailto:lluk@ucsd.edu"><i class="fa fa-envelope fa-4x"></i></a></li>
+	</ul>
+</div>
+<div class="efooter">
+	©2014 Lawrence Luk
+</div>
+</div>
+
+<% content_for :javascript_includes do %>
+  <%= javascript_include_tag "exp.js" %>
+<% end %>

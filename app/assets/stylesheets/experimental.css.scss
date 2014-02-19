@@ -1,0 +1,137 @@
+@import url(http://fonts.googleapis.com/css?family=Alegreya+Sans+SC);
+@import url(http://fonts.googleapis.com/css?family=Alegreya+Sans);
+
+#trapezoid {
+    margin-top: 1%;
+    border-style: solid;
+    border-color: transparent transparent #3B3740 transparent;
+    border-width: 0 25px 65px 25px;
+    height: 0;
+    width: 450px;
+    position: relative;
+    animation-timing-function:linear;
+    -webkit-animation-timing-function:linear;
+    animation:floating 4s infinite;
+    -webkit-animation:floating 4s infinite;
+    color: #D7F5FA;
+    font-size: 3em;
+    letter-spacing: 0.1em;
+    font-family: "Alegreya Sans SC";
+}
+#triangle-down {
+    position: relative;
+    animation-timing-function:linear;
+    -webkit-animation-timing-function:linear;
+    animation:floating 4s infinite;
+    -webkit-animation:floating 4s infinite;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-color: #38353B transparent transparent transparent;
+    border-width: 200px 225px 0 225px;
+}
+#diamond:after {
+    content: "";
+    position: absolute;
+    top: 65px;
+    left: -25px;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-color: #38353B transparent transparent transparent;
+    border-width: 200px 225px 0 225px;
+}
+@keyframes floating {
+  0%   {bottom:0px;}
+  50%  {bottom:-10px;}
+  100% {bottom:0px;}
+}
+@-webkit-keyframes floating {
+  0%   {bottom:0px;}
+  50%  {bottom:-10px;}
+  100% {bottom:0px;}
+}
+.menuzone {
+    position: absolute;
+    top: 34%;
+    left: 70%;
+}
+.flatmenu {
+    list-style-type: none;
+}
+.flatmenu li {
+    display: inline;
+}
+.flatmenu li a {
+    font-family: "Alegreya Sans SC";
+    margin-left: 14px;
+    font-size: 1.38em;
+    color: #3B3740;
+    padding: 5px;
+    &:hover {
+        background: rgba(255, 255, 255, 0.4);
+        border-bottom: 2px solid rgba(0, 0, 0, 0.2);
+    }
+}
+.linkmenu {
+    position: absolute;
+    top: 88%;
+    left: 4%;
+    list-style-type: none;
+}
+.linkmenu li {
+    display: inline;
+}
+.linkmenu li a {
+    margin-left: 15px;
+    color: rgba(220, 220, 220, 0.5);
+    &:hover {
+        background: none;
+        border: none;
+        color: #D7F5FA;
+    }
+}
+.colorblock {
+    position: absolute;
+    top: 40%;
+    width: 100%;
+    clear: both;
+    border-top: 10px solid #3B3740;
+    background: #2C3233;
+    padding: 60px;
+}
+.toptext {
+    font-family: "Alegreya Sans";
+    color: #FAFAFA;
+    text-align: center;
+    font-size: 1.6em;
+}
+#backgroundpic {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.back1 {
+    background-image: url("splash1.jpg");
+}
+.back2 {
+    background-image: url("splash2.jpg");
+}
+.back3 {
+    background-image: url("splash3.jpg");
+}
+.efooter {
+    background: rgba(255, 255, 255, 0.2);
+    position: absolute;
+    top: 97%;
+    height: 3%;
+    width: 100%;
+    text-align: center;
+}
+#supes {
+    position: relative;
+    top: -180px;
+    left: -42px;
+}
