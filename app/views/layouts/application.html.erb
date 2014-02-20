@@ -11,11 +11,6 @@
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= yield :javascript_includes %>
   
-	<script type="text/javascript">
-		if ($('scene').length == 0) {
-			$('.scene').parallax()
-		}
-	</script>
 	<!-- analytics -->
 	<% if Rails.env.production? %>
 		<script>

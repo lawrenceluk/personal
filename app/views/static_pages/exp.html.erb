@@ -1,6 +1,7 @@
 <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
 
 <% content_for :title, "Lawrence Luk" %>
+<!--
 <div id="backgroundpic">
 <div class="center" id="trapezoid">
 	Lawrence Luk
@@ -28,10 +29,71 @@
 	</ul>
 </div>
 <div class="efooter">
-	©2014 Lawrence Luk
+	<div class="container">
+		©2014 Lawrence Luk / Images from <%= link_to "unsplash", "http://unsplash.com" %> 
+	</div>
 </div>
+</div> -->
+<section id="slide-1" class="homeSlide" style="height: 720px;">
+    <div class="bcg"
+        data-center="background-position: 50% 0px;"
+        data-top-bottom="background-position: 50% -100px;"
+        data-anchor-target="#slide-1">
+        <div class="splashtext">
+        	Hello! I'm 
+        </div>
+        <div id="shinebright"
+        	data-center="margin-top: 0px;"
+	        data-top-bottom="margin-top: 400px;"
+	        data-anchor-target="#slide-1">
+	        <div class="center" id="trapezoid">
+						Lawrence Luk ucsd '16
+					</div>
+					<div class="center" id="triangle-down">
+						<%= image_tag 'logo.png', height: 90, id: "supes" %>
+					</div>
+				</div>
+    </div>
+</section>
+<section id="slide-2">
+    <div class="bcg"
+        data-0="background-color: rgb(59, 55, 64);"
+        data-top="background-color: rgb(22, 49, 84);" 
+        data-anchor-target="#slide-2">
+				<div class="menuzone pull-right">
+					<ul class="flatmenu">
+						<li><%= link_to 'Projects', '#' %></li>
+						<li><%= link_to 'About', '#' %></li>
+				</div>
+				<div class="toptext">
+					<p>I am currently a full time student at the University of California San Diego, studying Computer Science.<br />
+					Programming languages I am familiar with include Java, C and C++, Ruby, Python, SPARC Assembly, and Objective C.<br />
+					Projects I have worked on in the past include game development, mobile apps, Flash for linux touchscreens, and webapps.<br />
+					This summer, I will be interning with Microsoft's Web Services division in Bellevue, WA.</p>
+				</div>
+    </div>
+</section>
+<% 20.times do %>
+supes<br/>
+<% end %>
+<div class="colorblock">
+	<div class="links">
+		<ul class="linkmenu">
+			<li><a href="https://github.com/lawrenceluk/" target="_blank"><i class="fa fa-github-square fa-4x"></i></a></li>
+			<li><a href="http://www.linkedin.com/pub/lawrence-luk/89/69a/240" target="_blank"><i class="fa fa-linkedin-square fa-4x"></i></a></li>
+			<li><a href="mailto:lluk@ucsd.edu"><i class="fa fa-envelope fa-4x"></i></a></li>
+		</ul>
+	</div>
 </div>
 
 <% content_for :javascript_includes do %>
   <%= javascript_include_tag "exp.js" %>
+  <script>
+  	var s = skrollr.init();
+  	$("#shinebright").click(function() {
+    $('html, body').animate({
+        scrollTop: $("#slide-2").offset().top
+    }, 800);
+		});
+  </script>
 <% end %>
