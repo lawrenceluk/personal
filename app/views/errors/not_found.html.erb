@@ -1,0 +1,15 @@
+<% content_for :title, "404 Page Not Found" %>
+
+<div id="galactic">
+<div class="lostinspace">
+	<span>404</span>
+	<br />
+	Lost... in space!
+	<br/>
+	<%= link_to "Back to home planet", root_path  %>
+</div>
+</div>
+
+<% content_for :javascript_includes do %>
+  <%= javascript_include_tag "galactic.js" %>
+<% end %>

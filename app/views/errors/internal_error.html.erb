@@ -1,0 +1,15 @@
+<% content_for :title, "500 Internal Error" %>
+
+<div id="galactic">
+<div class="lostinspace">
+	<span>500</span>
+	<br />
+	Error, it's my fault! Sorry!
+	<br/>
+	<%= link_to "Back to home planet", root_path  %>
+</div>
+</div>
+
+<% content_for :javascript_includes do %>
+  <%= javascript_include_tag "galactic.js" %>
+<% end %>

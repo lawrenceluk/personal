@@ -7,7 +7,8 @@
   bottom: 0;
   left: 0;
 
-	background-color: black;
+	background-color: #131313;
+	/*
 	background-image:
 	radial-gradient(#FAF7ED, rgba(255,255,255,.18) 2px, transparent 30px),
 	radial-gradient(#EDF3FA, rgba(255,255,255,.15) 1px, transparent 20px),
@@ -15,10 +16,30 @@
 	radial-gradient(rgba(255,255,255,.4), rgba(255,255,255,.1) 2px, transparent 30px);
 	background-size: 550px 550px, 350px 350px, 250px 250px, 150px 150px; 
 	background-position: 0 0, 40px 60px, 130px 270px, 70px 100px;
-
+	*/
 	font-family: "Exo 2", sans-serif;
 	font-size: 30px;
 	line-height: 1.31em;
+}
+
+.star {
+	z-index: 100;
+	background-color: #F2EEE1;
+	height: 3px;
+	width: 3px;
+	position: absolute;
+}
+
+.star1 {
+	background-color: #E1EDF2;
+	height: 5px;
+	width: 5px;
+}
+
+.star2 {
+	background-color: #F2E6E1;
+	height: 4px;
+	width: 4px;
 }
 
 .white {

@@ -10,6 +10,11 @@ Personal::Application.routes.draw do
   match 'rb', to: 'game#rebirth', via: [:post]
   match 'grab', to: 'game#getRbCredits', via: [:get]
 
+  get "/404", :to => "errors#not_found"
+  get "/422", :to => "errors#unacceptable"
+  get "/500", :to => "errors#internal_error"
+
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

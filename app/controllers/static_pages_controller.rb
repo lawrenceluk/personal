@@ -13,13 +13,13 @@ class StaticPagesController < ApplicationController
 	end
 
 	def galactic
-		if cookies.permanent[:identifier]
-			save = Save.find_by_identifier(cookies.permanent[:identifier])
-			if save
-				@rebirths = save.rebirths
-				@credits = save.credits
-			end
-		end
+#		if cookies.permanent[:identifier]
+#			save = Save.find_by_identifier(cookies.permanent[:identifier])
+#			if save
+#				@rebirths = save.rebirths
+#				@credits = save.credits
+#			end
+#		end
 	end
 
 	def test

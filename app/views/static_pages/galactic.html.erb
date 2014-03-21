@@ -1,16 +1,9 @@
-<% content_for :title, "Galactic Market" %>
+<% content_for :title, "Galactic" %>
 
 <div id="galactic" class="row">
-	<div class="col-sm-6 col-lg-6 col-sm-offset-3 col-lg-offset-3 shopback">
-		<div class="center white gap">Galactic Market</div>
-		<div class="center gcounter">Rebirths: <%= @rebirths %></div>
-		<div class="itemscontainer">
-			<% 10.times do %>
-				<div class="credititem">Coming soon!</div>
-			<% end %>
-		</div>
-	</div>
-	<div class="col-sm-3 col-lg-3">
-		<span class="offwhite">Credits:</span> <span id="creditcount" class="ccount"><%= @credits %></span>
-	</div>
+
 </div>
+
+<% content_for :javascript_includes do %>
+  <%= javascript_include_tag "galactic.js" %>
+<% end %>

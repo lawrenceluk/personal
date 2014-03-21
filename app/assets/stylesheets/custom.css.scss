@@ -1,5 +1,6 @@
 body {
 	background-color: #fff;
+	font-family: "Georgia", serif;
 }
 footer {
 	color: black;
@@ -20,9 +21,7 @@ a {
 		background-color: #1E4D82;
 	}
 }
-body {
-	font-family: "Georgia", serif;
-}
+
 .name {
 	position: absolute;
 	left: 5%;
@@ -146,4 +145,20 @@ body {
 	/* Rules below not implemented in browsers yet */
 	-o-user-select: none;
 	user-select: none;
+}
+.lostinspace {
+  margin-top: 200px;
+	span {
+		font-size: 5em;
+	}
+	color: #fff;
+	text-align: center;
+	text-transform: uppercase;
+	font-size: 1.3em;
+	line-height: 1.4em;
+	a:hover {
+		background: none;
+		text-decoration: underline;
+		transition: 0;
+	}
 }
