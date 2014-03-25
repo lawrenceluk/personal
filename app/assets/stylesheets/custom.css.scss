@@ -22,10 +22,11 @@ a {
 	}
 }
 
+.content {
+	overflow-x: hidden;
+}
 .name {
-	position: absolute;
-	left: 5%;
-	top: -70%;
+	margin-left: 15%;
 }
 .description {
 	font-size: 1.8em;
@@ -78,25 +79,18 @@ a {
 	font-size: 3em;
 }
 .wrapper {
-  padding-top: 300px;
   min-height: 460px;
   overflow: hidden;
-  display: table;
   height: 100%;
   width: 100%;
   left: 0;
   top: 0;
 }
-.underblock {
-	margin-top: -260px;
-	background-color: #C2DFF2;
-	height: 120px;
-	background-size: cover;
-}
 .overblock {
-	background-color: #FFC76E;
+	background-color: #EBBB54;
 	background-size: cover;
 	padding-bottom: 20px;
+	border-bottom: 15px solid #B39149;
 }
 .colorbar-fin {
 	background-color: #8C2B2B;
@@ -114,8 +108,8 @@ a {
 }
 .welcometext {
 	font-family: "Monaco", monospace, sans-serif;
-	padding-top: 10px;
-	color: white;
+	padding: 15px;
+	color: #FCF8F0;
 	font-size: 1.4em;
 	text-align: left;
 }
@@ -129,13 +123,13 @@ a {
 	position: absolute;
 	left: -140px;
 }
-.somespace {
-	padding-top: 100px;
-}
 .center {
 	text-align: center;
 	margin-left: auto;
 	margin-right: auto;
+}
+.faded {
+	color: #999;
 }
 .unselectable {
 	-webkit-user-select: none; /* Chrome/Safari */        
@@ -145,6 +139,10 @@ a {
 	/* Rules below not implemented in browsers yet */
 	-o-user-select: none;
 	user-select: none;
+}
+.selfie {
+	border: 4px solid;
+	border-color: #E8CB8E #E8C884;
 }
 .lostinspace {
   margin-top: 200px;

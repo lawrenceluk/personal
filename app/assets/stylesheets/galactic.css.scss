@@ -1,6 +1,7 @@
 @import url(http://fonts.googleapis.com/css?family=Exo+2:400,400italic,700);
 
 #galactic {
+	overflow-x: hidden;
 	position: absolute;
   top: 0;
   right: 0;
@@ -22,8 +23,16 @@
 	line-height: 1.31em;
 }
 
+.thrust {
+	z-index: 20;
+	background-color: yellow;
+	height: 8px;
+	width: 8px;
+	border-radius: 8px;
+	position: absolute;
+}
+
 .star {
-	z-index: 100;
 	background-color: #F2EEE1;
 	height: 3px;
 	width: 3px;
@@ -42,65 +51,26 @@
 	width: 4px;
 }
 
-.white {
-	color: white;
+#spaceship {
+	position: absolute;
+	top: 40%;
+	left: 48%;
+	cursor: pointer;
+	width: 100px;
+	height: 55px;
+	z-index: 100;
+	background-image: url("wship-0.png");
 }
 
-.gcounter {
-	line-height: 1em;
-	font-size: 0.5em;
-}
-
-.ccount {
-	color: #F7F1DF;
-}
-
-.offwhite {
-	font-size: 0.7em;
-	color: #CCCAC4;
-}
-
-.itemscontainer {
-	margin-top: 15px;
-	margin-bottom: 30px;
-}
-
-.credititem {
-	background: rgba(10, 10, 10, 0.8);
-	min-height: 200px;
-	padding: 10px;
-	margin: 5px;
-	border: 4px ridge #333;
-	border-radius: 2px;
-	box-shadow: 0px 2px 8px #222;
-
-	&:hover {
-		background: rgba(20, 20, 20, 0.8);
-	}
-	&:hover {
-		background: rgba(30, 30, 30, 0.8);
-	}
-}
-
-.shopback {
-	color: #cacaca;
-	background-color: rgba(138, 46, 209, 0.7);
-	border-left: 6px solid #333;
-	overflow: auto;
-	height: 100%;
-
-	&::-webkit-scrollbar-track
-	{
-		background-color: #333;
-	}
-	&::-webkit-scrollbar
-	{
-		width: 6px;
-		background-color: #333;
-	}
-	&::-webkit-scrollbar-thumb
-	{
-		border-radius: 1px;
-		background-color: #bbb;
-	}
+#commandbar {
+	border-top: 4px ridge #AAA;
+	line-height: 1.2em;
+	text-transform: uppercase;
+	font-size: 0.6em;
+	padding: 5px 20px;
+	background: linear-gradient(45deg, #EEE, #AAA);
+	position: absolute;
+	top: 85%;
+	width: 100%;
+	height: 15%;
 }

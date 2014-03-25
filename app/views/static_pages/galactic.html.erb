@@ -1,9 +1,15 @@
 <% content_for :title, "Galactic" %>
 
-<div id="galactic" class="row">
-
+<div id="galactic">
+	<div id="starfield"></div>
+	<div id="spaceship"></div>
+	<div id="thrust"></div>
+	<div id="commandbar">
+		Speed: <span id="_speed_ct">0.1 c</span><br>
+		Shield: 100<br>
+		Hull: 100<br>
+	</div>
 </div>
-
 <% content_for :javascript_includes do %>
   <%= javascript_include_tag "galactic.js" %>
 <% end %>

@@ -1,5 +1,6 @@
 var stars = []
-var STARSPEED = 1;
+var fire = []
+var STARSPEED = 40;
 
 $("#speedup").click(function () {
 	STARSPEED+=1
@@ -15,17 +16,49 @@ function drawStar(x, y, speed) {
 	else if (Math.random() > 0.7)
 		type += " star2"
 	type += "'"
-	$("#galactic").append("<div class="+type+" id="+name+"></div>")
+	$("#starfield").append("<div class="+type+" id="+name+"></div>")
 	$("#"+name).css({
 	  top: y,
-	  left: 0,
-	  zIndex: 100
+	  left: 0
 	})
 	stars.push({
 		div: $("#"+name),
 		x: x,
 		speed: speed/(Math.floor(Math.random() * 6) + 1)
 	})
+}
+
+function drawThrust(y) {
+	var name = Math.round(Math.random()*1000000).toString()+"t"
+	$("#starfield").append("<div class='thrust' id="+name+"></div>")
+	$("#"+name).css({
+		top: '40%',
+		left: '47%',
+		'background-color': 'rgba('+(235+Math.random()*4)+','+(228+Math.random()*10)+',130)'
+	})
+	fire.push({
+		div: $("#"+name),
+		x: 47,
+		o: 1
+	})
+}
+
+function animateThrust() {
+	var div;
+	for (var i=0;i<fire.length;i++) {
+		div = fire[i].div;
+		div.css({
+			left: fire[i].x+'%',
+			opacity: fire[i].o
+		})
+		if (fire[i].o < 0) {
+			div.remove()
+			fire.splice(i, 1)
+		} else {
+			fire[i].x += 0.08
+			fire[i].o -= 0.03
+		}
+	}
 }
 
 function animateStars() {
@@ -35,27 +68,34 @@ function animateStars() {
 		div.css({
 			left: stars[i].x,
 		})
-		if (stars[i].x < screen.width+30) {
+		if (stars[i].x < screen.width) {
 			stars[i].x += stars[i].speed
 		} else {
 			div.remove()
 			stars.splice(i, 1)
 		}
 	}
+	//drawThrust(50)
+	/*
+	if (Math.random() < 0.4)
+		$("#spaceship").css({top: '40.5%'})
+	else 
+		$("#spaceship").css({top: '40%'})
+	*/
 }
 
 function drawBackground(speed, chance) {
-	if (Math.random() < chance)
-		drawStar(0, Math.random()*(screen.height-200), speed)
+	if (Math.random() < chance && speed > 0)
+		drawStar(0, Math.random()*(screen.height*0.85), speed)
 	setTimeout(function() {drawBackground(STARSPEED, chance)}, 120/speed)
 }
 
 function populateStars() {
 	for (var i=0;i<60;i++) {
-		drawStar(Math.random()*(screen.width-50), Math.random()*(screen.height-200), STARSPEED)
+		drawStar(Math.random()*(screen.width-50), Math.random()*(screen.height*0.85), STARSPEED)
 	}
 }
-
 populateStars()
 setInterval(animateStars, 30)
+//setInterval(animateThrust, 30)
 drawBackground(STARSPEED, 0.05)

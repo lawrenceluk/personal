@@ -1,0 +1,61 @@
+var stars = []
+var STARSPEED = 1;
+
+$("#speedup").click(function () {
+	STARSPEED+=1
+	// CLICK THE SHIP FOR UPGRADES
+	// CLICK STUFF GOING BY (PLANETS, ASTEROIDS) FOR GAMES THAT GIVE CREDITS
+})
+
+function drawStar(x, y, speed) {
+	var name = Math.round(Math.random()*1000000).toString()
+	var type = "'star"
+	if (Math.random() > 0.7)
+		type += " star1"
+	else if (Math.random() > 0.7)
+		type += " star2"
+	type += "'"
+	$("#galactic").append("<div class="+type+" id="+name+"></div>")
+	$("#"+name).css({
+	  top: y,
+	  left: 0,
+	  zIndex: 100
+	})
+	stars.push({
+		div: $("#"+name),
+		x: x,
+		speed: speed/(Math.floor(Math.random() * 6) + 1)
+	})
+}
+
+function animateStars() {
+	var div;
+	for (var i=0;i<stars.length;i++) {
+		div = stars[i].div;
+		div.css({
+			left: stars[i].x,
+		})
+		if (stars[i].x < screen.width) {
+			stars[i].x += stars[i].speed
+		} else {
+			div.remove()
+			stars.splice(i, 1)
+		}
+	}
+}
+
+function drawBackground(speed, chance) {
+	if (Math.random() < chance)
+		drawStar(0, Math.random()*(screen.height-200), speed)
+	setTimeout(function() {drawBackground(STARSPEED, chance)}, 120/speed)
+}
+
+function populateStars() {
+	for (var i=0;i<60;i++) {
+		drawStar(Math.random()*(screen.width-50), Math.random()*(screen.height-200), STARSPEED)
+	}
+}
+
+populateStars()
+setInterval(animateStars, 30)
+drawBackground(STARSPEED, 0.05)

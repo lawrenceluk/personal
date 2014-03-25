@@ -1,36 +1,31 @@
 .sun {
-  position: absolute;
-  display: block;
-  right: 50%;
-  bottom: 430px;
+  margin-left: 33%;
 }
 .cloud {
   position: absolute;
-  display: block;
-  right: 20%;
-  bottom: 480px;
+  top: 100px;
+  animation:cloudy 300s;
+  -webkit-animation:cloudy 300s;
 }
 .boat {
   position: absolute;
-  display: block;
-  left: 18%;
-  bottom: 220px;
   animation-timing-function:linear;
   -webkit-animation-timing-function:linear;
   animation-delay:0.41s;
   -webkit-animation-delay:0.41s;
-  animation:bobbing 2.5s infinite;
-  -webkit-animation:bobbing 2.5s infinite;
+  animation:bobbing 3.4s infinite;
+  -webkit-animation:bobbing 3.4s infinite;
 }
 .boat.other {
-  left: 80%;
-  bottom: 250px;
+  position: absolute;
   animation-timing-function:linear;
   -webkit-animation-timing-function:linear;
   animation:otherbobbing 5s infinite;
   -webkit-animation:otherbobbing 5s infinite;
 }
 .wave {
+  animation-timing-function:linear;
+  -webkit-animation-timing-function:linear;
   background: transparent repeat-x;
   position: absolute;
   display: block;
@@ -40,32 +35,42 @@
 .wave.one {
   background-image: url(<%= asset_path 'water1.png' %>); 
   left: -101%;
-  bottom: 220px;
+  top: 320px;
   margin: 0px 0px;
+  animation:w1 4s infinite;
+  -webkit-animation:w1 4s infinite;
 }
 .wave.two {
   background-image: url(<%= asset_path 'water2.png' %>); 
   left: -95%;
-  bottom: 210px;
+  top: 330px;
   margin: 0px 0px;
+  animation:w2 4s infinite;
+  -webkit-animation:w2 4s infinite;
 }
 .wave.three {
   background-image: url(<%= asset_path 'water3.png' %>); 
   left: -103%;
-  bottom: 200px;
+  top: 340px;
   margin: 0px 0px;
+  animation:w3 4s infinite;
+  -webkit-animation:w3 4s infinite;
 }
 .wave.four {
   background-image: url(<%= asset_path 'water4.png' %>); 
   left: -90%;
-  bottom: 180px;
+  top: 360px;
   margin: 0px 0px;
+  animation:w4 4s infinite;
+  -webkit-animation:w4 4s infinite;
 }
 .wave.light {
   background-image: url(<%= asset_path 'water-light.png' %>); 
-  bottom: 160px;
+  top: 380px;
   left: -95%;
   margin: 0px 0px;
+  animation:w5 4s infinite;
+  -webkit-animation:w5 4s infinite;
 }
 .wave.orange {
   background-image: url(<%= asset_path 'water-orange.png' %>); 
@@ -73,25 +78,84 @@
   margin: 0px 0px;
 }
 .scene {
-  min-height: 360px
+  min-height: 360px;
+  position: relative;
 }
 @keyframes bobbing {
-  0%   {left:19%; bottom:216px;}
-  50%  {left:19%; bottom:226px;}
-  100% {left:19%; bottom:216px;}
+  0%   {left:19%; top:132px;}
+  50%  {left:19%; top:140px;}
+  100% {left:19%; top:132px;}
 }
 @-webkit-keyframes bobbing {
-  0%   {left:19%; bottom:216px;}
-  50%  {left:19%; bottom:226px;}
-  100% {left:19%; bottom:216px;}
+  0%   {left:19%; top:132px;}
+  50%  {left:19%; top:140px;}
+  100% {left:19%; top:132px;}
 }
 @keyframes otherbobbing {
-  0%   {right:20%; bottom:247px;}
-  50%  {right:20%; bottom:257px;}
-  100% {right:20%; bottom:247px;}
+  0%   {right:26%; top:255px;}
+  50%  {right:26%; top:259px;}
+  100% {right:26%; top:255px;}
 }
 @-webkit-keyframes otherbobbing {
-  0%   {right:20%; bottom:247px;}
-  50%  {right:20%; bottom:257px;}
-  100% {right:20%; bottom:247px;}
+  0%   {right:26%; top:255px;}
+  50%  {right:26%; top:259px;}
+  100% {right:26%; top:255px;}
+}
+@keyframes cloudy {
+  0%   {left:63%;}
+  100% {left:20%;}
+}
+@-webkit-keyframes cloudy {
+  0%   {left:63%;}
+  100% {left:20%;}
+}
+@keyframes w1 {
+  0%   {left:-101%;}
+  50% {left: -104%;}
+  100% {left:-101%;}
+}
+@-webkit-keyframes w1 {
+  0%   {left:-101%;}
+  50% {left: -104%;}
+  100% {left:-101%;}
+}
+@keyframes w2 {
+  0%   {left:-95%;}
+  50% {left: -97%;}
+  100% {left:-95%;}
+}
+@-webkit-keyframes w2 {
+  0%   {left:-95%;}
+  50% {left: -93%;}
+  100% {left:-95%;}
+}
+@keyframes w3 {
+  0%   {left:-103%;}
+  50% {left: -107%;}
+  100% {left:-103%;}
+}
+@-webkit-keyframes w3 {
+  0%   {left:-103%;}
+  50% {left: -107%;}
+  100% {left:-103%;}
+}
+@keyframes w4 {
+  0%   {left:-93%;}
+  50% {left: -90%;}
+  100% {left:-93%;}
+}
+@-webkit-keyframes w4 {
+  0%   {left:-93%;}
+  50% {left: -90%;}
+  100% {left:-93%;}
+}
+@keyframes w5 {
+  0%   {left:-95%;}
+  50% {left: -98%;}
+  100% {left:-95%;}
+}
+@-webkit-keyframes w5 {
+  0%   {left:-95%;}
+  50% {left: -98%;}
+  100% {left:-95%;}
 }
