@@ -1,0 +1,52 @@
+<% content_for :title, "TwitNow" %>
+
+<div id="hideoverx">
+<div id="twitnow" class="row">
+	<div class="col-sm-4 col-lg-3">
+		<div id="sidecar">
+			<div id="tnlogo" title="Load More">TwitNow</div>
+		  <form method="get" action=<%= twitnow_path %>>
+	      <input type="text submit" name="q" class="twitsearch"
+	        size="21" maxlength="120" value="<%= params[:q] rescue "" %>" placeholder="#deep">
+	  	</form>
+	  	<div id="tndescrip">
+	  		Fetched <%= @results.count %> tweets.<br />
+	  		The stats are 30%.<br />
+	  		The power level is over 5.<br />
+	  		Loaded in 15 seconds.<br />
+	  		Built by Lawrence Luk.
+	  	</div>
+  	</div>
+	</div>
+	<div class="col-sm-8 col-lg-9 masonryzone">
+		<div id="masonjar">
+			<% if @results.any? %>
+				<% @results.each do |t| %>
+					<%= render 'extras/tweet', t: t %>
+				<% end %>
+			<% else %>
+				<div id='masonempty'>Nothing here!</div>
+			<% end %>
+  	</div>
+  	<div class="gap"></div>
+	</div>
+</div>
+</div>
+
+<% content_for :javascript_includes do %>
+	<%= javascript_include_tag "masonry.js" %>
+	<script>
+		$('#tnlogo').click(function() {
+				$('html, body').animate({scrollTop: 0}, 200);
+		    return false;
+		});
+		$(window).load(function(){
+			var container = document.querySelector('#masonjar');
+			var msnry = new Masonry(container, {
+			  // options
+			  columnWidth: 40,
+			  itemSelector: '.mason-item'
+			});
+		});
+	</script>
+<% end %>

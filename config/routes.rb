@@ -4,6 +4,7 @@ Personal::Application.routes.draw do
   match 'juicedup', to: 'static_pages#juicedup', via: [:get]
   match 'galactic', to: 'static_pages#galactic', via: [:get]
   match 'exp', to: 'static_pages#exp', via: [:get]
+  match 'twitnow', to: 'static_pages#hose', via: [:get]
   # game related
   match 'save', to: 'game#save', via: [:post]
   match 'load', to: 'game#load', via: [:get]

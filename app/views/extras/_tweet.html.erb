@@ -1,0 +1,20 @@
+<div class="mason-item" id="<%= t.id.to_s %>">
+	<div class="userinfo">
+		<div style="width: 30%; float: left;">
+			<%= image_tag t.user.profile_image_url rescue "" %>
+		</div>
+		<div style="width: 50%; float: left;">
+			<%= t.user.name rescue "" %><br />
+			<%= link_to "@#{t.user.screen_name}", twitnow_path(q: "from:#{t.user.screen_name}") rescue "" %>
+		</div>
+	</div>
+	<div class="t-content">
+		<%= t.text rescue "" %>
+		<% if t.entities? %>
+			<%= image_tag t.media[0].media_url, class: "sizecontrol" rescue "" %>
+		<% end %>
+	</div>
+	<div class="t-time">
+		<%= "#{time_ago_in_words t.created_at} ago" rescue "" %>
+	</div>
+</div>

@@ -1,0 +1,90 @@
+@import url(http://fonts.googleapis.com/css?family=Scada:700,400);
+
+#hideoverx {
+	height: 100%;
+	overflow-x: hidden;
+}
+#twitnow {
+  background: #FDFEFA;
+  height: 100%;
+}
+#tnlogo {
+	font-family: "Scada";
+	font-weight: 700;
+	padding: 30px;
+	font-size: 4em;
+	cursor: pointer;
+	&:hover {
+		color: #A80D0D;
+	}
+}
+.masonryzone {
+	min-height: 100%;
+	background: #0092CB;
+}
+#sidecar {
+	position: fixed;
+}
+#tndescrip {
+	margin-top: 40px;
+	padding-top: 30px;
+	line-height: 1.5em;
+	margin-left: 30px;
+	border-top: 2px solid #DAE9F0;
+	font-size: 0.9em;
+}
+.twitsearch {
+	border-radius: 2px;
+	border: none;
+	background: #F8F8F8;
+	font-weight: 300;
+	box-shadow: 0px 3px 3px #EFEFEF inset;
+	text-align: center;
+	margin-top: -20px;
+	margin-left: 30px;
+	font-size: 1.6em;
+	height: 60px;
+	width: 280px;
+}
+#masonjar {
+	margin-left: 15px;
+}
+#masonempty {
+	text-align: center;
+	font-size: 3em;
+	font-family: "Scada";
+	margin-top: 20%;
+	color: #FAFAFA;
+}
+.mason-item {
+	text-align: center;
+	background: #FFF;
+	border-radius: 4px;
+	width: 28%;
+	min-height: 120px;
+	margin-top: 12px;
+	padding: 10px;
+}
+.userinfo {
+	display: inline;
+	color: #777;
+	img {
+		border-radius: 3px;
+	}
+	background: #CCC;
+}
+.t-content {
+	margin-top: 5px;
+	padding: 5px;
+	clear: both;
+}
+.t-time {
+	margin-top: 5px;
+	font-size: 0.72em;
+	color: #AAA;
+}
+.sizecontrol {
+	box-shadow: 0px 2px 3px #888;
+	margin-top: 5px;
+	width: 100%;
+}
