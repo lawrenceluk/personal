@@ -29,7 +29,7 @@
 	  		Fetched <span id="fetched-num"><%= @results.to_a.size %></span> tweets.<br />
 	  		The stats are 30%.<br />
 	  		The power level is over 5.<br />
-	  		Loaded in 15 seconds.<br />
+	  		<span id="request-time"></span><br />
 	  		Built by Lawrence Luk.<br />
 	  	</div>
   	</div>
@@ -65,6 +65,7 @@
 			if (working) {
 				return;
 			}
+			var start = new Date().getTime();
 			var data = '<%= "q=#{@query}&type=#{@rtype}" %>';
 			data += "&oldest="+OLDEST;
 			$("#more-status").html("Loading...");
@@ -91,6 +92,9 @@
 					} else {
 						$("#more-status").html("Invalid response received.");
 					}
+					var end = new Date().getTime();
+					var time = end - start;
+					$("#request-time").html("Loaded in "+(time/1000).toFixed(2)+" seconds.");
 				}, error: function(response) {
 					working = false;
 					$("#more-status").html("Invalid query.");
