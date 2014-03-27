@@ -15,6 +15,8 @@
 		<% end %>
 	</div>
 	<div class="t-time">
+		<i class="fa fa-heart"></i> <%= t.favorite_count rescue '0' %> |
+		<i class="fa fa-retweet"></i> <%= t.retweet_count rescue '0' %> |
 		<%= "#{time_ago_in_words t.created_at} ago" rescue "" %>
 	</div>
 </div>

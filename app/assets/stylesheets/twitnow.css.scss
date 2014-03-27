@@ -5,21 +5,28 @@
 	overflow-x: hidden;
 }
 #twitnow {
-  background: #FDFEFA;
+  background: #F7F7F0;
   height: 100%;
+	a {
+		&:hover {
+			background: none;
+			text-decoration: underline;
+			color: #2E7FDB;
+		}
+	}
 }
 #tnlogo {
 	font-family: "Scada";
 	font-weight: 700;
 	padding: 30px;
 	font-size: 4em;
-	cursor: pointer;
-	&:hover {
-		color: #A80D0D;
-	}
+	color: #353A3A;
 }
 .masonryzone {
-	min-height: 100%;
+	transition: 1s;
+	border-left: 8px solid #2D86A8;
+	height: 100%;
+	overflow-y: auto;
 	background: #0092CB;
 }
 #sidecar {
@@ -32,6 +39,11 @@
 	margin-left: 30px;
 	border-top: 2px solid #DAE9F0;
 	font-size: 0.9em;
+}
+#sortoptions {
+	margin-left: 30px;
+	margin-top: 5px;
+	text-align: center;
 }
 .twitsearch {
 	border-radius: 2px;
@@ -46,6 +58,7 @@
 	height: 60px;
 	width: 280px;
 }
+
 #masonjar {
 	margin-left: 15px;
 }
@@ -87,4 +100,23 @@
 	box-shadow: 0px 2px 3px #888;
 	margin-top: 5px;
 	width: 100%;
+}
+.ld-button-zone {
+	margin-left: 30px;
+	margin-top: 10px;
+
+	text-align: center;
+}
+#more-button {
+	font-family: "Scada";
+	font-size: 1.5em;
+	background: #F2D8D8;
+	color: #C96161;
+	&:hover {
+		color: #E3CCCC;
+		background: #A80D0D;
+	}
+}
+.messenger {
+	display: none;
 }

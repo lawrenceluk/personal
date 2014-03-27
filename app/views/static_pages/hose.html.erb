@@ -1,27 +1,43 @@
 <% content_for :title, "TwitNow" %>
+<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
 
 <div id="hideoverx">
 <div id="twitnow" class="row">
 	<div class="col-sm-4 col-lg-3">
 		<div id="sidecar">
-			<div id="tnlogo" title="Load More">TwitNow</div>
+			<div id="tnlogo">TwitNow</div>
 		  <form method="get" action=<%= twitnow_path %>>
-	      <input type="text submit" name="q" class="twitsearch"
-	        size="21" maxlength="120" value="<%= params[:q] rescue "" %>" placeholder="#deep">
+	      <input type="text submit" name="q" class="twitsearch" id="twitinput"
+	        size="21" maxlength="120" pattern=".{1,}" required value="<%= params[:q] rescue "" %>" placeholder="#true">
 	  	</form>
+	  	<div id="sortoptions">
+	  		<% if @rtype != 'recent' %>
+	  			<%= link_to 'new', twitnow_path(q: @query, type: 'recent') %>
+	  		<% else %> new <% end %>|
+	  		<% if @rtype != 'popular' %>
+	  			<%= link_to 'popular', twitnow_path(q: @query, type: 'popular') %> 
+	  		<% else %> popular <% end %>|
+	  		<% if @rtype != 'mixed' %>
+	  			<%= link_to 'all', twitnow_path(q: @query, type: 'mixed') %>
+	  		<% else %> all <% end %>
+	  	</div>
+	  	<div class="ld-button-zone">
+	  		<input value="Load More" class="btn" id="more-button" readonly>
+	  		<div id="more-status"></div>
+	  	</div>
 	  	<div id="tndescrip">
-	  		Fetched <%= @results.count %> tweets.<br />
+	  		Fetched <span id="fetched-num"><%= @results.to_a.size %></span> tweets.<br />
 	  		The stats are 30%.<br />
 	  		The power level is over 5.<br />
 	  		Loaded in 15 seconds.<br />
-	  		Built by Lawrence Luk.
+	  		Built by Lawrence Luk.<br />
 	  	</div>
   	</div>
 	</div>
 	<div class="col-sm-8 col-lg-9 masonryzone">
 		<div id="masonjar">
 			<% if @results.any? %>
-				<% @results.each do |t| %>
+				<% @results.to_a.reverse.each do |t| %>
 					<%= render 'extras/tweet', t: t %>
 				<% end %>
 			<% else %>
@@ -36,16 +52,49 @@
 <% content_for :javascript_includes do %>
 	<%= javascript_include_tag "masonry.js" %>
 	<script>
-		$('#tnlogo').click(function() {
-				$('html, body').animate({scrollTop: 0}, 200);
-		    return false;
-		});
-		$(window).load(function(){
-			var container = document.querySelector('#masonjar');
-			var msnry = new Masonry(container, {
-			  // options
+		var working = false;
+		var OLDEST = <%= @oldest %>;
+		var $container = $('#masonjar');
+		$container.waitForImages(function(){
+			$container.masonry({
 			  columnWidth: 40,
 			  itemSelector: '.mason-item'
+			});
+		});
+		$("#more-button").click(function() {
+			if (working) {
+				return;
+			}
+			var data = '<%= "q=#{@query}&type=#{@rtype}" %>';
+			data += "&oldest="+OLDEST;
+			$("#more-status").html("Loading...");
+			working = true;
+			$.ajax({
+				url: "fetchmore",
+				type: "GET",
+				data: data,
+				dataType: "HTML",
+				success: function(response) {
+					working = false;
+					if (response.length > 0) {
+						$container.prepend(response).waitForImages(function() {
+							OLDEST = $("#_oldest").html();
+							$("#fetched-num").html(parseInt($("#fetched-num").html())+parseInt($("#_count").html()));
+							$("#_oldest").remove();
+							$("#_count").remove();
+							$container.masonry('reloadItems');
+							window.setTimeout(function(){ 
+								$("#more-status").html("");
+								$("#masonjar").masonry();
+							}, 100);
+						});
+					} else {
+						$("#more-status").html("Invalid response received.");
+					}
+				}, error: function(response) {
+					working = false;
+					$("#more-status").html("Invalid query.");
+				}
 			});
 		});
 	</script>

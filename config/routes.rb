@@ -5,6 +5,7 @@ Personal::Application.routes.draw do
   match 'galactic', to: 'static_pages#galactic', via: [:get]
   match 'exp', to: 'static_pages#exp', via: [:get]
   match 'twitnow', to: 'static_pages#hose', via: [:get]
+  match 'fetchmore', to: 'static_pages#fetch', via: [:get]
   # game related
   match 'save', to: 'game#save', via: [:post]
   match 'load', to: 'game#load', via: [:get]

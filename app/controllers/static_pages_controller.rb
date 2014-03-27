@@ -1,5 +1,5 @@
 class StaticPagesController < ApplicationController
-	before_filter :twitter_connect, only: [:hose]
+	before_filter :twitter_connect, only: [:hose, :fetch]
 
 	def home
 	end
@@ -30,12 +30,43 @@ class StaticPagesController < ApplicationController
 	end
 
 	def hose
-		if params[:q]
-			query = params[:q]
-		else
-			query = "#deep"
+		@query = params[:q]
+		@query ||= "#true"
+		@rtype = params[:type]
+		@rtype ||= "mixed"
+		@results = @client.search(@query, :result_type => @rtype, :lang => "en", :count => "12")
+		if @results.any?
+			@oldest = @results.first.id
+			@results.each do |r| 
+				if (r.id < @oldest)
+					@oldest = r.id
+				end
+			end
 		end
-		@results = @client.search(query, :result_type => "recent", :lang => "en").take(12)
+	end
+
+	def fetch
+		# uses current query and filter, pulls from before max id and updates oldest
+		if params[:q] && params[:type] && params[:oldest]
+			@query = params[:q]
+			@query ||= '#true'
+			@rtype = params[:type]
+			@rtype ||= 'mixed'
+			@oldest = params[:oldest].to_i
+			respond_to do |format|
+				format.js do
+					@results = @client.search(@query, :result_type => @rtype, :lang => "en", :max_id => (@oldest-1), :count => "12")
+					if @results.any?
+						@oldest = @results.first.id
+						@results.each do |r| 
+							if (r.id < @oldest)
+								@oldest = r.id
+							end
+						end
+					end
+				end
+			end
+		end
 	end
 
   def twitter_connect
