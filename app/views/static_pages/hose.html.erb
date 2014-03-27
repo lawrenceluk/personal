@@ -27,17 +27,17 @@
 	  	</div>
 	  	<div id="tndescrip">
 	  		Fetched <span id="fetched-num"><%= @results.to_a.size %></span> tweets.<br />
-	  		The stats are 30%.<br />
-	  		The power level is over 5.<br />
+	  		Tweets retrieved using the Twitter REST API.<br />
+	  		Searches are not guaranteed to be consistent or accurate.<br />
 	  		<span id="request-time"></span><br />
-	  		Built by Lawrence Luk.<br />
+	  		<%= link_to 'Lawrence Luk 2014', root_path %><br />
 	  	</div>
   	</div>
 	</div>
 	<div class="col-sm-8 col-lg-9 masonryzone">
 		<div id="masonjar">
 			<% if @results.any? %>
-				<% @results.to_a.reverse.each do |t| %>
+				<% @results.each do |t| %>
 					<%= render 'extras/tweet', t: t %>
 				<% end %>
 			<% else %>
@@ -78,7 +78,7 @@
 				success: function(response) {
 					working = false;
 					if (response.length > 0) {
-						$container.prepend(response).waitForImages(function() {
+						$container.append(response).waitForImages(function() {
 							OLDEST = $("#_oldest").html();
 							$("#fetched-num").html(parseInt($("#fetched-num").html())+parseInt($("#_count").html()));
 							$("#_oldest").remove();

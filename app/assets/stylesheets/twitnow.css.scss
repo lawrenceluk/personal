@@ -105,6 +105,10 @@
 	font-size: 0.72em;
 	color: #AAA;
 }
+.t-links {
+	font-size: 0.8em;
+	display: inline;
+}
 .sizecontrol {
 	box-shadow: 0px 2px 3px #888;
 	margin-top: 5px;
@@ -120,7 +124,7 @@
 	font-size: 1.5em;
 	background: #F2D8D8;
 	color: #C96161;
-	&:hover {
+	&:active {
 		color: #E3CCCC;
 		background: #A80D0D;
 	}

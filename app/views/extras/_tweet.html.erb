@@ -14,9 +14,25 @@
 			<%= image_tag t.media[0].media_url, class: "sizecontrol" rescue "" %>
 		<% end %>
 	</div>
+	<div class="t-links">
+		<% t.uris.each do |u| %>
+			<%= link_to u.url, u.url.to_s, target: "_blank" %><br />
+		<% end %>
+	</div>
 	<div class="t-time">
 		<i class="fa fa-heart"></i> <%= t.favorite_count rescue '0' %> |
 		<i class="fa fa-retweet"></i> <%= t.retweet_count rescue '0' %> |
 		<%= "#{time_ago_in_words t.created_at} ago" rescue "" %>
+	</div>
+	<div class="t-links">
+		<% t.hashtags.each do |h| %>
+			<%= link_to "##{h.text}", twitnow_path(q: "##{h.text}") %>
+		<% end %>
+		<% if t.user_mentions.count > 0 %>
+			<br />
+		<% end %>
+		<% t.user_mentions.each do |s| %>
+			<%= link_to "@#{s.screen_name}", twitnow_path(q: "from:#{s.screen_name}") %>
+		<% end %>
 	</div>
 </div>

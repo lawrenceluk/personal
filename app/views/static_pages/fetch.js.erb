@@ -1,4 +1,4 @@
-<% @results.to_a.reverse.each do |t| %>
+<% @results.each do |t| %>
 	<%= raw render "extras/tweet", t: t %>
 <% end %>
 <div id="_oldest" class="messenger"><%= @oldest %></div>
