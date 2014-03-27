@@ -80,7 +80,7 @@
 	margin-top: 12px;
 	padding: 10px;
 }
-@media (max-width: 740px) {
+@media screen and (max-device-width: 640px){
 	.mason-item {
 		width: 45%;
 	}
