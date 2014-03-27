@@ -3,6 +3,7 @@
 #hideoverx {
 	height: 100%;
 	overflow-x: hidden;
+	-webkit-overflow-scrolling: touch;
 }
 #twitnow {
   background: #F7F7F0;
@@ -77,6 +78,11 @@
 	min-height: 120px;
 	margin-top: 12px;
 	padding: 10px;
+}
+@media (max-width: 740px) {
+	.mason-item {
+		width: 45%;
+	}
 }
 .userinfo {
 	display: inline;
