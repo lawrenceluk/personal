@@ -5,7 +5,7 @@
 <div id="twitnow" class="row">
 	<div class="col-sm-4 col-lg-3">
 		<div id="sidecar">
-			<div id="tnlogo">TwitNow</div>
+			<div id="tnlogo"><%= link_to "TwitNow", twitnow_path(q: "twitter", type:"recent") %></div>
 		  <form method="get" action=<%= twitnow_path %>>
 	      <input type="text submit" name="q" class="twitsearch" id="twitinput"
 	        size="21" maxlength="120" pattern=".{1,}" required value="<%= params[:q] rescue "" %>" placeholder="#true">
@@ -26,7 +26,7 @@
 	  		<div id="more-status"></div>
 	  	</div>
 	  	<div id="tndescrip">
-	  		Fetched <span id="fetched-num"><%= @results.to_a.size %></span> tweets.<br />
+	  		Showing <span id="fetched-num"><%= @results.to_a.size %></span> tweets.<br />
 	  		Tweets retrieved using the Twitter REST API.<br />
 	  		Searches are not guaranteed to be consistent or accurate.<br />
 	  		<span id="request-time"></span><br />
@@ -68,6 +68,7 @@
 			var start = new Date().getTime();
 			var data = '<%= "q=#{@query}&type=#{@rtype}" %>';
 			data += "&oldest="+OLDEST;
+			console.log(data)
 			$("#more-status").html("Loading...");
 			working = true;
 			$.ajax({

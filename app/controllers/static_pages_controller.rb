@@ -34,7 +34,7 @@ class StaticPagesController < ApplicationController
 		@query ||= "#true"
 		@rtype = params[:type]
 		@rtype ||= "mixed"
-		@results = @client.search(@query, :result_type => @rtype, :lang => "en", :count => "12") rescue return
+		@results = @client.search(@query, :result_type => @rtype, :lang => "en") rescue return
 		if @results.any?
 			@oldest = @results.first.id
 			@results.each do |r| 
@@ -55,7 +55,7 @@ class StaticPagesController < ApplicationController
 			@oldest = params[:oldest].to_i
 			respond_to do |format|
 				format.js do
-					@results = @client.search(@query, :result_type => @rtype, :lang => "en", :max_id => (@oldest-1), :count => "12")
+					@results = @client.search(@query, :result_type => @rtype, :lang => "en", :max_id => (@oldest-1))
 					if @results.any?
 						@oldest = @results.first.id
 						@results.each do |r| 

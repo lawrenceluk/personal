@@ -21,7 +21,12 @@
 	font-weight: 700;
 	padding: 30px;
 	font-size: 4em;
-	color: #353A3A;
+	a {
+		color: #353A3A;
+		&:hover {
+			color: #852C28;
+		}
+	}
 }
 .masonryzone {
 	transition: 1s;
