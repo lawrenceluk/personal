@@ -78,5 +78,9 @@ class StaticPagesController < ApplicationController
 		  config.access_token_secret = ""
 		end
   end
+
+  def othergame
+  	redirect_to "http://github.com"
+  end
 	
 end

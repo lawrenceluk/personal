@@ -12,6 +12,8 @@ Personal::Application.routes.draw do
   match 'rb', to: 'game#rebirth', via: [:post]
   match 'grab', to: 'game#getRbCredits', via: [:get]
 
+  match '99', to: 'static_pages#othergame', via: [:get]
+
   get "/404", :to => "errors#not_found"
   get "/422", :to => "errors#unacceptable"
   get "/500", :to => "errors#internal_error"

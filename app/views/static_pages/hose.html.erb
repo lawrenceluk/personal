@@ -3,7 +3,7 @@
 
 <div id="hideoverx">
 <div id="twitnow" class="row">
-	<div class="col-sm-4 col-lg-3">
+	<div class="col-sm-0 col-lg-3">
 		<div id="sidecar">
 			<div id="tnlogo"><%= link_to "TwitNow", twitnow_path(q: "twitter", type:"recent") %></div>
 		  <form method="get" action=<%= twitnow_path %>>
@@ -34,7 +34,7 @@
 	  	</div>
   	</div>
 	</div>
-	<div class="col-sm-8 col-lg-9 masonryzone">
+	<div class="col-sm-12 col-lg-9 masonryzone">
 		<div id="masonjar">
 			<% if @results.any? %>
 				<% @results.each do |t| %>
