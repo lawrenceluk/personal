@@ -1,0 +1,107 @@
+<% content_for :title, 'Lawrence Luk' %>
+
+<section class="title">
+	<div class="title-picture">
+		<%= image_tag 'me.png', height: 90, id: 'me-picture' %>
+	</div>
+	<div class="title-name">
+		Lawrence Luk
+	</div>
+	<div class="title-bio">
+		I am currently a full time student at the University of California San Diego, studying Computer Science.
+	</div>
+</section>
+<section>
+	<div class="section-title">
+		<div class="work-picture">
+			<%= image_tag "monitor.png", height: 40 %>
+		</div>
+		Work
+	</div>
+	<section>
+		<div class="work">
+			<aside>
+				<div class="msft-picture"></div>
+				Microsoft
+			</aside>
+			<article>
+				<div>Software development engineer intern (Summer 2014)</div>
+				<div>Designed and implemented a search answer for Bing and Cortana <span>(C#, XAML)</span></div>
+				Created the discography section for celebrity pages on MSN Entertainment <span>(C#, .NET)</span>
+			</article>
+		</div>
+	</section>
+</section>
+<section>
+	<div class="section-title">
+		<div class="proj-picture">
+			<%= image_tag "hammer.png", height: 54 %>
+		</div>
+		Projects
+	</div>
+	<div class="gap2"></div>
+	<section>
+		<div class="project-image">
+			<iframe width="100%" height="100%" src="//www.youtube.com/embed/_f5VmB4_NFE?list=UUlSnrNqqis3x7O4SmYwNNUA&showinfo=0&autohide=1" frameborder="0" allowfullscreen></iframe>
+		</div>
+		<article>
+			<%= link_to "Demigods", "http://dev.bukkit.org/bukkit-plugins/demigods/", target: "_blank", class:"project-lead" %>
+			<div class="year">[2011-2012]</div>
+			<div>A Minecraft server plugin created in Java with the <%= link_to "Bukkit API", "http://bukkit.org/", target:"_blank" %>. It allows players to alliance with deities from Greek mythology and use special powers in combat with each other. At over 10,000 lines of code, it's the first and largest project I've done solo.
+			</div>
+			<div>To date, the plugin has received <%= link_to "over 200,000 views", "http://www.youtube.com/user/MCTooMuch/videos", target: "_blank" %>
+		and more than 25,000 downloads. Demigods was my personal project, up until version 2.0 when I passed the plugin on to new owners.</div>
+		</article>
+	</section>
+	<section>
+		<div class="project-shipprr">
+		</div>
+		<article>
+			<%= link_to "Shipprr", "http://www.shipprr.com", target: "_blank", class:"project-lead" %>
+			<div class="year">[2013]</div>
+			<div>A "social media" website that allows users to easily
+			create and follow Ships.</div>
+			<div>Based on the relatively recent phenomenon of 
+			<%= link_to "relation'shipping'", "http://en.wikipedia.org/wiki/Shipping_(fandom)", target: "_blank" %>
+			, fandoms have come up with all kinds of pairings, canon or otherwise, for their favorite characters, celebrities, and even objects. Shipprr seeks to provide a central hub for sorts of fandoms to discuss all the Ships they love.</div>
+			<div>Shipprr was my first Rails project and I used it as an opportunity to familiarize myself with Rails, Heroku, and Amazon Web Services. The site was redesigned pending a relaunch, but is currently inactive.</div>
+		</article>
+	</section>
+	Juiced Up, WeJackIt, Dishlist, RiftReport
+</section>
+<section class="education">
+	<div class="section-title">
+		<div class="edu-picture">
+			<%= image_tag "book.png", height: 23 %>
+		</div>
+		Education
+	</div>
+	<section>
+		<div class="edu-school">
+			<aside>
+				<div class="ucsd-picture"></div>
+				UC San Diego
+			</aside>
+			<article>
+				<div>Bachelor of Science in Computer Science, Sept 2012 - Jun 2016</div>
+				Current student, expected graduation June 2016
+			</article>
+		</div>
+	</section>
+	<section>
+		<div class="edu-school">
+			<aside>
+				<div class="chs-picture"></div>
+				Cupertino High School
+			</aside>
+			<article>
+				<div>Graduated in 2012</div>
+				<quote>“True terror is to wake up one morning and discover that your high school class is running the country.”</quote> -Kurt Vonnegut
+			</article>
+		</div>
+	</section>
+</section>
+
+<% content_for :javascript_includes do %>
+  <%= javascript_include_tag "me.js" %>
+<% end %>

@@ -59,7 +59,7 @@ var loading
 var savetime = 60 // save every 60 seconds
 var lastsave = new Date().getTime()
 var fromsave = -1
-var loadingmessage = "Happy New Years!"
+var loadingmessage = "Loading..."
 
 $("#whatversion").html("Version "+version)
 $("#s_version").html(version)
@@ -824,7 +824,7 @@ function manageRebirth() {
 		showNews("Your orange juice has attracted the attention of extraterrestial beings.")
 		if ($("#rebirth").html() === "") {
 			var str = "<div class='rebirth_note' id='rebirthscreen'>Rebirth"
-			str += "<img src='assets/ankh.png', width='60', class='gap unselectable'></div>"
+			str += "<img src='assets/ju/ankh.png', width='60', class='gap unselectable'></div>"
 			$("#rebirth").html(str)
 		}
 		notified = true
@@ -887,7 +887,7 @@ function drawShelf() {
 						spec = "ns_"+upgrades
 					}
 				}
-				str += "<img src='/assets/o"+tier+".png' id="+"oc_"+tier+"_"+(theomakers[i])+" class='omaker_item "+spec+"' height=60px>"
+				str += "<img src='/assets/ju/o"+tier+".png' id="+"oc_"+tier+"_"+(theomakers[i])+" class='omaker_item "+spec+"' height=60px>"
 			}
 			str += "<hr>"
 		}

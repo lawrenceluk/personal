@@ -1,0 +1,392 @@
+@import "bourbon";
+@import "neat";
+@import url(http://fonts.googleapis.com/css?family=Maven+Pro:700);
+@import url(http://fonts.googleapis.com/css?family=Tinos);
+
+$black: #000;
+$gray1: #333;
+$gray2: #666;
+$gray3: #999;
+$gray4: #AAA;
+$gray5: #DDD;
+$gray6: #FAFAFA;
+$white: #FFF;
+
+$gap3: 3rem;
+$gap2: 2rem;
+$gap1: 1rem;
+
+$major-title: 4rem;
+$section-title: 2rem;
+$project-title: 2.5rem;
+$text: 1.5rem;
+$mobile-title: 1.3rem;
+$mobile-text: 1.1rem;
+$descrip: 1.1rem;
+$subtext: 0.8rem;
+$mobile-descrip: 0.8rem;
+
+@mixin center()
+{
+  margin-left: auto;
+  margin-right: auto;
+}
+
+// http://stackoverflow.com/questions/14971697/css-mouse-hover-change-image-position-and-size
+@mixin scale($amt)
+{
+	-webkit-transform: scale($amt, $amt);
+  -moz-transform:scale($amt, $amt);
+  opacity: 1;
+  -webkit-opacity: 1;
+  -moz-opacity: 1;
+}
+
+@mixin animation ($delay, $duration, $animation)
+{
+    -webkit-animation-delay: $delay;
+    -webkit-animation-duration: $duration;
+    -webkit-animation-name: $animation;
+    -webkit-animation-timing-function: linear;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-fill-mode: forwards; /* this prevents the animation from restarting! */
+ 
+    -moz-animation-delay: $delay;
+    -moz-animation-duration: $duration;
+    -moz-animation-name: $animation;
+    -moz-animation-timing-function: linear;
+    -moz-animation-iteration-count: infinite;
+    -moz-animation-fill-mode: forwards; /* this prevents the animation from restarting! */
+ 
+    animation-delay: $delay;
+    animation-duration: $duration;
+    animation-name: $animation;
+    animation-timing-function: linear;
+		animation-iteration-count: infinite;
+    animation-fill-mode: forwards; /* this prevents the animation from restarting! */
+}
+
+body
+{
+	background: $gray6;
+}
+
+section
+{
+	@include outer-container;
+	margin-bottom: $gap1;
+}
+
+aside 
+{
+	font-size: $text;
+	text-align: right;
+	transition: 0.5s;
+	vertical-align: top;
+	@include span-columns(4);
+}
+
+article
+{
+	border-left: .1rem solid $gray5;
+	color: $gray2;
+	font-size: $descrip;
+	padding-left: 1rem;
+	transition: 0.5s;
+	@include span-columns(8);
+
+	div
+	{
+		margin-bottom: 0.4rem;
+	}
+
+	span
+	{
+		color: $gray4;
+		font-size: $subtext;
+	}
+}
+
+.gap2
+{
+	margin-top: $gap2;
+}
+
+/*
+ * ====================================================
+ * ====================================================
+ */
+
+.title {
+	margin-top: $gap3;
+	text-align: center;
+}
+
+.title-name
+{
+	font-family: "Maven Pro", "Helvetica", sans-serif;
+	font-size: $major-title;
+	text-transform: uppercase;
+}
+
+.title-bio
+{
+	color: $gray4;
+	font-family: "Tinos", "Georgia", serif;
+	font-size: $text;
+	width: 24rem;
+
+	@include center();
+}
+
+.title-picture
+{
+	@include animation(0s, 20s, animatedBackground);
+	background-image: url(green-bg.png);
+	background-position: 0 0;
+	background-repeat: repeat-x;
+	border: .2rem solid $gray5;
+	border-bottom: .3rem solid $gray4;
+	border-radius: 4rem;
+	height: 8rem;
+	width: 8rem;
+
+	@include center();
+}
+
+#me-picture
+{
+	cursor: pointer;
+	position: relative;
+  top: 1rem;
+  transition: 0.2s;
+
+	&:hover
+	{
+		@include scale(1.1);
+	}
+}
+
+.section-title
+{
+	font-family: "Maven Pro", "Helvetica", sans-serif;
+	font-size: $section-title;
+	letter-spacing: -.7px;
+	margin-top: $gap2;
+	text-align: center;
+	text-transform: uppercase;
+}
+
+.thumb
+{
+	height: 3.5rem;
+	width: 3.5rem;
+	display: inline-block;
+	position: relative;
+	top: -1rem;
+}
+
+.ucsd-picture
+{
+	@extend .thumb;
+	background: url("/assets/ucsd.png");
+	background-size: cover;
+}
+
+.chs-picture
+{
+	@extend .thumb;
+	background: url("/assets/chs.png");
+	background-size: 3.5rem 4.8rem;
+	height: 4.8rem;
+	top: -1.2rem;
+	width: 3.5rem;
+}
+
+.edu-school
+{
+	margin-top: $gap1;
+}
+
+.edu-picture
+{
+	background: #E3C654;
+	border: .2rem solid $gray5;
+	border-bottom: .3rem solid $gray4;
+	border-radius: 3rem;	
+	height: 6rem;
+	width: 6rem;
+
+	img
+	{
+		position: relative;
+	  top: 1.6rem;
+	}
+
+	@include center;
+}
+
+.education
+{	
+  quote
+  {
+  	font-style: italic;
+  }
+}
+
+.work-picture
+{
+	@extend .edu-picture;
+	background: #DE5B5B;
+}
+
+.proj-picture
+{
+	@extend .edu-picture;
+	background: #57A1CF;
+
+	img
+	{
+		top: 1.2rem;
+	}
+}
+
+.msft-picture
+{
+	@extend .thumb;
+	background: url("/assets/msft.png");
+	background-size: cover;
+}
+
+.work
+{
+	margin-top: $gap1;
+}
+
+.project-lead
+{
+	color: #57A1CF;
+	font-family: "Maven Pro", "Helvetica", sans-serif;
+	font-size: $project-title;
+	letter-spacing: -.7px;
+	text-decoration: none;
+	text-transform: uppercase;
+
+	&:hover
+	{
+		color: #29536E;
+		background: none;
+		text-decoration: none;
+	}
+}
+
+.year
+{
+	color: $gray4;
+	margin-bottom: $gap1;
+}
+
+.project-image
+{
+	@include span-columns(4);
+	background-size: 100% 100% !important;
+	border: 1px solid $gray6;
+	height: 15rem;
+}
+
+.project-shipprr
+{
+	@extend .project-image;
+	background: url("/assets/shipprr.png");
+}
+
+/*
+ * ====================================================
+ * Animation
+ * ====================================================
+ */
+
+@keyframes animatedBackground
+{
+    0%   {background-position: 2% 0;}
+    100% {background-position: 100% 0;}
+}
+
+@-webkit-keyframes animatedBackground
+{
+    0%   {background-position: 2% 0;}
+    100% {background-position: 100% 0;}
+}
+
+/*
+ * ====================================================
+ * Media Queries
+ * ====================================================
+ */
+
+//medium
+@media (max-width: 960px)
+{
+	.thumb
+	{
+		display: none;
+	}
+
+	aside
+	{
+		font-size: $mobile-title;
+	}
+}
+
+@media (max-width: 960px) and (min-width: 580px)
+{
+	.project-shipprr
+	{
+		background: url("/assets/shipprr-sm.png");
+	}
+}
+
+// small
+@media (max-width: 580px)
+{
+	.title
+	{
+		margin-top: $gap1;
+	}
+
+  .title-name
+  {
+  	font-size: 2.7rem;
+  }
+
+  .title-bio
+  {
+  	font-size: $mobile-text;
+  	width: 20rem;
+  }
+
+  aside
+  {
+  	border-bottom: 1px solid $gray5;
+		margin-bottom: $gap1;
+		padding-bottom: 4px; // breathing room
+		text-align: left;
+  	@include shift(1);
+		@include span-columns(10);
+  }
+
+  article
+  {
+  	border: none;
+  	font-size: $mobile-text;
+  	@include shift(1);
+  	@include span-columns(10);
+  }
+
+  .project-image
+  {
+  	@include shift(1);
+  	@include span-columns(10);
+  }
+
+}

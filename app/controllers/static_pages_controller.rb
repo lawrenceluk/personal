@@ -4,6 +4,9 @@ class StaticPagesController < ApplicationController
 	def home
 	end
 
+	def me
+	end
+
 	def juicedup
 		@loading = ""
 		if !cookies.permanent[:identifier]

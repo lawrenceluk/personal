@@ -31,6 +31,8 @@ gem 'jbuilder', '~> 1.2'
 # For experimental thing
 gem 'twitter', '5.0.0.rc.1'
 
+gem 'neat'
+
 group :production do
   gem 'pg', '0.15.1'
   gem 'rails_12factor', '0.0.2'
