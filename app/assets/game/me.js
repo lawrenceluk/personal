@@ -9,7 +9,7 @@ function checkVisible(elm, evalType) {
     evalType = evalType || "visible";
 
     var vpH = $(window).height(), // Viewport Height
-        st = $(window).scrollTop() - 280, // Scroll Top
+        st = $(window).scrollTop() - vpH/3, // Scroll Top
         y = $(elm).offset().top,
         elementHeight = $(elm).height() - vpH;
 
