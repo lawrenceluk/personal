@@ -1,6 +1,6 @@
 <% content_for :title, 'Lawrence Luk' %>
 
-<section class="title">
+<section class="header">
 	<div class="title-picture">
 		<%= image_tag 'me.png', height: 90, id: 'me-picture' %>
 	</div>
@@ -40,34 +40,73 @@
 		Projects
 	</div>
 	<div class="gap2"></div>
-	<section>
-		<div class="project-image">
-			<iframe width="100%" height="100%" src="//www.youtube.com/embed/_f5VmB4_NFE?list=UUlSnrNqqis3x7O4SmYwNNUA&showinfo=0&autohide=1" frameborder="0" allowfullscreen></iframe>
-		</div>
-		<article>
-			<%= link_to "Demigods", "http://dev.bukkit.org/bukkit-plugins/demigods/", target: "_blank", class:"project-lead" %>
-			<div class="year">[2011-2012]</div>
-			<div>A Minecraft server plugin created in Java with the <%= link_to "Bukkit API", "http://bukkit.org/", target:"_blank" %>. It allows players to alliance with deities from Greek mythology and use special powers in combat with each other. At over 10,000 lines of code, it's the first and largest project I've done solo.
-			</div>
-			<div>To date, the plugin has received <%= link_to "over 200,000 views", "http://www.youtube.com/user/MCTooMuch/videos", target: "_blank" %>
-		and more than 25,000 downloads. Demigods was my personal project, up until version 2.0 when I passed the plugin on to new owners.</div>
-		</article>
-	</section>
-	<section>
-		<div class="project-shipprr">
-		</div>
-		<article>
-			<%= link_to "Shipprr", "http://www.shipprr.com", target: "_blank", class:"project-lead" %>
-			<div class="year">[2013]</div>
-			<div>A "social media" website that allows users to easily
-			create and follow Ships.</div>
-			<div>Based on the relatively recent phenomenon of 
-			<%= link_to "relation'shipping'", "http://en.wikipedia.org/wiki/Shipping_(fandom)", target: "_blank" %>
-			, fandoms have come up with all kinds of pairings, canon or otherwise, for their favorite characters, celebrities, and even objects. Shipprr seeks to provide a central hub for sorts of fandoms to discuss all the Ships they love.</div>
-			<div>Shipprr was my first Rails project and I used it as an opportunity to familiarize myself with Rails, Heroku, and Amazon Web Services. The site was redesigned pending a relaunch, but is currently inactive.</div>
-		</article>
-	</section>
-	Juiced Up, WeJackIt, Dishlist, RiftReport
+	<!-- http://tympanus.net/codrops/2012/08/08/circle-hover-effects-with-css-transitions/ -->
+	<ul class="p-grid">
+    <li>
+        <div class="p-item p-demigods">
+            <div class="p-info">
+                <h3>Demigods</h3>
+                <div>A Minecraft server plugin with over 200,000 views and 25,000 downloads. Enhances combat with mythological elements.</div>
+                <span>Java, Minecraft Bukkit API</span>
+                <p><%= link_to "View on Bukkit", "http://dev.bukkit.org/bukkit-plugins/demigods/", target: "_blank" %></p>
+            </div>
+        </div>
+    </li>
+    <li>
+        <div class="p-item p-shipprr">
+            <div class="p-info">
+                <h3>Shipprr</h3>
+                <div>Based on the phenomenon of 
+			<%= link_to "relation'shipping'", "http://en.wikipedia.org/wiki/Shipping_(fandom)", target: "_blank" %>, Shipprr is a social media website that allows users to easily
+			create, follow, and discuss their favorite ships.</div>
+                <span>Ruby on Rails, Bootstrap</span>
+                <p><%= link_to "Visit Website", "http://www.shipprr.com", target: "_blank" %></p>
+            </div>
+        </div>
+    </li>
+    <li>
+        <div class="p-item p-juicedup">
+            <div class="p-info">
+                <h3>Juiced Up!</h3>
+                <div>An incremental game in the style of 
+			<%= link_to "Cookie Clicker", "http://orteil.dashnet.org/cookieclicker/" %>. Players obtain oranges and turn them into orange juice, which can be spent on upgrades.</div>
+                <span>HTML, CSS, JS</span>
+                <p><%= link_to "Play Juiced Up!", juicedup_path, target: "_blank" %></p>
+            </div>
+        </div>
+    </li>
+    <li>
+        <div class="p-item p-wejackit">
+            <div class="p-info">
+                <h3>WeJackIt</h3>
+                <div>A hackathon project for <%= link_to "LA Hacks", "http://www.lahacks.com/", target: "_blank" %>. Jackit is an iPhone game based on shaking your phone. I created the landing page, which features leaderboards powered by the Parse backend.</div>
+                <span>HTML, CSS, JS, Parse</span>
+                <p><%= link_to "Visit Website", "http://www.wejackit.com", target: "_blank" %></p>
+            </div>
+        </div>
+    </li>
+    <li>
+        <div class="p-item p-dishlist">
+            <div class="p-info">
+                <h3>DishList</h3>
+                <div>An app for saving, rating, and sharing memorable dishes at your favorite restaurants. It combines APIs from Yelp, Locu, and Parse to provide a seamless cross-platform experience.</div>
+                <span>Ruby On Rails, Parse</span>
+                <p><%= link_to "Visit Website", "http://dishlist.herokuapp.com/", target: "_blank" %></p>
+            </div>
+        </div>
+    </li>
+    <li>
+        <div class="p-item p-riftreport">
+            <div class="p-info">
+                <h3>Rift Report</h3>
+                <div>A webapp that provides live updates for League of Legends tournament matches. A human reporter creates notifications using the web console when games are in progress.<br />
+                A companion <%= link_to "Android app", "https://play.google.com/store/apps/details?id=com.tiensinoakuma.riftreport&hl=en", target: "_blank" %> is available.</div>
+                <span>Ruby On Rails, Parse</span>
+                <p><%= link_to "Visit Website", "http://www.riftreport.net/", target: "_blank" %></p>
+            </div>
+        </div>
+    </li>
+	</ul>
 </section>
 <section class="education">
 	<div class="section-title">
