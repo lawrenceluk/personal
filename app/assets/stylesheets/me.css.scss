@@ -24,7 +24,7 @@ $mobile-title: 1.3rem;
 $mobile-text: 1.1rem;
 $descrip: 1.1rem;
 $subtext: 0.8rem;
-$mobile-descrip: 0.8rem;
+$mobile-descrip: 0.9rem;
 
 @mixin center()
 {
@@ -161,7 +161,7 @@ article
   top: 1rem;
   transition: 0.2s;
 
-	&:hover
+	&:hover, &:focus
 	{
 		@include scale(1.1);
 	}
@@ -306,7 +306,7 @@ article
       0 1px 2px rgba(0,0,0,0.1);
   transition: all 0.4s ease-in-out;
 
-  &:hover
+  &:hover, &:focus
   {
     box-shadow: 
         inset 0 0 0 160px rgba(52,121,163, 0.8),
@@ -470,6 +470,11 @@ article
 // small
 @media (max-width: 580px)
 {
+	.hidesmall
+	{
+		display: none;
+	}
+
 	.header
 	{
 		margin-top: $gap1;
@@ -504,10 +509,23 @@ article
   	@include span-columns(10);
   }
 
-  .project-image
-  {
-  	@include shift(1);
-  	@include span-columns(10);
-  }
+	.p-grid li
+	{
+	  width: 280px;
+	  height: 280px;
+	  display: inline-block;
+	  margin: 10px;
+	}
 
+	.p-info h3
+	{
+		font-size: $mobile-title;
+    padding: 40px 0 0 0;
+    height: 65px;
+	}
+
+	.p-info div, .p-info p
+	{
+		font-size: $mobile-descrip;
+	}
 }
