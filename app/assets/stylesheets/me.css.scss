@@ -69,6 +69,7 @@ $mobile-descrip: 0.9rem;
 body
 {
 	background: $gray6;
+	margin: 0;
 }
 
 section
@@ -107,9 +108,17 @@ article
 	}
 }
 
-.gap2
+.phrase
 {
-	margin-top: $gap2;
+	color: $white;
+	font-family: "Maven Pro", "Helvetica", sans-serif;
+	font-size: $text;
+	text-transform: uppercase;
+	text-shadow:    
+	 -1px -1px 0 $gray2,  
+    1px -1px 0 $gray2,
+    -1px 1px 0 $gray2,
+     1px 1px 0 $gray2;
 }
 
 /*
@@ -161,9 +170,13 @@ article
   top: 1rem;
   transition: 0.2s;
 
-	&:hover, &:focus, &:active
+	&:hover
 	{
 		@include scale(1.1);
+	}
+	&:active
+	{
+		@include scale(0.94);
 	}
 }
 
@@ -304,7 +317,7 @@ article
       inset 0 0 0 0 rgba(87,161,207, 0.4),
       inset 0 0 0 16px rgba(255,255,255,0.6),
       0 1px 2px rgba(0,0,0,0.1);
-  transition: all 0.4s ease-in-out;
+  transition: all .2s ease-in;
 
   &:hover
   {
@@ -419,6 +432,49 @@ article
 	background: url("/assets/proj/riftreport.png");
 	background-size: cover;	
 	background-position: 30% 0;
+}
+
+.links
+{
+	border-top: 1px solid $gray5;
+	padding-top: $gap3;
+	text-align: center;
+}
+
+.inline-link
+{
+	display: inline-block;
+	font-family: "Maven Pro", "Helvetica", sans-serif;
+	text-decoration: none;
+	text-transform: uppercase;
+
+	i
+	{
+		margin: 0 $gap2;
+	}
+
+	&:hover
+	{
+		background-color: transparent;
+		i
+		{
+			color: #316AA3;
+		}
+		p
+		{
+			color: #316AA3;
+		}
+	}
+}
+
+.bottom
+{
+	background: $gray2;
+	color: $gray5;
+	font-size: $subtext;
+	margin-top: $gap2;
+	padding: $gap1;
+	text-align: center;
 }
 
 /*

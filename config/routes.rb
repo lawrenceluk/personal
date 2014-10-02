@@ -1,9 +1,9 @@
 Personal::Application.routes.draw do
-  root  'static_pages#home'
+  root  'static_pages#me'
   match 'test', to: 'static_pages#test', via: [:get]
   match 'juicedup', to: 'static_pages#juicedup', via: [:get]
   match 'galactic', to: 'static_pages#galactic', via: [:get]
-  match 'exp', to: 'static_pages#me', via: [:get]
+  match 'exp', to: 'static_pages#home', via: [:get]
   match 'twitnow', to: 'static_pages#hose', via: [:get]
   match 'fetchmore', to: 'static_pages#fetch', via: [:get]
   # game related
