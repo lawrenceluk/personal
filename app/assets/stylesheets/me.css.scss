@@ -271,6 +271,13 @@ article
 	background-size: cover;
 }
 
+.squarespace-picture
+{
+	@extend .thumb;
+	background: url("/assets/squarespace.png");
+	background-size: cover;
+}
+
 .work
 {
 	margin-top: $gap1;
