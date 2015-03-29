@@ -278,9 +278,26 @@ article
 	background-size: cover;
 }
 
+.poynt-picture
+{
+	@extend .thumb;
+	background: url("/assets/poynt.png");
+	background-size: cover;
+}
+
 .work
 {
 	margin-top: $gap1;
+
+	a {
+		margin: 0;
+		color: #000;
+	}
+
+	a:hover {
+		background: none;
+		color: #000;
+	}
 }
 
 .p-grid
@@ -476,7 +493,7 @@ article
 
 .bottom
 {
-	background: $gray2;
+	background: $gray1;
 	color: $gray5;
 	font-family: "Maven Pro";
 	font-size: $subtext;
