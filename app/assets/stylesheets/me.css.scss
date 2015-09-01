@@ -1,6 +1,6 @@
 @import "bourbon";
 @import "neat";
-@import url(http://fonts.googleapis.com/css?family=Maven+Pro:700);
+@import url(http://fonts.googleapis.com/css?family=Maven+Pro:500);
 @import url(http://fonts.googleapis.com/css?family=Tinos);
 
 $black: #000;
@@ -16,7 +16,7 @@ $gap3: 3rem;
 $gap2: 2rem;
 $gap1: 1rem;
 
-$major-title: 4rem;
+$major-title: 3.5rem;
 $section-title: 2rem;
 $project-title: 2.5rem;
 $text: 1.5rem;
@@ -75,7 +75,7 @@ body
 section
 {
 	@include outer-container;
-	margin-bottom: $gap1;
+	margin-top: $gap2;
 }
 
 aside 
@@ -98,6 +98,7 @@ article
 
 	div
 	{
+		line-height: 1.2rem;
 		margin-bottom: 0.4rem;
 	}
 
@@ -135,6 +136,7 @@ article
 {
 	font-family: "Maven Pro", "Helvetica", sans-serif;
 	font-size: $major-title;
+	margin-top: $gap2;
 	text-transform: uppercase;
 }
 
@@ -143,7 +145,8 @@ article
 	color: $gray4;
 	font-family: "Tinos", "Georgia", serif;
 	font-size: $text;
-	width: 24rem;
+	line-height: $gap2;
+	margin-top: $text;
 
 	@include center();
 }
@@ -185,9 +188,13 @@ article
 	font-family: "Maven Pro", "Helvetica", sans-serif;
 	font-size: $section-title;
 	letter-spacing: -.7px;
-	margin-top: $gap2;
+	margin-top: $gap3;
 	text-align: center;
 	text-transform: uppercase;
+
+	div {
+		margin-bottom: $gap1;
+	}
 }
 
 .thumb
@@ -405,7 +412,7 @@ article
     display: block;
     color: $white !important;
     font-style: normal;
-    font-weight: 700;
+    font-weight: 500;
     text-transform: uppercase;
     text-decoration: none;
     font-size: $subtext;
