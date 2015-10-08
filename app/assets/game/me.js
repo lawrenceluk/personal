@@ -1,9 +1,10 @@
 var phrases = ["Got em", "Yes", "Hurray", "You got this", "We got this", "It's cool", "Awesome", "Spectacular", "Fantabulous",
 "So chill", "That's crazy", "No way", "That's amazing", "Go for it", "Get em champ", "Put me in coach", "It was easy", "Wau",
 "TFTI", "Check it out", "Yeaaaahhhh", "Truuuu", "You got it", "Sounds good", "Good plan", "I hear ya", "Yup",
-"2 Chainz!!!", "Why not?!", "Porque no los dos", "Too good", "I like it", "I love it", "Do it again", "Face the wind",
+"I'm eating healthy", "Why not?!", "Porque no los dos", "Too good", "I like it", "I love it", "Do it again", "Face the wind",
 "Young money", "All about it", "Ready to go", "I wanna know", "Do the right thing", "Chasing waterfalls", "???", "!!!", "...",
-"Please respond", "In the rear with the gear", "Today's the day", "It's not rocket surgery", "Stay positive!", "It's a lifestyle"];
+"Please respond", "In the rear with the gear", "Today's the day", "It's not rocket surgery", "Stay positive!", "It's a lifestyle",
+"Or what??", "Same", "SAME", "Cool"];
 
 var clickwait = new Date().getTime();
 $("#me-picture").click(function() {
