@@ -22,7 +22,7 @@ $("#me-picture").click(function() {
 	animateClick($("#"+name), $(this).offset().top, 30)
 });
 
-/* 
+/*
  * http://stackoverflow.com/questions/5353934/check-if-element-is-visible-on-screen
  */
 function checkVisible(elm, evalType) {
