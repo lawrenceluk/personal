@@ -42,7 +42,7 @@
   border-radius: 12px;
   box-shadow: 0px 2px 2px 1px rgba(0, 0, 0, 0.2);
   margin: 0 auto;
-  width: 600px;
+  max-width: 600px;
 
   .text {
     color: #333;
@@ -57,5 +57,15 @@
 
   span {
     font-size: 24px;
+  }
+}
+
+@media (max-width: 660px) {
+  .meg {
+    padding: 0;
+  }
+
+  .message-card, .message-card:before, .message-card:after {
+    border-radius: 0;
   }
 }
